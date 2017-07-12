@@ -1,0 +1,45 @@
+{% extends ':Admin:dashboard.html.twig' %}
+
+{% block title %}Liste des sous-catégories - {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s10 offset-s1">
+            <h4>Catégorie : {{ category.name }}</h4>
+            {% if category.subcategories is not empty %}
+                <table class="highlight">
+                    <thead>
+                    <tr>
+                        <th>Sous-catégorie</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for category in category.subcategories %}
+                        <tr>
+                            <td>{{ category.name }}</td>
+                            <td>
+                                <a href="{{ path('admin_subcategory_update', {'id': category.id}) }}"><i class="material-icons">mode_edit</i></a>
+                                <a href="{{ path('admin_subcategory_delete', {'id': category.id}) }}"><i class="material-icons">delete</i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Aucune sous-catégorie.</p>
+            {% endif %}
+            <a class="waves-effect waves-light btn" href="{{ path('admin_subcategory_add', {'id': category.id}) }}">Ajouter une sous-catégorie<i class="material-icons left">library_add</i></a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+
+        $(document).ready(function () {
+            $('.collapsible').collapsible();
+        });
+
+    </script>
+{% endblock %}

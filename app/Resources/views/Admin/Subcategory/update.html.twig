@@ -1,0 +1,31 @@
+{% extends ':Admin:dashboard.html.twig' %}
+
+{% block title %}Modifier une sous-catégorie - {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s10 offset-s1">
+            <h4>Modification d'une sous-catégorie</h4>
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">mode_edit</i>
+                    {{ form_label(form.name, 'Sous-catégorie') }}
+                    {{ form_widget(form.name, {'attr': {'class': 'validate', 'data-length': '30'}}) }}
+                    <blockquote class="red-text text-darken-1">
+                        {{ form_errors(form.name) }}
+                    </blockquote>
+                </div>
+            </div>
+            <button type="submit" class="waves-effect waves-light btn" formnovalidate>modifier<i class="material-icons left">done</i></button>
+
+            {{ form_end(form) }}
+
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

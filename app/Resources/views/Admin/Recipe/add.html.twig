@@ -1,0 +1,55 @@
+{% extends '::base.html.twig'%}
+
+{% block title %}Tableau de bord - {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <div class="col-sm-10">
+        {{ form_start(form) }}
+
+        {{ form_label(form.name, 'Nom de la recette') }}
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+
+        {{ form_label(form.description, 'Description de la recette') }}
+        {{ form_widget(form.description) }}
+        {{ form_errors(form.description) }}
+
+        {{ form_label(form.updateDate, 'Date de dernière modification') }}
+        {{ form_widget(form.updateDate) }}
+        {{ form_errors(form.updateDate) }}
+
+        {{ form_label(form.starNb, 'Note') }}
+        {{ form_widget(form.starNb) }}
+        {{ form_errors(form.starNb) }}
+
+        {{ form_label(form.personNb, 'Nombre de personne') }}
+        {{ form_widget(form.personNb) }}
+        {{ form_errors(form.personNb) }}
+
+        {{ form_label(form.budgetType, 'Type de budget') }}
+        {{ form_widget(form.budgetType) }}
+        {{ form_errors(form.budgetType) }}
+
+        {{ form_label(form.difficulty, 'Difficulté') }}
+        {{ form_widget(form.difficulty) }}
+        {{ form_errors(form.difficulty) }}
+
+        {{ form_label(form.preparationTime, 'Temps de préparation') }}
+        {{ form_widget(form.preparationTime) }}
+        {{ form_errors(form.preparationTime) }}
+
+        {{ form_label(form.timeToRest, 'Temps de repos') }}
+        {{ form_widget(form.timeToRest) }}
+        {{ form_errors(form.timeToRest) }}
+
+        {{ form_label(form.cookingTime, 'Temps de cuisson') }}
+        {{ form_widget(form.cookingTime) }}
+        {{ form_errors(form.cookingTime) }}
+
+        <button type="submit" class="btn btn-default btn-primary">Ajouter</button>
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

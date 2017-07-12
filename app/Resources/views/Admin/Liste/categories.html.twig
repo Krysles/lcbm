@@ -1,0 +1,40 @@
+{% extends ':Admin:dashboard.html.twig' %}
+
+{% block title %}Liste des catégories - {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s10 offset-s1">
+            <h4>Liste des catégories</h4>
+            {% if categories is not empty %}
+                <table class="highlight">
+                    <thead>
+                    <tr>
+                        <th>Catégorie</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td>{{ category.name }}</td>
+                            <td>
+                                <a href="{{ path('admin_liste_category', {'id': category.id}) }}"><i class="material-icons">visibility</i></a>
+                                <a href="{{ path('admin_category_update', {'id': category.id}) }}"><i class="material-icons">mode_edit</i></a>
+                                <a href="{{ path('admin_category_delete', {'id': category.id}) }}"><i class="material-icons">delete</i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Aucune catégorie.</p>
+            {% endif %}
+            <a class="waves-effect waves-light btn" href="{{ path('admin_category_add') }}">Ajouter une catégorie<i class="material-icons left">library_add</i></a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
