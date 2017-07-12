@@ -1,0 +1,57 @@
+
+/* CSS Perso */
+body {
+    background-color: red;
+    margin: 0;
+    display: flex;
+}
+#content {
+    background-color: pink;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100vw;
+}
+#homepage {
+    background-color: greenyellow;
+    box-sizing: border-box;
+    min-height: 667px;
+    height: 100vh;
+    position: relative;
+}
+#ardoise {
+    display: block;
+    position: absolute;
+    width: 80vw;
+    margin-left: 10vw;
+    margin-top: 40vh;
+}
+#salade {
+    display: block;
+    position: absolute;
+    width: 40vw;
+    margin-left: 30vw;
+    margin-top: 40vh;
+}
+#navbar {
+    background-color: green;
+    height: 5vh;
+}
+
+.item {
+    background-color: orange;
+    box-sizing: border-box;
+    height: 95vh;
+    padding-top: 5vh;
+    min-height: 450px;
+}
+.itemlast {
+    background-color: orange;
+    box-sizing: border-box;
+    height: 100vh;
+    padding-top: 5vh;
+}
+#footer {
+    background-color: #999999;
+    height: calc(100vh / 4);
+}

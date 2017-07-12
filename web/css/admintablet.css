@@ -1,0 +1,9 @@
+#slide-out {
+    top: 67px !important;
+}
+#btn-sidebar {
+    display: block !important;
+}
+#content {
+    padding-left: 0;
+}

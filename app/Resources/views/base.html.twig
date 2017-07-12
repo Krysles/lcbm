@@ -19,12 +19,24 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body>
-{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            {% for message in app.session.flashbag.get('info') %}
+                <div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span> {{ message }}</div>
+            {% endfor %}
+            {% for message in app.session.flashbag.get('error') %}
+                <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% block body %}
 
 
 
-{% endblock %}
-{% block javascripts %}
+    {% endblock %}
+
     <!-- JQuery -->
     <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
     <!-- Bootstrap tooltips -->
@@ -34,9 +46,9 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
     <!-- Js Perso -->
-    <script type="text/javascript">
+    {% block javascript %}
 
-    </script>
-{% endblock %}
+    {% endblock %}
+</div>
 </body>
 </html>

@@ -1,0 +1,12 @@
+nav {
+    color: black !important;
+}
+#slide-out {
+    top: 67px !important;
+}
+#btn-sidebar {
+    display: none !important;
+}
+#content {
+    padding-left: 300px;
+}
