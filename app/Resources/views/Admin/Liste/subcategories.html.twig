@@ -3,43 +3,55 @@
 {% block title %}Liste des sous-catégories - {{ parent() }}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col s10 offset-s1">
-            <h4>Catégorie : {{ category.name }}</h4>
-            {% if category.subcategories is not empty %}
-                <table class="highlight">
-                    <thead>
-                    <tr>
-                        <th>Sous-catégorie</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for category in category.subcategories %}
-                        <tr>
-                            <td>{{ category.name }}</td>
-                            <td>
-                                <a href="{{ path('admin_subcategory_update', {'id': category.id}) }}"><i class="material-icons">mode_edit</i></a>
-                                <a href="{{ path('admin_subcategory_delete', {'id': category.id}) }}"><i class="material-icons">delete</i></a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <p>Aucune sous-catégorie.</p>
-            {% endif %}
-            <a class="waves-effect waves-light btn" href="{{ path('admin_subcategory_add', {'id': category.id}) }}">Ajouter une sous-catégorie<i class="material-icons left">library_add</i></a>
+    <div id="recipes" class="item">
+        <div class="row flex-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 mb-r">
+                <div class="card card-cascade">
+                    <div class="view gradient-card-header red darken-3">
+                        <h2 class="h2-responsive">Catégorie : {{ category.name }}</h2>
+                        <p>Gestion des sous-catégories</p>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="card-text">
+                            {% if category.subcategories is not empty %}
+                                <table class="table table-striped">
+                                    <tbody>
+                                    {% for category in category.subcategories %}
+                                        <tr class="row">
+                                            <td class="card-text col-7">{{ category.name }}</td>
+                                            <td class="text-center col-5">
+                                                <a href="{{ path('admin_subcategory_update', {'slug': category.slug}) }}"
+                                                   class="teal-text"><i class="fa fa-pencil fa-lg"></i></a>
+                                                <a href="{{ path('admin_subcategory_delete', {'slug': category.slug}) }}"
+                                                   class="red-text"><i class="fa fa-times fa-lg"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% else %}
+                                <p>Aucune sous-catégorie.</p>
+                            {% endif %}
+                        </div>
+                        <hr>
+
+                        <a class="btn grey darken-1"
+                           href="{{ path('admin_liste_categories') }}"><i
+                                    class="fa fa-reply"></i> Retour aux catégories
+                        </a>
+
+                        <a class="btn red darken-3"
+                           href="{{ path('admin_subcategory_add', {'slug': category.slug}) }}"><i
+                                    class="fa fa-check"></i> Ajouter une sous-catégorie
+                        </a>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
 
 {% block javascript %}
-    <script>
 
-        $(document).ready(function () {
-            $('.collapsible').collapsible();
-        });
-
-    </script>
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends ':Admin:dashboard.html.twig' %}
+
+{% block title %}Liste des types d'appareil - {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-sm-1 col-sm-10">
+            <h4>Liste des types d'appareil</h4>
+            {% if deviceType is not empty %}
+                <table class="table">
+                    <thead class="red darken-3 white-text">
+                    <tr>
+                        <th>Type</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for type in deviceType %}
+                        <tr>
+                            <td>{{ type.name }}</td>
+                            <td>
+                                <a href="{{ path('admin_device_type_update', {'id': type.id}) }}" class="teal-text"><i class="fa fa-pencil fa-2x"></i></a>
+                                <a href="{{ path('admin_device_type_delete', {'id': type.id}) }}" class="red-text"><i class="fa fa-times fa-2x"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Aucun type d'appareil.</p>
+            {% endif %}
+            <a class="btn red darken-3" href="{{ path('admin_device_type_add') }}"><i
+                        class="fa fa-check"></i> Ajouter un type d'appareil</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

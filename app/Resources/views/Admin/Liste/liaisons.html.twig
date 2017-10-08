@@ -1,0 +1,41 @@
+{% extends ':Admin:dashboard.html.twig' %}
+
+{% block title %}Liste des liaisons - {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-sm-1 col-sm-10">
+            <h4>Liste des liaisons</h4>
+            {% if liaisons is not empty %}
+                <table class="table">
+                    <thead class="red darken-3 white-text">
+                    <tr>
+                        <th>Liaison</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for liaison in liaisons %}
+                        <tr>
+                            <td>{{ liaison.name }}</td>
+                            <td>
+                                <a href="{{ path('admin_liaison_update', {'id': liaison.id}) }}" class="teal-text"><i class="fa fa-pencil fa-2x"></i></a>
+                                <a href="{{ path('admin_liaison_delete', {'id': liaison.id}) }}" class="red-text"><i class="fa fa-times fa-2x"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Aucune liaison.</p>
+            {% endif %}
+            <a class="btn red darken-3" href="{{ path('admin_liaison_add') }}"><i
+                        class="fa fa-check"></i> Ajouter une liaison</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

@@ -16,53 +16,170 @@
     <!-- Titre de la page -->
     <title>{% block title %}Tableau de bord{% endblock %}</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/ico" href="favico.gif"/>
-    <!-- ----------NECESSAIRE MATERIALIZE ---------- -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     <!-- Font Awesome -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" media="screen,projection"/>
-    <!-- ------------------------------------------ -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Reset CSS -->
+    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet">
     <!-- Fichier CSS -->
     <link rel="stylesheet" href="{{ asset('css/adminsmartphone.css') }}"/>
     <link rel="stylesheet" media="screen and (min-width:480px)" href="{{ asset('css/admintablet.css') }}"/>
-    <link rel="stylesheet" media="screen and (min-width:993px)" href="{{ asset('css/admin.css') }}"/>
+    <link rel="stylesheet" media="screen and (min-width:1141px)" href="{{ asset('css/admin.css') }}"/>
+    {% block css %}
+
+    {% endblock %}
 </head>
 <body>
+<header>
+    <!-- Sidebar navigation -->
+    <ul id="slide-out" class="side-nav fixed custom-scrollbar">
+        <!-- Logo -->
+        <li class="text-center">
+            <div class="logo-wrapper">
+                <img src="{{ asset('img/website/top.png') }}" class="img-fluid">
+            </div>
+        </li>
+        <!--/. Logo -->
+        <!-- Side navigation links -->
+        <li>
+            <ul class="collapsible collapsible-accordion">
+                <li class="text-center">
+                    <a class="collapsible-header waves-effect arrow-r m-0 p-0"
+                       href="{{ path('admin_liste_categories') }}">Catégories</a>
+                    <img src="{{ asset('img/website/middle.png') }}" class="img-fluid">
+                </li>
+                <li class="text-center">
+                    <a class="collapsible-header waves-effect arrow-r m-0 p-0">Recettes<i
+                                class="fa fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body animated fadeInDown">
+                        <ul>
+                            <li><a href="{{ path('admin_liste_recipes') }}"
+                                   class="waves-effect">Liste</a>
+                            </li>
+                            <li><a href=""
+                                   class="waves-effect">A valider</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <img src="{{ asset('img/website/middle.png') }}" class="img-fluid">
+                </li>
+                <li class="text-center">
+                    <a class="collapsible-header waves-effect arrow-r m-0 p-0">Ingrédients<i
+                                class="fa fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body animated fadeInDown">
+                        <ul>
+                            <li><a href="{{ path('admin_liste_units') }}"
+                                   class="waves-effect">Unités</a>
+                            </li>
+                            <li><a href="{{ path('admin_liste_liaisons') }}"
+                                   class="waves-effect">Liaisons</a>
+                            </li>
+                            <li><a href="{{ path('admin_liste_ingredients') }}"
+                                   class="waves-effect">Ingrédients</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <img src="{{ asset('img/website/middle.png') }}" class="img-fluid">
+                </li>
+                <li class="text-center">
+                    <a class="collapsible-header waves-effect arrow-r m-0 p-0">Modes de cuisson<i
+                                class="fa fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body animated fadeInDown">
+                        <ul>
+                            <li><a href="{{ path('admin_liste_cuisson_type') }}"
+                                   class="waves-effect">Types</a>
+                            </li>
+                            <li><a href="{{ path('admin_liste_cuisson_unity') }}"
+                                   class="waves-effect">Unités</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <img src="{{ asset('img/website/middle.png') }}" class="img-fluid">
+                </li>
+                <li class="text-center">
+                    <a class="collapsible-header waves-effect arrow-r m-0 p-0">Appareils utilisés<i
+                                class="fa fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body animated fadeInDown">
+                        <ul>
+                            <li><a href="{{ path('admin_liste_device_type') }}"
+                                   class="waves-effect">Appareils</a>
+                            </li>
+                            <li><a href="{{ path('admin_liste_device_mode') }}"
+                                   class="waves-effect">Modes</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <img src="{{ asset('img/website/middle.png') }}" class="img-fluid">
+                </li>
+            </ul>
+        </li>
+        <!--/. Side navigation links -->
+        <div class="sidenav-bg mask-strong"></div>
+    </ul>
+    <!--/. Sidebar navigation -->
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav red darken-3">
+        <!-- SideNav slide-out button -->
+        <div class="float-xs-left">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+        </div>
+        <!-- Breadcrumb-->
+        <div class="breadcrumb-dn mr-auto">
+            <p><a href="{{ path('admin') }}">Tableau de bord</a></p>
+        </div>
+        <ul class="nav navbar-nav nav-flex-icons ml-auto">
+            <li class="nav-item">
+                <a href="" class="nav-link"><i class="fa fa-leanpub"></i> <span
+                            class="hidden-sm-down">Mes recettes</span></a>
+            </li>
 
-<nav>
-    <div class="nav-wrapper red darken-3">
-        <a href="#" class="brand-logo">La Cuisine By Mary</a>
-        <a href="#" class="brand-logo center hide-on-med-and-down">Tableau de bord</a>
-        <ul id="slide-out" class="side-nav fixed collection with-header">
-            <li class="collection-header"><h4>Gestion</h4></li>
-            <li><a href="#!" class="collection-item">Catégories</a></li>
-            <li><a href="#!" class="collection-item">Recettes</a></li>
-            <li><a href="#!" class="collection-item">Ingrédients</a></li>
-            <li><a href="#!" class="collection-item">Modes de cuisson</a></li>
-            <li><a href="#!" class="collection-item">Appareils utilisés</a></li>
-            <li><a href="#!" class="collection-item">Utilisateurs</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-unique animated zoomIn"
+                     aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item waves-effect waves-light" href="#">Tableau de bord</a>
+                    <a class="dropdown-item waves-effect waves-light" href="#">Mon profil</a>
+                </div>
+            </li>
         </ul>
-        <ul class="right">
-            <li><a href="#!">First Sidebar Link</a></li>
-            <li><a href="#!">Second Sidebar Link</a></li>
-        </ul>
-        <a href="#" data-activates="slide-out" id="btn-sidebar" class="button-collapse show-on-large"><i
-                    class="material-icons">menu</i></a>
-    </div>
-</nav>
-<div id="content">
+    </nav>
+    <!-- /.Navbar -->
+</header>
+<!--/.Double navigation-->
+
+<main>
     <div id="flash">
         <div class="row">
-            <div class="col s10 offset-s1">
+            <div class="offset-sm-1 col-sm-10">
                 {% for message in app.session.flashbag.get('success') %}
-                    <div class="card-panel green lighten-4 green-text text-darken-4"><i class="material-icons">done</i> {{ message }}</div>
+                    <blockquote class="blockquote bq-success">
+                        <p class="bq-title">Succès</p>
+                        <p>{{ message }}</p>
+                    </blockquote>
                 {% endfor %}
                 {% for message in app.session.flashbag.get('info') %}
-                    <div class="card-panel blue lighten-4 blue-text text-darken-4"><i class="material-icons">info</i> {{ message }}</div>
+                    <blockquote class="blockquote bq-primary">
+                        <p class="bq-title">Information</p>
+                        <p>{{ message }}</p>
+                    </blockquote>
+                {% endfor %}
+                {% for message in app.session.flashbag.get('warning') %}
+                    <blockquote class="blockquote bq-warning">
+                        <p class="bq-title">Avertissement</p>
+                        <p>{{ message }}</p>
+                    </blockquote>
                 {% endfor %}
                 {% for message in app.session.flashbag.get('error') %}
-                    <div class="card-panel red lighten-4 red-text text-darken-4"><i class="material-icons">warning</i> {{ message }}</div>
+                    <blockquote class="blockquote bq-danger">
+                        <p class="bq-title">Danger</p>
+                        <p>{{ message }}</p>
+                    </blockquote>
                 {% endfor %}
             </div>
         </div>
@@ -70,16 +187,43 @@
     {% block content %}
 
     {% endblock %}
-</div>
+</main>
 <!-- JQuery -->
-<script type="text/javascript" src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
-<!-- Import materialize.js -->
-<script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{{ asset('js/tether.min.js') }}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
+<!-- MDB sidebar JavaScript -->
+<script type="text/javascript" src="{{ asset('js/modules/sidenav.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/modules/dropdown.js') }}"></script>
+<!-- Jquery Plugin Sticky -->
+<script type="text/javascript" src="{{ asset('js/modules/jquery.sticky.js') }}"></script>
 <!-- Fichier JS -->
 <script src="{{ asset('js/admin.js') }}"></script>
 <!-- Js Perso -->
-{% block javascript %}
+<script>
+    //$(".button-collapse").sideNav();
+    var container = document.getElementById('slide-out');
+    Ps.initialize(container, {
+        wheelSpeed: 2,
+        wheelPropagation: true,
+        maxScrollbarLength: 0
+    });
 
+    $('.dropdown-toggle').dropdown();
+</script>
+<!-- Js Perso -->
+{% block javascript %}
+    <script>
+
+        new WOW().init();
+
+    </script>
 {% endblock %}
 </body>
 </html>

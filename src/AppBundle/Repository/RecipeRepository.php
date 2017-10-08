@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Recipe;
+
 /**
  * RecipeRepository
  *
@@ -10,4 +12,52 @@ namespace AppBundle\Repository;
  */
 class RecipeRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getRecipesWithSubcategory($subcategory)
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->select('r')
+            ->leftJoin('r.subcategories', 's')
+            ->where('s=:subcategory')
+            ->setParameter('subcategory', $subcategory)
+            ->andWhere('r.status=:status')
+            ->setParameter('status', Recipe::RECIPE_VALIDATE)
+        ;
+
+        return $qb->getQuery()
+            ->getResult();
+    }
+
+    public function getRecipe($recipe)
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->select('r')
+            ->where('r.id ='.$recipe->getId())
+            ->leftJoin('r.ingredients', 'i')
+            ->addSelect('i')
+            ->leftJoin('i.unity', 'iu')
+            ->addSelect('iu')
+            ->leftJoin('i.liaison', 'il')
+            ->addSelect('il')
+            ->leftJoin('i.ingredient', 'ib')
+            ->addSelect('ib')
+            ->leftJoin('r.steps', 's')
+            ->addSelect('s')
+            ->orderBy('s.id', 'ASC')
+            ->leftJoin('s.device', 'sd')
+            ->addSelect('sd')
+            ->leftJoin('sd.deviceType', 'sdt')
+            ->addSelect('sdt')
+            ->leftJoin('sd.deviceMode', 'sdm')
+            ->addSelect('sdm')
+            ->leftJoin('s.cooking', 'sc')
+            ->addSelect('sc')
+            ->leftJoin('sc.cookingType', 'sct')
+            ->addSelect('sct')
+            ->leftJoin('sc.cookingUnity', 'scu')
+            ->addSelect('scu')
+        ;
+
+        return $qb->getQuery()
+            ->getResult();
+    }
 }

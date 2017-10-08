@@ -1,0 +1,56 @@
+{% extends ':Admin:dashboard.html.twig' %}
+
+{% block title %}Ajout de la photo - {{ parent() }}{% endblock %}
+
+{% block css %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-sm-1 col-sm-10">
+            <div class="card-block">
+                <div class="text-center">
+                    <h4>Ajout de la photo pour la recette : {{ recipe.name }}</h4>
+                    <hr class="mt-2 mb-2">
+                </div>
+
+
+                {% form_theme form '::jquery.collection.html.twig' ':Admin:pictures-theme.html.twig' %}
+
+                {% for picture in recipe.pictures %}
+                    <div class="col-3">
+                    <img src="{{ asset(vich_uploader_asset(picture, 'imageFile')) | imagine_filter('caroussel') }}" class="img-thumbnail"/>
+                    </div>
+                {% endfor %}
+
+                {{ form_start(form) }}
+                {{ form_widget(form.pictures) }}
+                {{ form_errors(form.pictures) }}
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="{{ asset('js/jquery.collection.js') }}"></script>
+    <script src="{{ asset('js/jquery.cropit.js') }}"></script>
+    <script>
+        $('.collection').collection({
+            min: 0,
+            max: 1,
+            init_with_n_elements: 0,
+            allow_duplicate: false,
+            add: '<a href="#" class="btn btn-default"><i class="fa fa-plus"></i></a>',
+            after_init: function (collection, element) {
+                $('select').material_select();
+            },
+            after_add: function (collection, element) {
+                $('select').material_select();
+            }
+        });
+    </script>
+{% endblock %}

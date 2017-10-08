@@ -1,0 +1,51 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path("fos_user_security_check") }}" method="post" class="fos_user_login">
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+    {% endif %}
+
+
+    <section class="form-elegant">
+        <!--Form without header-->
+        <div class="card">
+            <div class="card-body mx-4">
+                <!--Header-->
+                <div class="text-center">
+                    <h3 class="dark-grey-text mb-5"><strong>Connexion</strong></h3>
+                </div>
+                <!--Body-->
+                <div class="md-form">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    <label for="username">{{ 'security.login.username'|trans }}</label>
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required"
+                           class="form-control"/>
+                </div>
+                <div class="md-form">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    <label for="password">{{ 'security.login.password'|trans }}</label>
+                    <input type="password" id="password" name="_password" required="required" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                </div>
+
+                {% if error %}
+                    <div class="md-form red-text darken-3 text-center">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
+
+                <div class="text-center mb-3">
+                    <input class="btn btn-red" type="submit" id="_submit" name="_submit"
+                           value="{{ 'security.login.submit'|trans }}" formnovalidate="formnovalidate"/>
+                </div>
+            </div>
+        </div>
+        <!--/Form without header-->
+    </section>
+
+
+</form>
+

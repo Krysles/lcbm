@@ -1,0 +1,41 @@
+{% extends ':Admin:dashboard.html.twig' %}
+
+{% block title %}Liste des unités de cuisson - {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-sm-1 col-sm-10">
+            <h4>Liste des unités de cuisson</h4>
+            {% if cookingUnity is not empty %}
+                <table class="table">
+                    <thead class="red darken-3 white-text">
+                    <tr>
+                        <th>Unité</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for unity in cookingUnity %}
+                        <tr>
+                            <td>{{ unity.name }}</td>
+                            <td>
+                                <a href="{{ path('admin_cooking_unity_update', {'id': unity.id}) }}" class="teal-text"><i class="fa fa-pencil fa-2x"></i></a>
+                                <a href="{{ path('admin_cooking_unity_delete', {'id': unity.id}) }}" class="red-text"><i class="fa fa-times fa-2x"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Aucune unité de cuisson.</p>
+            {% endif %}
+            <a class="btn red darken-3" href="{{ path('admin_cooking_unity_add') }}"><i
+                        class="fa fa-check"></i> Ajouter une unité de cuisson</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

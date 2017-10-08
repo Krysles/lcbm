@@ -1,0 +1,16 @@
+header, main, footer {
+    padding-left: 0;
+}
+
+.double-nav .breadcrumb-dn {
+    display: block !important;
+}
+
+#ardoise {
+    width: 100%;
+    margin-left: -50%;
+}
+#salade {
+    width: 50%;
+    margin-left: -25%;
+}

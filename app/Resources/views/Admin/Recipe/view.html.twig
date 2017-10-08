@@ -1,0 +1,167 @@
+{% extends ':Admin:dashboard.html.twig' %}
+
+{% block title %}{{ recipe.slug|title ~ ' - ' ~ parent() }}{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="item">
+        <div class="row">
+            <div class="col-12 offset-sm-1 col-sm-10 offset-md-2 col-md-8 mb-4">
+                <h2 class="section-heading h1-responsive mt-3 text-center wow fadeInLeftBig"><i
+                            class="fa fa-leanpub"></i> {{ recipe.name|myfilter }}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 offset-sm-1 col-sm-10 offset-lg-2 col-lg-8 mb-4">
+                <ul class="nav nav-tabs nav-justified red darken-3">
+                    <li class="text-center col-6 col-md-3">
+                        <a class="nav-link active pl-0 pr-0" data-toggle="tab" href="#panel1" role="tab">Description</a>
+                    </li>
+                    <li class="text-center col-6 col-md-3">
+                        <a class="nav-link pl-0 pr-0" data-toggle="tab" href="#panel2" role="tab">Photo</a>
+                    </li>
+                    <li class="text-center col-6 col-md-3">
+                        <a class="nav-link pl-0 pr-0" data-toggle="tab" href="#panel3" role="tab">Ingrédients</a>
+                    </li>
+                    <li class="text-center col-6 col-md-3">
+                        <a class="nav-link pl-0 pr-0" data-toggle="tab" href="#panel4" role="tab">Etapes</a>
+                    </li>
+                </ul>
+                <!-- Tab panels -->
+                <div class="tab-content card">
+                    <!--Panel 1-->
+                    <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+                        <br>
+                        <div class="row text-center p-lg-3">
+                            <h5 class="red-text lighten-2 col-12 push-lg-6 col-lg-6 text-lg-right"><i
+                                        class="fa fa-cutlery"></i>
+                                {% for subcategory in recipe.subcategories %}
+                                    {% if not loop.last %}
+                                        {{ subcategory.name ~ ' /' }}
+                                    {% else %}
+                                        {{ subcategory.name }}
+                                    {% endif %}
+                                {% endfor %}
+                            </h5>
+                            <h4 class="card-title col-12 pull-lg-6 col-lg-6 text-lg-left">{{ recipe.name }}</h4>
+                            <p class="red-text lighten-2 col-12 push-lg-6 col-lg-6 text-lg-right">
+                                Recette {{ recipe.budgetType }}
+                                - {{ recipe.difficulty|title }}</p>
+                            <p class="col-12 pull-lg-6 col-lg-6 text-lg-left">
+                                Pour {{ recipe.personNb }} {% if recipe.personNb != 1 %}personnes{% else %}personne{% endif %}</p>
+                            <p class="card-text col-12 mb-4">{{ recipe.description }}</p>
+                        </div>
+                        <div class="card card-body wow rotateIn push-sm-3 col-sm-6 text-center noshadow mb-4 mt-4">
+                            <h4 class="card-title">Temps</h4>
+                            {% if recipe.preparationTime|date('H:i') != '00:00' %}
+                                <p class="card-text m-2">
+                                    <i class="fa fa-shopping-basket red-text darken-3" aria-hidden="true"></i>
+                                    Préparation :
+                                    {{ recipe.preparationTime|date('H:i') }}
+                                </p>
+                            {% endif %}
+                            {% if recipe.timeToRest|date('H:i') != '00:00' %}
+                                <p class="card-text m-2">
+                                    <i class="fa fa-moon-o red-text darken-3" aria-hidden="true"></i> Repos :
+                                    {{ recipe.timeToRest|date('H:i') }}
+                                </p>
+                            {% endif %}
+                            {% if recipe.cookingTime|date('H:i') != '00:00' %}
+                                <p class="card-text m-2">
+                                    <i class="fa fa-ship red-text darken-3" aria-hidden="true"></i> Cuisson :
+                                    {{ recipe.cookingTime|date('H:i') }}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!--/.Panel 1-->
+                    <!--Panel 2-->
+                    <div class="tab-pane fade" id="panel2" role="tabpanel">
+                        <br>
+                        <div class="view overlay hm-white-slight">
+                            {% for picture in recipe.pictures %}
+                                <img src="{{ asset(vich_uploader_asset(picture, 'imageFile')) | imagine_filter('recipe') }}"
+                                     class="img-fluid wow zoomInLeft" alt="">
+                            {% endfor %}
+                            <a href="#">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--/.Panel 2-->
+                    <!--Panel 3-->
+                    <div class="tab-pane fade" id="panel3" role="tabpanel">
+                        <br>
+                        <div class="card card-body wow fadeInLeftBig col-12 push-sm-3 col-sm-6 text-center noshadow mb-4 mt-4">
+                            <h4 class="card-title">Ingrédients</h4>
+                            <p class="card-text">
+                                {% for ingredient in recipe.ingredients %}
+                                    {% if ingredient.quantity is defined %}
+                                        {{ ingredient.quantity }}
+                                    {% endif %}
+                                    {% if ingredient.unity.name is defined %}
+                                        {{ ingredient.unity.name }}
+                                    {% endif %}
+                                    {% if ingredient.liaison.name is defined %}
+                                        {{ ingredient.liaison.name }}
+                                    {% endif %}
+                                    {% if ingredient.ingredient.name is defined %}
+                                        {{ ingredient.ingredient.name }}
+                                    {% endif %}
+                                    <br/>
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                    <!--/.Panel 3-->
+                    <div class="tab-pane fade" id="panel4" role="tabpanel">
+                        <br>
+                        <div class="row text-center text-lg-left">
+                            <div class="card card-body wow fadeInUpBig col-12 noshadow mb-4 mt-4">
+                                <h4 class="card-title text-center">Etapes</h4>
+                                {% for step in recipe.steps %}
+                                    <div class="wow fadeInUp">
+                                        <p class="card-title">Etape {{ loop.index }}</p>
+                                        {{ step.step }}
+                                        <br/>
+                                        {% if step.cooking.cookingType is defined %}
+                                            <p class="card-text red-text darken-3">Mode de cuisson :
+                                                <strong>{{ step.cooking.cookingType.name }}</strong>, à
+                                                <strong>{{ step.cooking.selection }}{{ step.cooking.cookingUnity.name }}</strong>
+                                                pendant <strong>{{ step.cooking.time|date('h:i:s') }}</strong></p>
+                                        {% endif %}
+
+                                        {% if step.device.deviceType is defined %}
+                                            <p class="card-text red-text darken-3">Appareil utilisé :
+                                                <strong>{{ step.device.deviceType.name }}</strong> en mode
+                                                <strong>{{ step.device.deviceMode.name }}</strong>, Sélection
+                                                <strong>{{ step.device.selection }}</strong> pendant
+                                                <strong>{{ step.device.time|date('H:i:s') }}</strong></p>
+                                        {% endif %}
+                                        <br/>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% block nav %}
+
+    {% endblock %}
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        new WOW().init();
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+{% endblock %}

@@ -1,54 +1,498 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8"/>
+    <!-- Encodage du site -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- Pas de cache -->
+    <meta http-equiv="pragma" content="no-cache"/>
+    <!-- Nom du réalisateur de la page -->
+    <meta name="author" content="GILLES Christophe - Krysles"/>
+    <!-- Brève description de la page -->
+    <meta name="description" content="Brève description de la page ici"/>
+    <!-- Liste de mots clés pour qualifier la page -->
+    <meta name="keywords" content="mot clé 1, autre mot clé, blabla"/>
+    <!-- Mise en place du réglage du zoom pour les mobiles -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %}La Cuisine by Mary{% endblock %}</title>
+    <!-- Titre de la page -->
+    <title>{% block title %}La cuisine by Mary{% endblock %}</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Reset CSS -->
+    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet">
     <!-- CSS Perso -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/mainsmartphone.css') }}"/>
+    <link rel="stylesheet" media="screen and (min-width:480px)" href="{{ asset('css/maintablet.css') }}"/>
+    <link rel="stylesheet" media="screen and (min-width:1141px)" href="{{ asset('css/main.css') }}"/>
     {% block stylesheets %}
 
     {% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-            {% for message in app.session.flashbag.get('info') %}
-                <div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span> {{ message }}</div>
-            {% endfor %}
-            {% for message in app.session.flashbag.get('error') %}
-                <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> {{ message }}
-                </div>
-            {% endfor %}
+<header>
+    <!-- Sidebar navigation -->
+    <ul id="slide-out" class="side-nav fixed custom-scrollbar">
+        <!-- Logo -->
+        <li class="text-center">
+            <div class="logo-wrapper">
+                <img src="{{ asset('img/website/top.png') }}" class="img-fluid">
+            </div>
+        </li>
+        <!--/. Logo -->
+        <!-- Side navigation links -->
+        <li>
+            <ul class="collapsible collapsible-accordion">
+                {% for category in categories %}
+                    <li class="text-center">
+                        <a class="collapsible-header waves-effect arrow-r m-0 p-0">{{ category.name }}<i
+                                    class="fa fa-angle-down rotate-icon"></i></a>
+                        {% for subcategory in category.subcategories %}
+                            <div class="collapsible-body animated fadeInDown">
+                                <ul>
+                                    <li><a href="{{ path('view_subcategory', {'slug': subcategory.slug}) }}"
+                                           class="waves-effect"> {{ subcategory.name }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endfor %}
+                        <img src="{{ asset('img/website/middle.png') }}" class="img-fluid">
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+        <!--/. Side navigation links -->
+        <div class="sidenav-bg mask-strong"></div>
+    </ul>
+    <!--/. Sidebar navigation -->
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav red darken-3">
+        <!-- SideNav slide-out button -->
+        <div class="float-xs-left">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
         </div>
-    </div>
-    {% block body %}
+        <!-- Breadcrumb-->
+        <div class="breadcrumb-dn mr-auto">
+            <p><a href="{{ path('homepage') }}">La Cuisine By Mary</a></p>
+        </div>
+        <ul class="nav navbar-nav nav-flex-icons ml-auto">
+            <li class="nav-item">
+                <a href="" class="nav-link"><i class="fa fa-leanpub"></i> <span
+                            class="hidden-sm-down">Mes recettes</span></a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-unique animated zoomIn"
+                     aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item waves-effect waves-light" href="#">Tableau de bord</a>
+                    <a class="dropdown-item waves-effect waves-light" href="#">Mon profil</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.Navbar -->
+</header>
+<main>
+    {% block main %}
+        <div id="homepage" class="item">
+            <img id="ardoise" class="animated fadeInRightBig" src="{{ asset('img/website/ardoise3.png') }}" alt=""/>
+            <img id="salade" class="animated fadeInDownBig" src="{{ asset('img/website/salade.png') }}" alt=""/>
+            <div class="row">
+                <div class="col-12 offset-sm-1 col-sm-10 offset-lg-2 col-lg-8" id="navsearch">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action active col-6 text-center animated bounceInDown"
+                           id="list-home-list" data-toggle="list"
+                           href="#list-home" role="tab" aria-controls="home"><h1
+                                    class="section-heading h4-responsive mt-3 text-center">rechercher une recette</h1>
+                        </a>
+                        <a class="list-group-item list-group-item-action col-6 text-center animated fadeInRightBig"
+                           id="list-profile-list" data-toggle="list"
+                           href="#list-profile" role="tab" aria-controls="profile"><h1
+                                    class="section-heading h4-responsive mt-3 text-center">et par ingrédient ?</h1></a>
+                    </div>
+                </div>
+                <div class="col-12 offset-sm-1 col-sm-10 offset-lg-2 col-lg-8">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="list-home" role="tabpanel"
+                             aria-labelledby="list-home-list">
+                            <form id="search" class="">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-2 col-md-1">
+                                                <div class="md-form col-12">
+                                                    <i class="fa fa-search fa-2x pt-2"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-10 col-md-6 d-flex align-items-center">
+                                                <div class="md-form col-12">
+                                                    <input type="text" id="formsearch" class="form-control"/>
+                                                    <label class="ml-3" for="formsearch">ex: Tartiflette</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-5 d-flex align-items-center">
+                                                <div class="md-form col-12">
+                                                    <button class="btn btn-red col-12 animated bounceIn" type="submit">
+                                                        rechercher
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="list-profile" role="tabpanel"
+                             aria-labelledby="list-profile-list">
+                            <form class="" id="multiplesearch">
+                                <div class="md-form form-group">
+                                    <i class="fa fa-balance-scale prefix grey-text"></i>
+                                    <input type="text" id="ingredient1" class="form-control" placeholder="ex: tomate">
+                                    <label for="ingredient1">Ingrédient n°1</label>
+                                </div>
+                                <div class="md-form form-group">
+                                    <i class="fa fa-balance-scale prefix grey-text"></i>
+                                    <input type="text" id="ingredient2" class="form-control" placeholder="ex: oignon">
+                                    <label for="ingredient2">Ingrédient n°2</label>
+                                </div>
+                                <div class="md-form form-group">
+                                    <i class="fa fa-balance-scale prefix grey-text"></i>
+                                    <input type="text" id="ingredient3" class="form-control" placeholder="ex: semoule">
+                                    <label for="ingredient3">Ingrédient n°3</label>
+                                </div>
+
+                                <div class="text-center mx-auto">
+                                    <button class="btn btn-red animated bounceIn">Trouve moi une recette</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="one" class="item">
+            <div class="row">
+                <div class="col-12 offset-sm-1 col-sm-10 offset-lg-2 col-lg-8 mb-4">
+                    <h2 class="section-heading h1-responsive mt-3 text-center wow fadeInLeftBig">ELLES FONT LE BUZZ <i
+                                class="fa fa-heart"></i></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 offset-sm-1 col-sm-10 offset-lg-3 col-lg-6 mb-4">
+                    <!--Carousel Wrapper-->
+                    <div id="carousel-example-2" class="carousel slide carousel-fade wow fadeInRightBig"
+                         data-ride="carousel">
+                        <!--Indicators-->
+                        <ol class="carousel-indicators">
+                            {% for recipe in buzzRecipe %}
+                                {% if loop.first %}
+                                    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+                                {% else %}
+                                    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ol>
+                        <!--/.Indicators-->
+                        <!--Slides-->
+                        <div class="carousel-inner" role="listbox">
+                            {% for recipe in buzzRecipe %}
+                            {% if loop.first %}
+                            <div class="carousel-item active">
+                                {% else %}
+                                <div class="carousel-item">
+                                    {% endif %}
+                                    <!--Mask color-->
+                                    <div class="view hm-black-slight w-100">
+                                        {% for picture in recipe.pictures %}
+                                            <img class="d-block w-100"
+                                                 src="{{ asset(vich_uploader_asset(picture, 'imageFile')) | imagine_filter('caroussel') }}"/>
+                                            <div class="mask"></div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="carousel-caption">
+                                        <h3 class="h3-responsive">{{ recipe.name }}</h3>
+                                        <p>{{ recipe.description }}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!--/.Slides-->
+                            <!--Controls-->
+                            <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Précédent</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Suivant</span>
+                            </a>
+                            <!--/.Controls-->
+                        </div>
+                        <!--/.Carousel Wrapper-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 offset-sm-1 col-sm-10 offset-lg-2 col-lg-8">
+                        <h3 class="h3-responsive text-center ml-1 mr-1 wow zoomInDown">
+                            <small class="red-text darken-2"><i class="fa fa-quote-left mt-3 mr-3"
+                                                                aria-hidden="true"></i>parce
+                                qu'elles sont plus meilleures les unes
+                                que les autres<i class="fa fa-quote-right m-3" aria-hidden="true"></i></small>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="two" class="item">
+            <section class="section magazine-section multi-columns">
+                <h2 class="section-heading h1-responsive mt-3 mb-4">RECETTES A LA UNE</h2>
+                <p class="section-description">Découvrez ici les dernières recettes et plats de
+                    saison.</p>
+                <div class="row text-left m-1">
+                    <div class="col-12 col-md-4 mb-r wow fadeInLeft">
+                        <div class="single-news">
+                            <a href="" class="orange-text mb-1">
+                                <h6><i class="fa fa-ship"></i><strong> nouvelles venues...</strong></h6>
+                            </a>
+                            <div class="view overlay hm-white-slight z-depth-1-half">
+                                <img src="https://mdbootstrap.com/img/Photos/Others/img%20(29).jpg" class="img-fluid"
+                                     alt="First sample image">
+                                <a>
+                                    <div class="mask"></div>
+                                </a>
+                            </div>
+                            <a>
+                                <strong>This is title of the news.</strong>
+                                <i class="fa fa-angle-right"></i></a>
+                        </div>
+                        <div class="single-news">
+                            <a>24 Food Swaps That Slash Calories.
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                        <div class="single-news">
+                            <a>How to Make a Beet Cocktail?
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                        <div class="single-news">
+                            <a>8 Sneaky Reasons You're Always Hungry.
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                        <div class="single-news">
+                            <a>5 Pressure Cooker Recipes You Need to Try.
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 mb-r wow fadeInUp">
+                        <div class="single-news">
+                            <a href="" class="green-text"><h6><i class="fa fa-calendar-check-o"></i><strong> c'est le
+                                        moment !</strong>
+                                </h6></a>
+                            <div class="view overlay hm-white-slight z-depth-1-half">
+                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(51).jpg"
+                                     class="img-fluid" alt="Second sample image">
+                                <a>
+                                    <div class="mask"></div>
+                                </a>
+                            </div>
+                            <a><strong>This is title of the news.</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                        <div class="single-news">
+                            <a>Trends in the blogosphere for 2016.
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                        <div class="single-news">
+                            <a>Where you eat the best lunch in Warsaw?
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                        <div class="single-news">
+                            <a>What camera take for holidays?
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                        <div class="single-news">
+                            <a>Why you should visit Lisbon?
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 mb-r wow fadeInRight">
+                        <div class="single-news">
+                            <a href="" class="pink-text"><h6><i class="fa fa-hourglass-half"></i><strong> pas de temps
+                                        ?</strong>
+                                </h6></a>
+                            <div class="view overlay hm-white-slight z-depth-1-half">
+                                <img src="https://mdbootstrap.com/img/Photos/Others/img%20(33).jpg" class="img-fluid"
+                                     alt="Third sample image">
+                                <a>
+                                    <div class="mask"></div>
+                                </a>
+                            </div>
+                            <a><strong>This is title of the news.</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                        <div class="single-news">
+                            <a>Top models in Poland.
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                        <div class="single-news">
+                            <a>London Fashion Week - see online.
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                        <div class="single-news">
+                            <a>Best bags designers in Italy.
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                        <div class="single-news">
+                            <a>Choose best swimsuit for summer.
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
 
+        <div id="three" class="item">
+            <h2 class="section-heading h1-responsive mt-3 mb-5">Bienvenue au sein de notre communauté</h2>
+            <div class="row m-2">
+                <section class="col-12 col-lg-6 section magazine-section mb-5 wow rollIn">
+                    <div class="card testimonial-card">
+                        <div class="card-up orange lighten-1">
+                        </div>
+                        <div class="avatar"><img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg"
+                                                 class="rounded-circle">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Maryline</h4>
+                            <hr>
+                            <p><i class="fa fa-quote-left mr-1"></i> Rien de plus agréable qu'un bon plat préparé
+                                et apprécié</p>
+                            <p>Passionés de cuisine, vous pourrez découvrir ici toutes nos recettes partagées et les
+                                tester.</p>
+                            <p>Que vous soyez amateurs, curieux ou confirmés, venez nous rejoindre pour vivre des
+                                moments de convivialités et d'échange.</p>
+                            <a class="btn btn-red darken-3">S'inscrire</a>
+                        </div>
+                    </div>
+                </section>
+                <section class="col-12 col-lg-6 section magazine-section mb-5 wow rollIn">
+                    <div class="card testimonial-card">
+                        <div class="card-up green lighten-1 text-center white-text p-4">
+                            <i class="fa fa-envelope-o fa-2x"></i>
+                            <p class="h5-responsive mt-1">nous contacter</p>
+                        </div>
+                        <form class="p-5 contact-form">
+                            <div class="md-form">
+                                <i class="fa fa-user prefix grey-text"></i>
+                                <input type="text" id="form3" class="form-control">
+                                <label for="form3">Votre nom</label>
+                            </div>
+                            <div class="md-form">
+                                <i class="fa fa-envelope prefix grey-text"></i>
+                                <input type="text" id="form2" class="form-control">
+                                <label for="form2">Votre email</label>
+                            </div>
+                            <div class="md-form">
+                                <i class="fa fa-tag prefix grey-text"></i>
+                                <input type="text" id="form34" class="form-control">
+                                <label for="form34">Sujet</label>
+                            </div>
+                            <div class="md-form">
+                                <i class="fa fa-pencil prefix grey-text"></i>
+                                <textarea type="text" id="form8" class="md-textarea" style="height: 100px"></textarea>
+                                <label for="form8">Votre message</label>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-red darken-3">envoyer <i class="fa fa-paper-plane-o ml-1"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
 
+        <div class="dotted-scrollspy hidden-sm-down">
+            <ul class="nav smooth-scroll">
+                {% block nav %}
+                <li class="nav-item"><a class="nav-link" href="#homepage"><span></span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#one"><span></span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#two"><span></span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#three"><span></span></a></li>
+                {% endblock %}
+            </ul>
+        </div>
     {% endblock %}
+
+    <!-- Footer -->
+    <div id="footer">
+        <h1>FOOTER</h1>
+    </div>
+
+
 
     <!-- JQuery -->
     <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="{{ asset('js/tether.min.js') }}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
+    <!-- MDB sidebar JavaScript -->
+    <script type="text/javascript" src="{{ asset('js/modules/sidenav.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/modules/dropdown.js') }}"></script>
+    <!-- Jquery Plugin Sticky -->
+    <script type="text/javascript" src="{{ asset('js/modules/jquery.sticky.js') }}"></script>
+    <!-- Js Perso -->
+    <script>
+        $(".button-collapse").sideNav();
+        var container = document.getElementById('slide-out');
+        Ps.initialize(container, {
+            wheelSpeed: 2,
+            wheelPropagation: true,
+            maxScrollbarLength: 0
+        });
+
+        $('.dropdown-toggle').dropdown();
+    </script>
     <!-- Js Perso -->
     {% block javascript %}
+        <script>
 
+            new WOW().init();
+
+            // initialize scrollspy
+            $('body').scrollspy({
+                target: '.dotted-scrollspy'
+            });
+
+
+
+        </script>
     {% endblock %}
-</div>
+</main>
 </body>
 </html>

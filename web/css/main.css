@@ -1,54 +1,25 @@
-/*
-#homepage {
-    background: url("../img/website/ardoise.png") no-repeat center center;
-    background-size: 40%;
-}*/
-
+header, main, footer {
+    padding-left: 240px;
+}
+.double-nav .breadcrumb-dn {
+    padding-left: 20% !important;
+}
 #ardoise {
     display: block;
     position: absolute;
-    width: 50vw;
-    margin-left: 25vw;
-    margin-top: 40vh;
+    width: 80%;
+    left: 50%;
+    margin-left: -40%;
+    top: 42%;
+    margin-top: 0;
 }
 #salade {
     display: block;
     position: absolute;
-    width: 20vw;
-    margin-left: 40vw;
-    margin-top: 40vh;
-}
-
-/*
-#sidebar {
-
-    background-color: yellow;
-    height: 100vh;
-    width: 20vw;
-    position: fixed;
-    display: block;
-}
-
-#content {
-    width: 80vw;
-    margin-left: 20vw;
-}
-#homepage {
-    height: 100vh;
-}
-#navbar {
-    height: 5vh;
-}
-
-.item {
-    height: 95vh;
-    padding-top: 5vh;
-}
-.itemlast {
-    height: 100vh;
-    padding-top: 5vh;
-}
-#footer {
-    height: calc(100vh / 4);
+    width: 36%;
+    margin-left: -18%;
+    left: 50%;
+    top: 40%;
+    margin-top: 0;
 }
 

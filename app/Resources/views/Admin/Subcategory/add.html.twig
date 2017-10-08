@@ -4,24 +4,26 @@
 
 {% block content %}
     <div class="row">
-        <div class="col s10 offset-s1">
-            <h4>Ajouter une sous-catégorie à "{{ category.name }}"</h4>
-            {{ form_start(form) }}
-            <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">library_add</i>
-
-
+        <div class="offset-sm-1 col-sm-10">
+            <div class="card-block">
+                <div class="text-center">
+                    <h4>Ajouter une sous-catégorie à "{{ category.name }}"</h4>
+                    <hr class="mt-2 mb-2">
+                </div>
+                <div class="md-form">
+                    {{ form_start(form) }}
+                    <i class="fa fa-tags prefix"></i>
+                    {{ form_widget(form.name, {'attr': {'length': '30'}}) }}
                     {{ form_label(form.name, 'Sous-catégorie à ajouter') }}
-                    {{ form_widget(form.name, {'attr': {'class': 'validate', 'data-length': '30'}}) }}
-                    <blockquote class="red-text text-darken-1">
-                        {{ form_errors(form.name) }}
-                    </blockquote>
+                    {{ form_errors(form.name) }}
+                    <div class="text-center">
+                        <button type="submit" class="btn red darken-3" formnovalidate><i class="fa fa-check"></i>
+                            Ajouter
+                        </button>
+                    </div>
+                    {{ form_end(form) }}
                 </div>
             </div>
-            <button type="submit" class="waves-effect waves-light btn" formnovalidate>Ajouter<i
-                        class="material-icons left">done</i></button>
-            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}

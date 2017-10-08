@@ -1,9 +1,7 @@
-#slide-out {
-    top: 67px !important;
-}
-#btn-sidebar {
-    display: block !important;
-}
-#content {
+header, main, footer {
     padding-left: 0;
+}
+
+.double-nav .breadcrumb-dn {
+    display: block !important;
 }

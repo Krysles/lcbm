@@ -1,0 +1,66 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ subcategory.name|title ~ ' - ' ~ parent() }}{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block main %}
+    <div id="subcategory" class="item">
+        <div class="row">
+            <div class="col-12 offset-sm-1 col-sm-10 offset-lg-2 col-lg-8 mb-4">
+                <h2 class="section-heading h1-responsive mt-3 text-center wow fadeInLeftBig"><i
+                            class="fa fa-leanpub"></i> {{ subcategory.name|myfilter }}</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-4">
+            {% for recipe in recipes %}
+                {% if loop.index0 % 6 in [0,1] %}
+                    {% set classEffect = "fadeInRight" %}
+                {% elseif loop.index0 % 6 in [2,3] %}
+                    {% set classEffect = "fadeInUp" %}
+                {% elseif loop.index0 % 6 in [4,5] %}
+                    {% set classEffect = "fadeInLeft" %}
+                {% endif %}
+                <div class="col-10 col-sm-10 col-lg-3 col-lg-auto m-lg-1 mb-5 wow {{ classEffect }}">
+                    <div class="card card-cascade narrower">
+                        <div class="view overlay hm-white-slight">
+                            {% for picture in recipe.pictures %}
+                                <img src="{{ asset(vich_uploader_asset(picture, 'imageFile')) | imagine_filter('thumbnail_recipe') }}"
+                                     class="img-fluid" alt="narrower">
+                                <a href="{{ path('view_recipe', {'slug': recipe.slug }) }}">
+                                    <div class="mask"></div>
+                                </a>
+                            {% endfor %}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="red-text lighten-2"><i class="fa fa-cutlery"></i>
+                                {% for subcategory in recipe.subcategories %}
+                                    {% if not loop.last %}
+                                        {{ subcategory.name ~ ' /' }}
+                                    {% else %}
+                                        {{ subcategory.name }}
+                                    {% endif %}
+                                {% endfor %}
+                            </h5>
+                            <h4 class="card-title">{{ recipe.name }}</h4>
+                            <p class="card-text">{{ recipe.description }}</p>
+                            <a href="{{ path('view_recipe', {'slug': recipe.slug }) }}" class="btn red darken-3">Voir
+                                la recette</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% block nav %}
+
+    {% endblock %}
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        new WOW().init();
+    </script>
+{% endblock %}

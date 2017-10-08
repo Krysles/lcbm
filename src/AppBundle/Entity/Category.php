@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Category
@@ -33,6 +34,12 @@ class Category
      * @Assert\Length(max="30", maxMessage="30 caractères max.")
      */
     private $name;
+
+    /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(length=128)
+     */
+    private $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Subcategory", mappedBy="category", cascade={"persist"})
@@ -83,6 +90,16 @@ class Category
     }
 
     /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Add subcategory
      *
      * @param \AppBundle\Entity\Subcategory $subcategory
@@ -92,6 +109,8 @@ class Category
     public function addSubcategory(\AppBundle\Entity\Subcategory $subcategory)
     {
         $this->subcategories[] = $subcategory;
+
+        $subcategory->setCategory($this);
 
         return $this;
     }

@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getCategoriesWithSubcategories()
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->leftJoin('c.subcategories', 's')
+            ->addSelect('s');
+
+        return $qb->getQuery()
+            ->getResult();
+    }
 }

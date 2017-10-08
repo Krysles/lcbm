@@ -13,36 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 class CategoryController extends Controller
 {
     /**
-     * @Route("admin", name="admin")
-     */
-    public function adminAction()
-    {
-        return $this->render(':Admin:dashboard.html.twig');
-    }
-
-    /**
-     * @Route("admin/liste/categories", name="admin_liste_categories")
-     */
-    public function adminListeCategoriesAction()
-    {
-        $categories = $this->getDoctrine()->getManager()->getRepository('AppBundle:Category')->findAll();
-
-        return $this->render(':Admin/Liste:categories.html.twig', array(
-            'categories' => $categories
-        ));
-    }
-
-    /**
-     * @Route("admin/liste/categorie/{id}", name="admin_liste_category")
-     */
-    public function adminListeCategoryAction(Category $category)
-    {
-        return $this->render(':Admin/Liste:subcategories.html.twig', array(
-            'category' => $category
-        ));
-    }
-
-    /**
      * @Route("admin/categorie/ajouter", name="admin_category_add")
      */
     public function adminCategoryAddAction(Request $request)
@@ -69,7 +39,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("admin/categorie/modifier/{id}", name="admin_category_update")
+     * @Route("admin/categorie/modifier/{slug}", name="admin_category_update")
      */
     public function adminCategoryUpdateAction(Request $request, Category $category)
     {
@@ -92,7 +62,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("admin/categorie/supprimer/{id}", name="admin_category_delete")
+     * @Route("admin/categorie/supprimer/{slug}", name="admin_category_delete")
      */
     public function adminCategoryDeleteAction(Category $category)
     {
@@ -104,7 +74,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("admin/sous-categorie/ajouter/{id}", name="admin_subcategory_add")
+     * @Route("admin/sous-categorie/ajouter/{slug}", name="admin_subcategory_add")
      */
     public
     function subcategoryAddAction(Category $category, Request $request)
@@ -121,7 +91,7 @@ class CategoryController extends Controller
             if ($form->isValid()) {
                 $em->flush();
                 $this->addFlash('info', "Sous-catégorie ajoutée.");
-                return $this->redirectToRoute('admin_liste_category', array('id' => $subcategory->getCategory()->getId()));
+                return $this->redirectToRoute('admin_liste_category', array('slug' => $subcategory->getCategory()->getSlug()));
             } else {
                 $this->addFlash('info', "Sous-catégorie incorrecte.");
             }
@@ -133,7 +103,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("admin/sous-categorie/modifier/{id}", name="admin_subcategory_update")
+     * @Route("admin/sous-categorie/modifier/{slug}", name="admin_subcategory_update")
      */
     public function adminSubcategoryUpdateAction(Request $request, Subcategory $subcategory)
     {
@@ -145,7 +115,7 @@ class CategoryController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
                 $this->addFlash('success', "Sous-catégorie modifiée.");
-                return $this->redirectToRoute('admin_liste_category', array('id' => $subcategory->getCategory()->getId()));
+                return $this->redirectToRoute('admin_liste_category', array('slug' => $subcategory->getCategory()->getSlug()));
             } else {
                 $this->addFlash('info', "Catégorie incorrecte.");
             }
@@ -156,7 +126,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("admin/sous-categorie/supprimer/{id}", name="admin_subcategory_delete")
+     * @Route("admin/sous-categorie/supprimer/{slug}", name="admin_subcategory_delete")
      */
     public function adminSubcategoryDeleteAction(Subcategory $subcategory)
     {
@@ -164,6 +134,6 @@ class CategoryController extends Controller
         $em->remove($subcategory);
         $em->flush();
         $this->addFlash('error', "Sous-catégorie supprimée.");
-        return $this->redirectToRoute('admin_liste_category', array('id' => $subcategory->getCategory()->getId()));
+        return $this->redirectToRoute('admin_liste_category', array('slug' => $subcategory->getCategory()->getSlug()));
     }
 }

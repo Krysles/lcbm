@@ -1,0 +1,20 @@
+{% block PictureType_row %}
+
+    <div class="row grey lighten-4 mb-2 p-2">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <div>{{ form_label(form.imageFile) }}</div>
+                    <div>{{ form_widget(form.imageFile, {'attr': {'class': 'md-textarea'}}) }}</div>
+                    <div>{{ form_errors(form.imageFile) }}</div>
+                </div>
+
+                <div class="col-sm-2">
+                    <a href="#" class="collection-remove btn btn-default"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

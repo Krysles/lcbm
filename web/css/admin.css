@@ -1,12 +1,6 @@
-nav {
-    color: black !important;
+header, main, footer {
+    padding-left: 240px;
 }
-#slide-out {
-    top: 67px !important;
-}
-#btn-sidebar {
-    display: none !important;
-}
-#content {
-    padding-left: 300px;
+.double-nav .breadcrumb-dn {
+    padding-left: 20% !important;
 }

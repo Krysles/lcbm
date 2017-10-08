@@ -1,0 +1,11 @@
+{# extends "@FOSUser/layout.html.twig" #}
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ parent() }} - Inscription{% endblock title %}
+
+{% block main %}
+    <div class="item">
+        {{ include('@FOSUser/Security/login_content.html.twig') }}
+    </div>
+    {# block fos_user_content #}
+{% endblock %}

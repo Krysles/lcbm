@@ -1,0 +1,34 @@
+{% extends ':Admin:dashboard.html.twig' %}
+
+{% block title %}Modifier une liaison - {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-sm-1 col-sm-10">
+            <div class="card-block">
+                <div class="text-center">
+                    <h4>Modification d'une liaison</h4>
+                    <hr class="mt-2 mb-2">
+                </div>
+                <div class="md-form">
+                    {{ form_start(form) }}
+                    <i class="fa fa-tag prefix"></i>
+                    {{ form_widget(form.name, {'attr': {'data-length': '30'}}) }}
+
+                    {{ form_label(form.name, 'Liaison') }}
+                    {{ form_errors(form.name) }}
+                    <div class="text-center">
+                        <button type="submit" class="btn red darken-3" formnovalidate><i class="fa fa-check"></i>
+                            Modifier
+                        </button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

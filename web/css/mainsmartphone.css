@@ -1,57 +1,292 @@
-
 /* CSS Perso */
-body {
-    background-color: red;
-    margin: 0;
-    display: flex;
+@font-face {
+    font-family: 'museo_sans500';
+    src: url('polices/museosans_500-webfont.woff2') format('woff2'),
+    url('polices/museosans_500-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
-#content {
-    background-color: pink;
+@font-face {
+    font-family: 'museo_sans500_italic';
+    src: url('polices/museosans_500_italic-webfont.woff2') format('woff2'),
+    url('polices/museosans_500_italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'cookiesandcreamregular';
+    src: url('polices/cookiesandcream-webfont.woff2') format('woff2'),
+    url('polices/cookiesandcream-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'cookiesandcreamextrasregular';
+    src: url('polices/cookiesandcreamextras-webfont.woff2') format('woff2'),
+    url('polices/cookiesandcreamextras-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'coffeetea_demoregular';
+    src: url('polices/coffeeteademo-regular-webfont.woff2') format('woff2'),
+    url('polices/coffeeteademo-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'cinnamon_cakeregular';
+    src: url('polices/cinnamon_cake-webfont.woff2') format('woff2'),
+    url('polices/cinnamon_cake-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     width: 100vw;
+    min-width: 320px;
+    font-family: cinnamon_cakeregular !important;
+    letter-spacing: 2px;
 }
+h1, h2, h3, h4, h5, h6, blockquote, .btn {
+    font-family: cookiesandcreamregular !important;
+}
+.side-nav .sidenav-bg::after {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.btn {
+    font-size: 1.2rem;
+}
+
+/* ---- sidebar ---- */
+#slide-out .logo-wrapper img {
+    padding: 0;
+    margin: 7px 0;
+}
+#slide-out .collapsible > li > a:first-child {
+    font-family: cookiesandcreamregular;
+    font-size: 17px;
+    letter-spacing: 2px;
+}
+
+.side-nav .collapsible a {
+    font-family: cinnamon_cakeregular;
+    letter-spacing: 1px;
+    padding: 0;
+}
+/* ---- navbar ---- */
+.navbar .dropdown-menu.dropdown-menu-right {
+    right: 0 !important;
+}
+/* ---- speed navigation ---- */
+.dotted-scrollspy {
+    top: 85% !important;
+    z-index: 1;
+}
+.dotted-scrollspy ul.nav {
+    display: block;
+}
+.dotted-scrollspy ul.nav li {
+    margin: 0;
+    padding: 5px;
+}
+
 #homepage {
-    background-color: greenyellow;
     box-sizing: border-box;
-    min-height: 667px;
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
+    overflow: hidden;
 }
+.item {
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding-top: 10vh;
+    overflow: hidden;
+}
+
 #ardoise {
     display: block;
     position: absolute;
-    width: 80vw;
-    margin-left: 10vw;
-    margin-top: 40vh;
+    width: 160%;
+    left: 50%;
+    margin-left: -80%;
+    top: 55%;
 }
 #salade {
     display: block;
     position: absolute;
-    width: 40vw;
-    margin-left: 30vw;
-    margin-top: 40vh;
-}
-#navbar {
-    background-color: green;
-    height: 5vh;
+    width: 70%;
+    margin-left: -35%;
+    left: 50%;
+    top: 53%;
 }
 
-.item {
-    background-color: orange;
-    box-sizing: border-box;
-    height: 95vh;
-    padding-top: 5vh;
-    min-height: 450px;
+#navsearch #list-tab {
+    flex-direction: row;
 }
-.itemlast {
-    background-color: orange;
-    box-sizing: border-box;
-    height: 100vh;
-    padding-top: 5vh;
+
+#navsearch #list-tab .list-group-item {
+    border: none;
 }
+
+#navsearch #list-tab .list-group-item {
+    background-color: transparent;
+}
+#navsearch #list-tab .list-group-item.active {
+    background-color: transparent;
+    color: #c62828;
+}
+
+#search {
+    padding: 20px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255,0.8);
+}
+
+#search i,
+#multiplesearch i {
+    color: #c62828 !important;
+}
+
+#search .md-form {
+    margin-bottom: 0;
+}
+
+#search button, #multiplesearch button {
+    box-shadow: none;
+    margin: 0;
+}
+
+#formsearch:enabled {
+    border-bottom: 2px solid #c62828;
+}
+
+#multiplesearch {
+    margin: 5px auto;
+    padding: 25px !important;
+    background-color: rgba(255, 255, 255,0.8);
+}
+
+
 #footer {
     background-color: #999999;
     height: calc(100vh / 4);
+}
+
+/* FORM REGISTRATION */
+.fos_user_registration_register .card,
+.fos_user_login .card {
+    box-shadow: none;
+}
+
+.contact-form .md-form label,
+.fos_user_registration_register .md-form label,
+.fos_user_connexion .md-form label {
+    color: dimgrey; }
+
+.contact-form input[type=text]:focus:not([readonly]),
+#search input[type=text]:focus:not([readonly]),
+#multiplesearch input[type=text]:focus:not([readonly]),
+.fos_user_registration_register input[type=text]:focus:not([readonly]),
+.fos_user_login input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #c62828 !important;
+    -webkit-box-shadow: 0 1px 0 0 #c62828 !important;
+    box-shadow: 0 1px 0 0 #c62828 !important; }
+
+.contact-form input[type=text]:focus:not([readonly]) + label,
+#search input[type=text]:focus:not([readonly]) + label,
+#multiplesearch input[type=text]:focus:not([readonly]) + label,
+.fos_user_registration_register input[type=text]:focus:not([readonly]) + label,
+.fos_user_login input[type=text]:focus:not([readonly]) + label{
+    color: #c62828 !important; }
+
+.contact-form input[type=email]:focus:not([readonly])
+.fos_user_registration_register input[type=email]:focus:not([readonly]) {
+    border-bottom: 1px solid #c62828;
+    -webkit-box-shadow: 0 1px 0 0 #c62828;
+    box-shadow: 0 1px 0 0 #c62828; }
+
+.contact-form input[type=email]:focus:not([readonly]) + label
+.fos_user_registration_register input[type=email]:focus:not([readonly]) + label {
+    color: #c62828; }
+
+.contact-form textarea[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #c62828;
+    -webkit-box-shadow: 0 1px 0 0 #c62828;
+    box-shadow: 0 1px 0 0 #c62828; }
+
+.contact-form textarea[type=text]:focus:not([readonly]) + label {
+    color: #c62828; }
+
+.contact-form input[type=password]:focus:not([readonly]),
+.fos_user_registration_register input[type=password]:focus:not([readonly]),
+.fos_user_login input[type=password]:focus:not([readonly]){
+    border-bottom: 1px solid #c62828;
+    -webkit-box-shadow: 0 1px 0 0 #c62828;
+    box-shadow: 0 1px 0 0 #c62828; }
+
+.contact-form input[type=password]:focus:not([readonly]) + label,
+.fos_user_registration_register input[type=password]:focus:not([readonly]) + label,
+.fos_user_login input[type=password]:focus:not([readonly]) + label {
+    color: #c62828; }
+
+.fos_user_login input[type="checkbox"]:checked + label:before {
+    top: -4px;
+    left: -3px;
+    width: 12px;
+    height: 22px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: transparent #c62828 #c62828 transparent;
+    -webkit-transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    transform: rotate(40deg);
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    transform-origin: 100% 100%; }
+
+#carousel-example-2
+{
+    position: relative;
+}
+#carousel-example-2:before, #carousel-example-2:after
+{
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width:300px;
+    background: #777;
+    box-shadow: 0 15px 10px #777;
+    transform: rotate(-3deg);
+}
+#carousel-example-2:after
+{
+    transform: rotate(3deg);
+    right: 10px;
+    left: auto;
+}
+
+#two section h6 {
+    min-height: 45px;
+}
+
+.narrower {
+    min-height: 100%;
+}
+
+.noshadow {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
 }

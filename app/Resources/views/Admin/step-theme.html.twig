@@ -1,0 +1,90 @@
+{% block StepType_row %}
+
+    <div class="row grey lighten-4 mb-2 p-2">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <div class="text-center">{{ form_label(form.step) }}</div>
+                    <div>{{ form_widget(form.step, {'attr': {'class': 'md-textarea'}}) }}</div>
+                    <div>{{ form_errors(form.step) }}</div>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <div class="text-center">{{ form_label(form.cooking.cookingType) }}</div>
+                    <div>{{ form_widget(form.cooking.cookingType, {'attr': {'class': 'mdb-select'}}) }}</div>
+                    <div>{{ form_errors(form.cooking.cookingType) }}</div>
+                </div>
+                <div class="col-sm-3 text-center form-group">
+                    <div class="text-center">{{ form_label(form.cooking.selection) }}</div>
+                    <div>{{ form_widget(form.cooking.selection, {'attr': {'class': 'form-control'}}) }}</div>
+                    <div>{{ form_errors(form.cooking.selection) }}</div>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <div class="text-center">{{ form_label(form.cooking.cookingUnity) }}</div>
+                    <div>{{ form_widget(form.cooking.cookingUnity, {'attr': {'class': 'mdb-select'}}) }}</div>
+                    <div>{{ form_errors(form.cooking.cookingUnity) }}</div>
+                </div>
+
+                <div class="col-sm-1 text-center">
+                    <div class="text-center">{{ form_label(form.cooking.time.hour, 'Heure') }}</div>
+                    <div>{{ form_widget(form.cooking.time.hour, {'attr': {'class': 'timepicker'}}) }}</div>
+                    <div>{{ form_errors(form.cooking.time.hour) }}</div>
+                </div>
+                <div class="col-sm-1 text-center">
+                    <div class="text-center">{{ form_label(form.cooking.time.minute, 'Minute') }}</div>
+                    <div>{{ form_widget(form.cooking.time.minute, {'attr': {'class': 'timepicker'}}) }}</div>
+                    <div>{{ form_errors(form.cooking.time.minute) }}</div>
+                </div>
+                <div class="col-sm-1 text-center">
+                    <div class="text-center">{{ form_label(form.cooking.time.second, 'Seconde') }}</div>
+                    <div>{{ form_widget(form.cooking.time.second, {'attr': {'class': 'timepicker'}}) }}</div>
+                    <div>{{ form_errors(form.cooking.time.second) }}</div>
+                </div>
+
+                <div class="col-sm-3 text-center">
+                    <div class="text-center">{{ form_label(form.device.deviceType) }}</div>
+                    <div>{{ form_widget(form.device.deviceType, {'attr': {'class': 'mdb-select'}}) }}</div>
+                    <div>{{ form_errors(form.device.deviceType) }}</div>
+                </div>
+                <div class="col-sm-3 text-center form-group">
+                    <div class="text-center">{{ form_label(form.device.selection) }}</div>
+                    <div>{{ form_widget(form.device.selection, {'attr': {'class': 'form-control'}}) }}</div>
+                    <div>{{ form_errors(form.device.selection) }}</div>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <div class="text-center">{{ form_label(form.device.deviceMode) }}</div>
+                    <div>{{ form_widget(form.device.deviceMode, {'attr': {'class': 'mdb-select'}}) }}</div>
+                    <div>{{ form_errors(form.device.deviceMode) }}</div>
+                </div>
+                <div class="col-sm-1 text-center">
+                    <div class="text-center">{{ form_label(form.device.time.hour, 'Heure') }}</div>
+                    <div>{{ form_widget(form.device.time.hour, {'attr': {'class': 'timepicker'}}) }}</div>
+                    <div>{{ form_errors(form.device.time.hour) }}</div>
+                </div>
+                <div class="col-sm-1 text-center">
+                    <div class="text-center">{{ form_label(form.device.time.minute, 'Minute') }}</div>
+                    <div>{{ form_widget(form.device.time.minute, {'attr': {'class': 'timepicker'}}) }}</div>
+                    <div>{{ form_errors(form.device.time.minute) }}</div>
+                </div>
+                <div class="col-sm-1 text-center">
+                    <div class="text-center">{{ form_label(form.device.time.second, 'Seconde') }}</div>
+                    <div>{{ form_widget(form.device.time.second, {'attr': {'class': 'timepicker'}}) }}</div>
+                    <div>{{ form_errors(form.device.time.second) }}</div>
+                </div>
+                <div class="col-sm-2">
+                    <a href="#" class="collection-add btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                </div>
+                <div class="col-sm-2">
+                    <a href="#" class="collection-remove btn btn-default"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                </div>
+                <div class="col-sm-2">
+                    <a href="#" class="collection-up btn btn-default"><i class="fa fa-toggle-up" aria-hidden="true"></i></a>
+                </div>
+                <div class="col-sm-2">
+                    <a href="#" class="collection-down btn btn-default"><i class="fa fa-toggle-down" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

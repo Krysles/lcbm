@@ -1,3 +1,148 @@
-#slide-out {
-    top: 62px !important;
+/* CSS Perso */
+@font-face {
+    font-family: 'museo_sans500';
+    src: url('polices/museosans_500-webfont.woff2') format('woff2'),
+    url('polices/museosans_500-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'museo_sans500_italic';
+    src: url('polices/museosans_500_italic-webfont.woff2') format('woff2'),
+    url('polices/museosans_500_italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'cookiesandcreamregular';
+    src: url('polices/cookiesandcream-webfont.woff2') format('woff2'),
+    url('polices/cookiesandcream-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'cookiesandcreamextrasregular';
+    src: url('polices/cookiesandcreamextras-webfont.woff2') format('woff2'),
+    url('polices/cookiesandcreamextras-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'coffeetea_demoregular';
+    src: url('polices/coffeeteademo-regular-webfont.woff2') format('woff2'),
+    url('polices/coffeeteademo-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'cinnamon_cakeregular';
+    src: url('polices/cinnamon_cake-webfont.woff2') format('woff2'),
+    url('polices/cinnamon_cake-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100vw;
+    min-width: 320px;
+    font-family: cinnamon_cakeregular !important;
+    letter-spacing: 2px;
+}
+h1, h2, h3, h4, h5, h6, blockquote, .btn {
+    font-family: cookiesandcreamregular !important;
+}
+.side-nav .sidenav-bg::after {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.btn {
+    font-size: 1.2rem;
+}
+
+/* ---- sidebar ---- */
+#slide-out .logo-wrapper img {
+    padding: 0;
+    margin: 7px 0;
+}
+#slide-out .collapsible > li > a:first-child {
+    font-family: cookiesandcreamregular;
+    font-size: 17px;
+    letter-spacing: 2px;
+}
+
+.side-nav .collapsible a {
+    font-family: cinnamon_cakeregular;
+    letter-spacing: 1px;
+    padding: 0;
+}
+/* ---- navbar ---- */
+.navbar .dropdown-menu.dropdown-menu-right {
+    right: 0 !important;
+}
+.item {
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding-top: 10vh;
+    overflow: hidden;
+}
+#flash {
+    overflow: hidden;
+}
+.noshadow {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.navigation ul li {
+    padding: 5px 10px;
+}
+.navigation ul li {
+    background-color: #C62828;
+    margin: 2px;
+    padding: 5px 10px;
+    color: white;
+}
+.navigation ul li.active {
+    background-color: #ef9a9a ;
+    color: black;
+}
+
+.navigation ul li a {
+    color: white;
+}
+
+#recipes table a:hover {
+    color: #C62828;
+}
+
+
+header, main, footer {
+    padding-left: 0;
+}
+
+.cropit-preview {
+    background-color: #f8f8f8;
+    background-size: cover;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-top: 7px;
+    width: 250px;
+    height: 250px;
+}
+.cropit-preview-image-container {
+    cursor: move;
+}
+.image-size-label {
+    margin-top: 10px;
+}
+input, .export {
+    display: block;
+}
+button {
+    margin-top: 10px;
 }

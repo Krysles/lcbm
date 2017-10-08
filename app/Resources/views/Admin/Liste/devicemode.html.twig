@@ -1,0 +1,41 @@
+{% extends ':Admin:dashboard.html.twig' %}
+
+{% block title %}Liste des modes d'appareil - {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-sm-1 col-sm-10">
+            <h4>Liste des modes d'appareil</h4>
+            {% if deviceMode is not empty %}
+                <table class="table">
+                    <thead class="red darken-3 white-text">
+                    <tr>
+                        <th>Mode</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for mode in deviceMode %}
+                        <tr>
+                            <td>{{ mode.name }}</td>
+                            <td>
+                                <a href="{{ path('admin_device_mode_update', {'id': mode.id}) }}" class="teal-text"><i class="fa fa-pencil fa-2x"></i></a>
+                                <a href="{{ path('admin_device_mode_delete', {'id': mode.id}) }}" class="red-text"><i class="fa fa-times fa-2x"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Aucun mode d'appareil.</p>
+            {% endif %}
+            <a class="btn red darken-3" href="{{ path('admin_device_mode_add') }}"><i
+                        class="fa fa-check"></i> Ajouter un mode d'appareil</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

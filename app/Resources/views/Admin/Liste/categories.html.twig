@@ -3,34 +3,44 @@
 {% block title %}Liste des catégories - {{ parent() }}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col s10 offset-s1">
-            <h4>Liste des catégories</h4>
-            {% if categories is not empty %}
-                <table class="highlight">
-                    <thead>
-                    <tr>
-                        <th>Catégorie</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for category in categories %}
-                        <tr>
-                            <td>{{ category.name }}</td>
-                            <td>
-                                <a href="{{ path('admin_liste_category', {'id': category.id}) }}"><i class="material-icons">visibility</i></a>
-                                <a href="{{ path('admin_category_update', {'id': category.id}) }}"><i class="material-icons">mode_edit</i></a>
-                                <a href="{{ path('admin_category_delete', {'id': category.id}) }}"><i class="material-icons">delete</i></a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <p>Aucune catégorie.</p>
-            {% endif %}
-            <a class="waves-effect waves-light btn" href="{{ path('admin_category_add') }}">Ajouter une catégorie<i class="material-icons left">library_add</i></a>
+    <div class="item">
+        <div class="row flex-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 mb-r">
+                <div class="card card-cascade">
+                    <div class="view gradient-card-header red darken-3">
+                        <h2 class="h2-responsive">Catégories</h2>
+                        <p>Gestion des catégories</p>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="card-text">
+                            {% if categories is not empty %}
+                                <table class="table table-striped">
+                                    <tbody>
+                                    {% for category in categories %}
+                                        <tr class="row">
+                                            <td class="card-text col-7">{{ category.name }}</td>
+                                            <td class="text-center col-5">
+                                                <a href="{{ path('admin_liste_category', {'slug': category.slug}) }}"
+                                                   class="blue-text mr-2"><i class="fa fa-eye fa-lg"></i></a>
+                                                <a href="{{ path('admin_category_update', {'slug': category.slug}) }}"
+                                                   class="teal-text"><i class="fa fa-pencil fa-lg"></i></a>
+                                                <a href="{{ path('admin_category_delete', {'slug': category.slug}) }}"
+                                                   class="red-text ml-2"><i class="fa fa-times fa-lg"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% else %}
+                                <p>Aucune catégorie.</p>
+                            {% endif %}
+                        </div>
+                        <hr>
+                        <a class="btn red darken-3" href="{{ path('admin_category_add') }}"><i
+                                    class="fa fa-check"></i> Ajouter une catégorie</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

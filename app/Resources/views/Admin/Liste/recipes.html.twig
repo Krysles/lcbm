@@ -1,0 +1,69 @@
+{% extends ':Admin:dashboard.html.twig' %}
+{% block title %}Liste des recettes - {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="item" id="recipes">
+        <div class="row flex-center">
+            <div class="col-12 col-sm-10 col-md-10 col-lg-8 mb-r">
+                <div class="card card-cascade">
+                    <div class="view gradient-card-header red darken-3">
+                        <h2 class="h2-responsive">Liste des recettes</h2>
+                        <p>Gestion des recettes</p>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="card-text">
+                            {% if recipes is not empty %}
+                                <table class="table table-sm table-striped">
+                                    <thead class="red darken-3 white-text">
+                                    <tr>
+                                        <div class="row">
+                                            <th class="col-4 text-center align-middle">Titre de la recette</th>
+                                            <th class="col-5 text-center align-middle">Sous-catégorie</th>
+                                            <th class="col-3 text-center align-middle">Action</th>
+                                        </div>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for recipe in recipes %}
+                                        <tr>
+                                            <div class="row">
+                                                <td class="col-4 align-middle"><a href="{{ path('admin_recipe_view', {'slug': recipe.slug}) }}">{{ recipe.name|title }}</a></td>
+                                                <td class="col-5 align-middle">{% for subcategory in recipe.subcategories %}
+                                                        {% if not loop.last %}{{ subcategory.name|title ~ ' / ' }}{% else %}{{ subcategory.name|title }}{% endif %}
+                                                    {% endfor %}</td>
+                                                <td class="col-3 align-middle">
+                                                    <a href="{{ path('admin_recipe_view', {'slug': recipe.slug}) }}"
+                                                       class="blue-text"><i
+                                                                class="fa fa-eye fa-lg"></i></a>
+                                                    <a href="{{ path('admin_recipe_add_id', {'slug': recipe.slug}) }}"
+                                                       class="teal-text"><i
+                                                                class="fa fa-pencil fa-lg"></i></a>
+                                                    <a href=""
+                                                       class="red-text"><i
+                                                                class="fa fa-times fa-lg"></i></a></td>
+                                            </div>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="navigation flex-center">
+                                    {{ knp_pagination_render(recipes) }}
+                                </div>
+                            {% else %}
+                                <p>Aucune recette.</p>
+                            {% endif %}
+                            <hr />
+                            <a class="btn red darken-3" href="{{ path('admin_recipe_add') }}"><i
+                                        class="fa fa-check"></i> Ajouter une recette</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

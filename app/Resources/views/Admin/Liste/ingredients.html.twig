@@ -1,0 +1,41 @@
+{% extends ':Admin:dashboard.html.twig' %}
+
+{% block title %}Liste des ingrédients - {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-sm-1 col-sm-10">
+            <h4>Liste des ingrédients</h4>
+            {% if ingredients is not empty %}
+                <table class="table">
+                    <thead class="red darken-3 white-text">
+                    <tr>
+                        <th>Ingrédient</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for ingredient in ingredients %}
+                        <tr>
+                            <td>{{ ingredient.name }}</td>
+                            <td>
+                                <a href="{{ path('admin_ingredient_update', {'id': ingredient.id}) }}" class="teal-text"><i class="fa fa-pencil fa-2x"></i></a>
+                                <a href="{{ path('admin_ingredient_delete', {'id': ingredient.id}) }}" class="red-text"><i class="fa fa-times fa-2x"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Aucun ingrédient.</p>
+            {% endif %}
+            <a class="btn red darken-3" href="{{ path('admin_ingredient_add') }}"><i
+                        class="fa fa-check"></i> Ajouter un ingredient</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
