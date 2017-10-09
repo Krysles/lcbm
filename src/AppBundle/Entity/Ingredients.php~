@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Ingredients
+ *
+ * @ORM\Table(name="ingredients")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\IngredientsRepository")
+ */
+class Ingredients
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="quantity", type="integer")
+     */
+    private $quantity;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Unity", cascade={"persist"})
+     */
+    private $unity;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Liaison", cascade={"persist"})
+     */
+    private $liaison;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Ingredient", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $ingredient;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Recipe", inversedBy="ingredients")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $recipe;
+
+}

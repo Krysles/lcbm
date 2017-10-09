@@ -3,37 +3,47 @@
 {% block title %}Liste des modes d'appareil - {{ parent() }}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="offset-sm-1 col-sm-10">
-            <h4>Liste des modes d'appareil</h4>
-            {% if deviceMode is not empty %}
-                <table class="table">
-                    <thead class="red darken-3 white-text">
-                    <tr>
-                        <th>Mode</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for mode in deviceMode %}
-                        <tr>
-                            <td>{{ mode.name }}</td>
-                            <td>
-                                <a href="{{ path('admin_device_mode_update', {'id': mode.id}) }}" class="teal-text"><i class="fa fa-pencil fa-2x"></i></a>
-                                <a href="{{ path('admin_device_mode_delete', {'id': mode.id}) }}" class="red-text"><i class="fa fa-times fa-2x"></i></a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <p>Aucun mode d'appareil.</p>
-            {% endif %}
-            <a class="btn red darken-3" href="{{ path('admin_device_mode_add') }}"><i
-                        class="fa fa-check"></i> Ajouter un mode d'appareil</a>
+    <div id="deviceMode" class="item">
+        <div class="row flex-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 mb-r">
+                <div class="card card-cascade">
+                    <div class="view gradient-card-header red darken-3">
+                        <h2 class="h2-responsive">Modes d'appareil</h2>
+                        <p>Gestion des modes d'appareil</p>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="card-text">
+                            {% if deviceMode is not empty %}
+                                <table class="table table-striped">
+                                    <tbody>
+                                    {% for mode in deviceMode %}
+                                        <tr class="row">
+                                            <td class="card-text col-7">{{ mode.name }}</td>
+                                            <td class="text-center col-5">
+                                                <a href="{{ path('admin_device_mode_update', {'id': mode.id}) }}"
+                                                   class="teal-text"><i class="fa fa-pencil fa-lg"></i></a>
+                                                <a href="{{ path('admin_device_mode_delete', {'id': mode.id}) }}"
+                                                   class="red-text"><i class="fa fa-times fa-lg"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="navigation flex-center">
+                                    {{ knp_pagination_render(deviceMode) }}
+                                </div>
+                            {% else %}
+                                <p>Aucun mode d'appareil.</p>
+                            {% endif %}
+                        </div>
+                        <hr>
+                        <a class="btn red darken-3" href="{{ path('admin_device_mode_add') }}"><i
+                                    class="fa fa-check"></i> Ajouter un mode d'appareil</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block javascript %}

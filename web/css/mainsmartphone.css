@@ -84,7 +84,10 @@ h1, h2, h3, h4, h5, h6, blockquote, .btn {
 .navbar .dropdown-menu.dropdown-menu-right {
     right: 0 !important;
 }
-/* ---- speed navigation ---- */
+.navbar .dropdown-menu.dropdown-menu-right a:hover {
+    background-color: #C62828;
+}
+    /* ---- speed navigation ---- */
 .dotted-scrollspy {
     top: 85% !important;
     z-index: 1;

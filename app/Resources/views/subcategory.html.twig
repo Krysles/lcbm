@@ -38,13 +38,13 @@
                             <h5 class="red-text lighten-2"><i class="fa fa-cutlery"></i>
                                 {% for subcategory in recipe.subcategories %}
                                     {% if not loop.last %}
-                                        {{ subcategory.name ~ ' /' }}
+                                        {{ subcategory.name|myfilter ~ ' /' }}
                                     {% else %}
-                                        {{ subcategory.name }}
+                                        {{ subcategory.name|myfilter }}
                                     {% endif %}
                                 {% endfor %}
                             </h5>
-                            <h4 class="card-title">{{ recipe.name }}</h4>
+                            <h4 class="card-title">{{ recipe.name|myfilter }}</h4>
                             <p class="card-text">{{ recipe.description }}</p>
                             <a href="{{ path('view_recipe', {'slug': recipe.slug }) }}" class="btn red darken-3">Voir
                                 la recette</a>

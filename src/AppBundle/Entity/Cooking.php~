@@ -1,0 +1,48 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * RecipeIngredient
+ *
+ * @ORM\Table(name="cooking")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CookingRepository")
+ */
+class Cooking
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="selection", type="string", length=255)
+     */
+    private $selection;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time", type="time")
+     */
+    private $time;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\CookingType", cascade={"persist"})
+     */
+    private $cookingType;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\CookingUnity", cascade={"persist"})
+     */
+    private $cookingUnity;
+}

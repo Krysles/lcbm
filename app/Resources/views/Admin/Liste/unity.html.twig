@@ -3,37 +3,47 @@
 {% block title %}Liste des unités - {{ parent() }}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="offset-sm-1 col-sm-10">
-            <h4>Liste des unités</h4>
-            {% if units is not empty %}
-                <table class="table">
-                    <thead class="red darken-3 white-text">
-                    <tr>
-                        <th>Unité</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for unity in units %}
-                        <tr>
-                            <td>{{ unity.name }}</td>
-                            <td>
-                                <a href="{{ path('admin_unity_update', {'id': unity.id}) }}" class="teal-text"><i class="fa fa-pencil fa-2x"></i></a>
-                                <a href="{{ path('admin_unity_delete', {'id': unity.id}) }}" class="red-text"><i class="fa fa-times fa-2x"></i></a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <p>Aucune unité.</p>
-            {% endif %}
-            <a class="btn red darken-3" href="{{ path('admin_unity_add') }}"><i
-                        class="fa fa-check"></i> Ajouter une unité</a>
+    <div id="unity" class="item">
+        <div class="row flex-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 mb-r">
+                <div class="card card-cascade">
+                    <div class="view gradient-card-header red darken-3">
+                        <h2 class="h2-responsive">Unités</h2>
+                        <p>Gestion des unités</p>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="card-text">
+                            {% if units is not empty %}
+                                <table class="table table-striped">
+                                    <tbody>
+                                    {% for unity in units %}
+                                        <tr class="row">
+                                            <td class="card-text col-7">{{ unity.name }}</td>
+                                            <td class="text-center col-5">
+                                                <a href="{{ path('admin_unity_update', {'id': unity.id}) }}"
+                                                   class="teal-text"><i class="fa fa-pencil fa-lg"></i></a>
+                                                <a href="{{ path('admin_unity_delete', {'id': unity.id}) }}"
+                                                   class="red-text"><i class="fa fa-times fa-lg"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="navigation flex-center">
+                                    {{ knp_pagination_render(units) }}
+                                </div>
+                            {% else %}
+                                <p>Aucune unité.</p>
+                            {% endif %}
+                        </div>
+                        <hr>
+                        <a class="btn red darken-3" href="{{ path('admin_unity_add') }}"><i
+                                    class="fa fa-check"></i> Ajouter une unité</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block javascript %}

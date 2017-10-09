@@ -58,11 +58,40 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/unites", name="admin_liste_units")
+     * @Route("admin/liste/avalider/{page}", name="admin_liste_recipes_to_validate", defaults={"page" = 1})
      */
-    public function adminListeUnitsAction()
+    public function adminListeRecipesToValidateAction(Request $request, $page)
+    {
+        $recipes = $this->getDoctrine()->getManager()->getRepository('AppBundle:Recipe')->findBy(
+            array('status' => Recipe::RECIPE_TO_VALIDATE),
+            array('updateDate' => 'asc')
+        );
+
+        $paginator = $this->get('knp_paginator');
+        $recipes = $paginator->paginate(
+            $recipes,
+            $request->query->getInt('page', $page),
+            $request->query->getInt('limit', $this->getParameter('nb_recipes_per_page'))
+        );
+
+        return $this->render(':Admin/Liste:tovalidate.html.twig', array(
+            'recipes' => $recipes
+        ));
+    }
+
+    /**
+     * @Route("admin/liste/unites/{page}", name="admin_liste_units", defaults={"page" = 1})
+     */
+    public function adminListeUnitsAction(Request $request, $page)
     {
         $units = $this->getDoctrine()->getManager()->getRepository('AppBundle:Unity')->findAll();
+
+        $paginator = $this->get('knp_paginator');
+        $units = $paginator->paginate(
+            $units,
+            $request->query->getInt('page', $page),
+            $request->query->getInt('limit', $this->getParameter('nb_recipes_per_page'))
+        );
 
         return $this->render(':Admin/Liste:unity.html.twig', array(
             'units' => $units
@@ -70,23 +99,38 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/liaisons", name="admin_liste_liaisons")
+     * @Route("admin/liste/liaisons/{page}", name="admin_liste_liaisons", defaults={"page" = 1})
      */
-    public function adminListeLiaisonsAction()
+    public function adminListeLiaisonsAction(Request $request, $page)
     {
         $liaisons = $this->getDoctrine()->getManager()->getRepository('AppBundle:Liaison')->findAll();
 
+        $paginator = $this->get('knp_paginator');
+
+        $liaisons = $paginator->paginate(
+            $liaisons,
+            $request->query->getInt('page', $page),
+            $request->query->getInt('limit', $this->getParameter('nb_recipes_per_page'))
+        );
         return $this->render(':Admin/Liste:liaisons.html.twig', array(
             'liaisons' => $liaisons
         ));
     }
 
     /**
-     * @Route("admin/liste/ingredients", name="admin_liste_ingredients")
+     * @Route("admin/liste/ingredients/{page}", name="admin_liste_ingredients", defaults={"page" = 1})
      */
-    public function adminListeIngredientsAction()
+    public function adminListeIngredientsAction(Request $request, $page)
     {
         $ingredients = $this->getDoctrine()->getManager()->getRepository('AppBundle:Ingredient')->findAll();
+
+        $paginator = $this->get('knp_paginator');
+
+        $ingredients = $paginator->paginate(
+            $ingredients,
+            $request->query->getInt('page', $page),
+            $request->query->getInt('limit', $this->getParameter('nb_recipes_per_page'))
+        );
 
         return $this->render(':Admin/Liste:ingredients.html.twig', array(
             'ingredients' => $ingredients
@@ -94,11 +138,19 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/cuisson/type", name="admin_liste_cuisson_type")
+     * @Route("admin/liste/cuisson/type/{page}", name="admin_liste_cuisson_type", defaults={"page" = 1})
      */
-    public function adminListeCuissonTypeAction()
+    public function adminListeCuissonTypeAction(Request $request, $page)
     {
         $cookingType = $this->getDoctrine()->getManager()->getRepository('AppBundle:CookingType')->findAll();
+
+        $paginator = $this->get('knp_paginator');
+
+        $cookingType = $paginator->paginate(
+            $cookingType,
+            $request->query->getInt('page', $page),
+            $request->query->getInt('limit', $this->getParameter('nb_recipes_per_page'))
+        );
 
         return $this->render(':Admin/Liste:cookingtype.html.twig', array(
             'cookingType' => $cookingType
@@ -106,11 +158,19 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/cuisson/unite", name="admin_liste_cuisson_unity")
+     * @Route("admin/liste/cuisson/unite/{page}", name="admin_liste_cuisson_unity", defaults={"page" = 1})
      */
-    public function adminListeCuissonUnityAction()
+    public function adminListeCuissonUnityAction(Request $request, $page)
     {
         $cookingUnity = $this->getDoctrine()->getManager()->getRepository('AppBundle:CookingUnity')->findAll();
+
+        $paginator = $this->get('knp_paginator');
+
+        $cookingUnity = $paginator->paginate(
+            $cookingUnity,
+            $request->query->getInt('page', $page),
+            $request->query->getInt('limit', $this->getParameter('nb_recipes_per_page'))
+        );
 
         return $this->render(':Admin/Liste:cookingunity.html.twig', array(
             'cookingUnity' => $cookingUnity
@@ -118,11 +178,19 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/appareil/type", name="admin_liste_device_type")
+     * @Route("admin/liste/appareil/type/{page}", name="admin_liste_device_type", defaults={"page" = 1})
      */
-    public function adminListeDeviceTypeAction()
+    public function adminListeDeviceTypeAction(Request $request, $page)
     {
         $deviceType = $this->getDoctrine()->getManager()->getRepository('AppBundle:DeviceType')->findAll();
+
+        $paginator = $this->get('knp_paginator');
+
+        $deviceType = $paginator->paginate(
+            $deviceType,
+            $request->query->getInt('page', $page),
+            $request->query->getInt('limit', $this->getParameter('nb_recipes_per_page'))
+        );
 
         return $this->render(':Admin/Liste:devicetype.html.twig', array(
             'deviceType' => $deviceType
@@ -130,11 +198,19 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/appareil/mode", name="admin_liste_device_mode")
+     * @Route("admin/liste/appareil/mode/{page}", name="admin_liste_device_mode", defaults={"page" = 1})
      */
-    public function adminListeDeviceModeAction()
+    public function adminListeDeviceModeAction(Request $request, $page)
     {
         $deviceMode = $this->getDoctrine()->getManager()->getRepository('AppBundle:DeviceMode')->findAll();
+
+        $paginator = $this->get('knp_paginator');
+
+        $deviceMode = $paginator->paginate(
+            $deviceMode,
+            $request->query->getInt('page', $page),
+            $request->query->getInt('limit', $this->getParameter('nb_recipes_per_page'))
+        );
 
         return $this->render(':Admin/Liste:devicemode.html.twig', array(
             'deviceMode' => $deviceMode

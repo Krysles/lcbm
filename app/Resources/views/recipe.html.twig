@@ -31,23 +31,21 @@
                             <h5 class="red-text lighten-2 col-12 push-lg-6 col-lg-6 text-lg-right"><i class="fa fa-cutlery"></i>
                                 {% for subcategory in recipe.subcategories %}
                                     {% if not loop.last %}
-                                        {{ subcategory.name ~ ' /' }}
+                                        {{ subcategory.name|myfilter ~ ' /' }}
                                     {% else %}
-                                        {{ subcategory.name }}
+                                        {{ subcategory.name|myfilter }}
                                     {% endif %}
                                 {% endfor %}
                             </h5>
-                            <h4 class="card-title col-12 pull-lg-6 col-lg-6 text-lg-left">{{ recipe.name }}</h4>
+                            <h4 class="card-title col-12 pull-lg-6 col-lg-6 text-lg-left">{{ recipe.name|myfilter }}</h4>
                             <p class="red-text lighten-2 col-12 push-lg-6 col-lg-6 text-lg-right">Recette {{ recipe.budgetType }}
                                 - {{ recipe.difficulty|title }}</p>
                             <p class="col-12 pull-lg-6 col-lg-6 text-lg-left">
                                 Pour {{ recipe.personNb }} {% if recipe.personNb != 1 %}personnes{% else %}personne{% endif %}</p>
                             <p class="card-text col-12 mb-4">{{ recipe.description }}</p>
                         </div>
-                        <div class="row">
-                            <img class="col-12 offset-sm-2 col-sm-8 img-fluid"
+                            <img class="col-sm-8 img-fluid"
                                  src="{{ asset('img/website/middle_bl.png') }}"/>
-                        </div>
                         <div class="row">
                             <div class="card card-body wow fadeInLeftBig col-12 col-sm-6 text-center noshadow mb-4 mt-4">
                                 <h4 class="card-title">Ingrédients</h4>
@@ -91,10 +89,8 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="row">
-                            <img class="col-12 offset-sm-2 col-sm-8 img-fluid"
-                                 src="{{ asset('img/website/middle_bl.png') }}"/>
-                        </div>
+                        <img class="col-sm-8 img-fluid"
+                             src="{{ asset('img/website/middle_bl.png') }}"/>
                         <div class="row text-center text-lg-left">
                             <div class="card card-body wow fadeInUpBig col-12 noshadow mb-4 mt-4">
                                 <h4 class="card-title text-center">Etapes</h4>
