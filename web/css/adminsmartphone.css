@@ -89,7 +89,7 @@ h1, h2, h3, h4, h5, h6, blockquote, .btn {
 }
 .item {
     box-sizing: border-box;
-    min-height: 100vh;
+    min-height: 90vh;
     padding-top: 10vh;
     overflow: hidden;
 }
@@ -126,6 +126,32 @@ h1, h2, h3, h4, h5, h6, blockquote, .btn {
 #recipes table a:hover {
     color: #C62828;
 }
+
+#category .md-form label {
+    color: dimgrey; }
+
+#category input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #c62828 !important;
+    -webkit-box-shadow: 0 1px 0 0 #c62828 !important;
+    box-shadow: 0 1px 0 0 #c62828 !important; }
+
+#category input[type=text]:focus:not([readonly]) + label {
+    color: #c62828 !important; }
+
+#category .md-form i.active {
+    color: #c62828 !important; }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 header, main, footer {
