@@ -1,6 +1,6 @@
 {% extends ':Admin:dashboard.html.twig' %}
 
-{% block title %}Ajout d'une recette - {{ parent() }}{% endblock %}
+{% block title %}Ajouter une recette - {{ parent() }}{% endblock %}
 
 {% block css %}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
@@ -8,91 +8,113 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="offset-sm-1 col-sm-10">
-            <div class="card-block">
-                <div class="text-center">
-                    <h4>Ajout d'une recette</h4>
-                    <hr class="mt-2 mb-2">
-                </div>
-                <div>
-                    {{ form_start(form) }}
-                    <div class="row">
-                        <div class="col-md-12">
-                            {{ form_label(form.subcategories, 'Sous-Catégories') }}
-                            {{ form_widget(form.subcategories, {'attr': {'class': 'select', 'multiple': 'multiple', 'style': 'width: 100%;'}}) }}
-                            {{ form_errors(form.subcategories) }}
+    <div id="recipe" class="item">
+        <div class="row flex-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 mb-r">
+                <div class="card card-cascade">
+                    <div class="view gradient-card-header red darken-3">
+                        <h2 class="h2-responsive">Ajouter une recette</h2>
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(form) }}
+                        <div class="card-text">
+                            <div class="row">
+                                <div class="col-md-12 mb-4">
+                                    {{ form_label(form.subcategories, 'Sous-Catégories') }}
+                                    {{ form_widget(form.subcategories, {'attr': {'class': 'select', 'multiple': 'multiple', 'style': 'width: 100%;'}}) }}
+                                    {{ form_errors(form.subcategories) }}
+                                </div>
+                            </div>
+                            <div class="md-form">
+                                {{ form_label(form.name, 'Nom de la recette') }}
+                                {{ form_widget(form.name, {'attr': {'class': 'form-control', 'length': '40'}}) }}
+                                {{ form_errors(form.name) }}
+                            </div>
+                            <div class="md-form">
+                                {{ form_label(form.description, 'Description de la recette') }}
+                                {{ form_widget(form.description, {'attr': {'class': 'md-textarea', 'length': '100'}}) }}
+                                {{ form_errors(form.description) }}
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ form_label(form.period, 'Période') }}
+                                    {{ form_widget(form.period, {'attr': {'class': 'mdb-select'}}) }}
+                                    {{ form_errors(form.period) }}
+                                </div>
+                                <div class="range-field col-md-6">
+                                    {{ form_label(form.personNb, 'Nombre de personnes') }}
+                                    {{ form_widget(form.personNb) }}
+                                    {{ form_errors(form.personNb) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ form_label(form.budgetType, 'Type de budget') }}
+                                    {{ form_widget(form.budgetType, {'attr': {'class': 'mdb-select'}}) }}
+                                    {{ form_errors(form.budgetType) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_label(form.difficulty, 'Difficulté') }}
+                                    {{ form_widget(form.difficulty, {'attr': {'class': 'mdb-select'}}) }}
+                                    {{ form_errors(form.difficulty) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Temps de préparation</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ form_label(form.preparationTime.hour, 'Heure') }}
+                                            {{ form_widget(form.preparationTime.hour, { 'attr': {'class': 'mdb-select'}}) }}
+                                            {{ form_errors(form.preparationTime.hour) }}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ form_label(form.preparationTime.minute, 'Minute') }}
+                                            {{ form_widget(form.preparationTime.minute, { 'attr': {'class': 'mdb-select'}}) }}
+                                            {{ form_errors(form.preparationTime.minute) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Temps de repos</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ form_label(form.timeToRest.hour, 'Heure') }}
+                                            {{ form_widget(form.timeToRest.hour, { 'attr': {'class': 'mdb-select'}}) }}
+                                            {{ form_errors(form.timeToRest.hour) }}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ form_label(form.timeToRest.minute, 'Minute') }}
+                                            {{ form_widget(form.timeToRest.minute, { 'attr': {'class': 'mdb-select'}}) }}
+                                            {{ form_errors(form.timeToRest.minute) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Temps de cuisson</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ form_label(form.cookingTime.hour, 'Heure') }}
+                                            {{ form_widget(form.cookingTime.hour, { 'attr': {'class': 'mdb-select'}}) }}
+                                            {{ form_errors(form.cookingTime.hour) }}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ form_label(form.cookingTime.minute, 'Minute') }}
+                                            {{ form_widget(form.cookingTime.minute, { 'attr': {'class': 'mdb-select'}}) }}
+                                            {{ form_errors(form.cookingTime.minute) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="md-form">
-                        {{ form_label(form.name, 'Nom de la recette') }}
-                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
-                        {{ form_errors(form.name) }}
-                    </div>
-                    <div class="md-form">
-                        {{ form_label(form.description, 'Description de la recette') }}
-                        {{ form_widget(form.description, {'attr': {'class': 'md-textarea'}}) }}
-                        {{ form_errors(form.description) }}
-                    </div>
-                    <div>
-                        {{ form_label(form.period, 'Période') }}
-                        {{ form_widget(form.period, {'attr': {'class': 'mdb-select'}}) }}
-                        {{ form_errors(form.period) }}
-                    </div>
-                    <div class="range-field">
-                        {{ form_label(form.personNb, 'Nombre de personne') }}
-                        {{ form_widget(form.personNb) }}
-                        {{ form_errors(form.personNb) }}
-                    </div>
-                    <div>
-                        {{ form_label(form.budgetType, 'Type de budget') }}
-                        {{ form_widget(form.budgetType, {'attr': {'class': 'mdb-select'}}) }}
-                        {{ form_errors(form.budgetType) }}
-                    </div>
-                    <div>
-                        {{ form_label(form.difficulty, 'Difficulté') }}
-                        {{ form_widget(form.difficulty, {'attr': {'class': 'mdb-select'}}) }}
-                        {{ form_errors(form.difficulty) }}
-                    </div>
-                    <div>
-                        <p>Temps de préparation</p>
-                    </div>
-                    <div>
-                        {{ form_label(form.preparationTime.hour, 'Heure') }}
-                        {{ form_widget(form.preparationTime.hour, { 'attr': {'class': 'mdb-select'}}) }}
-                        {{ form_errors(form.preparationTime.hour) }}
-                    </div>
-                    <div>
-                        {{ form_label(form.preparationTime.minute, 'Minute') }}
-                        {{ form_widget(form.preparationTime.minute, { 'attr': {'class': 'mdb-select'}}) }}
-                        {{ form_errors(form.preparationTime.minute) }}
-                    </div>
-
-                    <div>
-                        <p>Temps de repos</p>
-                    </div>
-                    <div>
-                        {{ form_label(form.timeToRest.hour, 'Heure') }}
-                        {{ form_widget(form.timeToRest.hour, { 'attr': {'class': 'mdb-select'}}) }}
-                        {{ form_errors(form.timeToRest.hour) }}
-                    </div>
-                    <div>
-                        {{ form_label(form.timeToRest.minute, 'Minute') }}
-                        {{ form_widget(form.timeToRest.minute, { 'attr': {'class': 'mdb-select'}}) }}
-                        {{ form_errors(form.timeToRest.minute) }}
-                    </div>
-                    <div>
-                        <p>Temps de cuisson</p>
-                    </div>
-                    <div>
-                        {{ form_label(form.cookingTime.hour, 'Heure') }}
-                        {{ form_widget(form.cookingTime.hour, { 'attr': {'class': 'mdb-select'}}) }}
-                        {{ form_errors(form.cookingTime.hour) }}
-                    </div>
-                    <div>
-                        {{ form_label(form.cookingTime.minute, 'Minute') }}
-                        {{ form_widget(form.cookingTime.minute, { 'attr': {'class': 'mdb-select'}}) }}
-                        {{ form_errors(form.cookingTime.minute) }}
+                        <hr>
+                        <div class="row p-3 m-0">
+                            {{ form_widget(form.notsaveandcancel, { 'label': ' annuler', 'attr': {'class': 'col-lg-12 col-xl-5 btn red darken-3 notsaveandcancel m-0 mb-2', 'formnovalidate': 'fornovalidate'} }) }}
+                            {{ form_widget(form.saveandback, { 'label': ' reprendre plus tard', 'attr': {'class': 'col-lg-12 push-xl-1 col-xl-6 btn red darken-3 saveandback m-0 mb-2'} }) }}
+                            {{ form_widget(form.saveandadd, { 'label': ' ajouter la photo', 'attr': {'class': 'col-12 btn red darken-3 saveandadd m-0 mb-2'} }) }}
+                        </div>
                     </div>
                     {{ form_end(form) }}
                 </div>
