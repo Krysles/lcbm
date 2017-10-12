@@ -130,7 +130,8 @@ h1, h2, h3, h4, h5, h6, blockquote, .btn {
 #category .md-form label {
     color: dimgrey; }
 
-#category input[type=text]:focus:not([readonly]) {
+#category input[type=text]:focus:not([readonly]),
+#recipe input[type=text]:focus:not([readonly]) {
     border-bottom: 1px solid #c62828 !important;
     -webkit-box-shadow: 0 1px 0 0 #c62828 !important;
     box-shadow: 0 1px 0 0 #c62828 !important; }
@@ -142,14 +143,45 @@ h1, h2, h3, h4, h5, h6, blockquote, .btn {
     color: #c62828 !important; }
 
 
+#recipe .dropdown-content li > a,
+#recipe .dropdown-content li > span {
+    color: black !important;
+}
+#recipe .dropdown-content li > a:hover,
+#recipe .dropdown-content li > span:hover {
+    background-color: #C62828 !important;
+    color: white !important;
+}
 
+#recipe label {
+    font-weight: 800;
+    color: black;
+}
 
-
-
-
-
-
-
+.notsaveandcancel:before {
+    color: white !important;
+    content: "\f00d";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+.saveandback:before {
+    color: white !important;
+    content: "\f0e2";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+.saveandadd:before {
+    color: white !important;
+    content: "\f061";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
 
 
 

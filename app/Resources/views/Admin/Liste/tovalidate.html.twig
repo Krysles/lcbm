@@ -16,22 +16,19 @@
                                 <table class="table table-sm table-striped">
                                     <thead class="red darken-3 white-text">
                                     <tr>
-                                        <div class="row">
-                                            <th class="col-4 text-center align-middle">Titre de la recette</th>
-                                            <th class="col-5 text-center align-middle">Sous-catégorie</th>
-                                            <th class="col-3 text-center align-middle">Action</th>
-                                        </div>
+                                            <th class="text-center align-middle">Titre de la recette</th>
+                                            <th class="text-center align-middle">Sous-catégorie</th>
+                                            <th class="text-center align-middle">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for recipe in recipes %}
                                         <tr>
-                                            <div class="row">
-                                                <td class="col-4 align-middle"><a href="{{ path('admin_recipe_view', {'slug': recipe.slug}) }}">{{ recipe.name|title }}</a></td>
-                                                <td class="col-5 align-middle">{% for subcategory in recipe.subcategories %}
+                                                <td class="align-middle"><a href="{{ path('admin_recipe_view', {'slug': recipe.slug}) }}">{{ recipe.name|title }}</a></td>
+                                                <td class="align-middle">{% for subcategory in recipe.subcategories %}
                                                         {% if not loop.last %}{{ subcategory.name|title ~ ' / ' }}{% else %}{{ subcategory.name|title }}{% endif %}
                                                     {% endfor %}</td>
-                                                <td class="col-3 align-middle">
+                                                <td class="align-middle">
                                                     <a href="{{ path('admin_recipe_view', {'slug': recipe.slug}) }}"
                                                        class="blue-text"><i
                                                                 class="fa fa-eye fa-lg"></i></a>
@@ -41,7 +38,6 @@
                                                     <a href=""
                                                        class="red-text"><i
                                                                 class="fa fa-times fa-lg"></i></a></td>
-                                            </div>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

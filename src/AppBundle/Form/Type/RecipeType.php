@@ -69,19 +69,19 @@ class RecipeType extends AbstractType
             ->add('timeToRest', TimeType::class)
             ->add('cookingTime', TimeType::class)
             ->add('notsaveandcancel', SubmitType::class, array(
-                'label' => 'annuler',
+
                 'attr' => array(
-                    'class' => 'btn red darken-3 col-md-3'
+                    'class' => 'btn red darken-3'
                 )
             ))
             ->add('saveandback', SubmitType::class, array(
-                'label' => ' Reprendre plus tard',
+
                 'attr' => array(
                     'class' => 'btn red darken-3'
                 )
             ))
             ->add('saveandadd', SubmitType::class, array(
-                'label' => ' Ajouter la photo',
+
                 'attr' => array(
                     'class' => 'btn red darken-3'
                 )
