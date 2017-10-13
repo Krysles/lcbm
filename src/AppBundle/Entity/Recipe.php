@@ -44,9 +44,9 @@ class Recipe
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=40)
+     * @ORM\Column(name="name", type="string", length=60)
      * @Assert\NotBlank(message="Nom obligatoire", groups={"recipe_init"})
-     * @Assert\Length(max=40, maxMessage="40 caratères max.", groups={"recipe_init"})
+     * @Assert\Length(max=60, maxMessage="60 caratères max.", groups={"recipe_init"})
      */
     private $name;
 
@@ -59,9 +59,9 @@ class Recipe
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=100)
+     * @ORM\Column(name="description", type="string", length=140)
      * @Assert\NotBlank(message="Description obligatoire", groups={"recipe_init"})
-     * @Assert\Length(max=100, maxMessage="100 caratères max.", groups={"recipe_init"})
+     * @Assert\Length(max=140, maxMessage="140 caratères max.", groups={"recipe_init"})
      */
     private $description;
 
