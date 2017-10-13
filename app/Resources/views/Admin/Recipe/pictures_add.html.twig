@@ -21,10 +21,12 @@
                             {% for picture in recipe.pictures %}
                                 {% if recipe.pictures is not empty and picture.imageName != null %}
                                     <div class="row mb-4">
-                                        <p class="col-12 text-center">Sélectionner un fichier pour remplacer la photo
-                                            actuelle.</p>
-                                        <img src="{{ asset(vich_uploader_asset(picture, 'imageFile')) | imagine_filter('caroussel') }}"
-                                             class="img-fluid col-12 col-sm-12 col-md-12 col-lg-12 offset-xl-3 col-xl-6"/>
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 offset-xl-3 col-xl-6">
+                                            <p class="text-center">Sélectionner un fichier pour remplacer la photo
+                                                actuelle.</p>
+                                            <img src="{{ asset(vich_uploader_asset(picture, 'imageFile')) | imagine_filter('caroussel') }}"
+                                                 class="img-fluid"/>
+                                        </div>
                                     </div>
                                 {% else %}
                                     <p class="text-center">Aucune photo.</p>
