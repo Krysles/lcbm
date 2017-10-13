@@ -37,9 +37,9 @@ class RecipeType extends AbstractType
                     'été' => 'été',
                     'automne' => 'automne',
                     'halloween' => 'halloween',
+                    'saint-valentin' => 'saint-valentin',
                     'hiver' => 'hiver',
-                    'noël' => 'noël',
-                    "jour de l'an" => "jour de l'an"
+                    'fête' => 'fête'
                 )
             ))
             ->add('personNb', RangeType::class, array(
@@ -53,13 +53,11 @@ class RecipeType extends AbstractType
                 'choices' => array(
                     'économique' => 'économique',
                     'normal' => 'normal',
-                    'assez cher' => 'assez cher',
-                    'très cher' => 'très cher'
+                    'onéreux' => 'onéreux'
                 )
             ))
             ->add('difficulty', ChoiceType::class, array(
                 'choices' => array(
-                    'très facile' => 'très facile',
                     'facile' => 'facile',
                     'intermédiaire' => 'intermédiaire',
                     'difficile' => 'difficile'
