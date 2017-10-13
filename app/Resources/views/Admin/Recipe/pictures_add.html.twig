@@ -24,7 +24,7 @@
                                         <p class="col-12 text-center">Sélectionner un fichier pour remplacer la photo
                                             actuelle.</p>
                                         <img src="{{ asset(vich_uploader_asset(picture, 'imageFile')) | imagine_filter('caroussel') }}"
-                                             class="img-thumbnail col-12 col-sm-12 col-md-12 col-lg-12 offset-xl-3 col-xl-6"/>
+                                             class="img-fluid col-12 col-sm-12 col-md-12 col-lg-12 offset-xl-3 col-xl-6"/>
                                     </div>
                                 {% else %}
                                     <p class="text-center">Aucune photo.</p>
