@@ -91,7 +91,6 @@ h1, h2, h3, h4, h5, h6, blockquote, .btn {
     box-sizing: border-box;
     min-height: 90vh;
     padding-top: 10vh;
-    overflow: hidden;
 }
 #flash {
     overflow: hidden;
@@ -131,12 +130,16 @@ h1, h2, h3, h4, h5, h6, blockquote, .btn {
     color: dimgrey; }
 
 #category input[type=text]:focus:not([readonly]),
-#recipe input[type=text]:focus:not([readonly]) {
+#recipe input[type=text]:focus:not([readonly]),
+#recipe input[type=number]:focus:not([readonly]),
+#recipe textarea:focus:not([readonly]) {
     border-bottom: 1px solid #c62828 !important;
     -webkit-box-shadow: 0 1px 0 0 #c62828 !important;
     box-shadow: 0 1px 0 0 #c62828 !important; }
 
-#category input[type=text]:focus:not([readonly]) + label {
+#category input[type=text]:focus:not([readonly]) + label,
+#recipe input[type=number]:focus:not([readonly]) + label,
+#recipe input[type=text]:focus:not([readonly]) + label {
     color: #c62828 !important; }
 
 #category .md-form i.active {
@@ -166,6 +169,14 @@ h1, h2, h3, h4, h5, h6, blockquote, .btn {
     font-weight: normal;
     text-decoration: inherit;
 }
+.saveandreturn:before {
+    color: white !important;
+    content: "\f060";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
 .saveandback:before {
     color: white !important;
     content: "\f0e2";
@@ -174,7 +185,7 @@ h1, h2, h3, h4, h5, h6, blockquote, .btn {
     font-weight: normal;
     text-decoration: inherit;
 }
-.saveandadd:before {
+.saveandadd:after {
     color: white !important;
     content: "\f061";
     font-family: FontAwesome;
@@ -182,15 +193,49 @@ h1, h2, h3, h4, h5, h6, blockquote, .btn {
     font-weight: normal;
     text-decoration: inherit;
 }
+.collection-remove,
+.collection-remove:focus,
+.collection-add,
+.collection-add:focus,
+.collection-add:active,
+.collection-rescue-add,
+.collection-rescue-add:focus,
+.collection-up,
+.collection-up:focus,
+.collection-down,
+.collection-down:focus {
+    color: white;
+    background-color: #C62828;
+}
+.collection-remove:hover,
+.collection-add:hover,
+.collection-rescue-add:hover,
+.collection-up:hover,
+.collection-down:hover {
+    background-color: #d32f2f !important;
+}
+.select-wrapper input.select-dropdown {
+    height: 3.4rem !important;
+    line-height: 3.4rem !important;
+}
 
 
 
 
-header, main, footer {
+
+
+
+
+
+
+
+
+
+xheader, xmain, xfooter {
     padding-left: 0;
 }
 
-.cropit-preview {
+.xcropit-preview {
     background-color: #f8f8f8;
     background-size: cover;
     border: 1px solid #ccc;
@@ -199,15 +244,19 @@ header, main, footer {
     width: 250px;
     height: 250px;
 }
-.cropit-preview-image-container {
+.xcropit-preview-image-container {
     cursor: move;
 }
-.image-size-label {
+.ximage-size-label {
     margin-top: 10px;
 }
-input, .export {
+xinput, .xexport {
     display: block;
 }
-button {
-    margin-top: 10px;
+xbutton {
+    marg12in-top: 10px;
+}
+
+.xhidden {
+    display: none;
 }

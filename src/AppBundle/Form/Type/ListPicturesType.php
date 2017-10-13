@@ -22,38 +22,15 @@ class ListPicturesType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'prototype' => true,
+                'label' => 'Sélectionner votre photo',
                 'attr' => array(
                     'class' => 'collection',
                 )
             ))
-            ->add('notsaveandcancel', SubmitType::class, array(
-                'label' => 'annuler',
-                'attr' => array(
-                    'class' => 'btn red darken-3 col-md-3',
-                    'formnovalidate' => 'formnovalidate'
-                )
-            ))
-            ->add('saveandreturn', SubmitType::class, array(
-                'label' => 'description',
-                'attr' => array(
-                    'class' => 'btn red darken-3 col-md-3',
-                    'formnovalidate' => 'formnovalidate'
-                )
-            ))
-            ->add('saveandback', SubmitType::class, array(
-                'label' => 'Reprendre plus tard',
-                'attr' => array(
-                    'class' => 'btn red darken-3 col-md-3',
-                    'formnovalidate' => 'formnovalidate'
-                )
-            ))
-            ->add('saveandadd', SubmitType::class, array(
-                'label' => 'Ajouter les ingrédients',
-                'attr' => array(
-                    'class' => 'btn red darken-3 col-md-3',
-                    'formnovalidate' => 'formnovalidate'
-                )
-            ))
+            ->add('notsaveandcancel', SubmitType::class)
+            ->add('saveandreturn', SubmitType::class)
+            ->add('saveandback', SubmitType::class)
+            ->add('saveandadd', SubmitType::class)
         ;
     }
 

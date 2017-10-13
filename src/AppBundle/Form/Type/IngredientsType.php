@@ -16,6 +16,7 @@ class IngredientsType extends AbstractType
     {
         $builder
             ->add('quantity', IntegerType::class, array(
+                'required' => false,
                 'attr' => array(
                     'class' => 'field'
                 ),

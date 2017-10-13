@@ -4,12 +4,11 @@
 
 {% block css %}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
-    <script src="{{ asset('js/picture.js') }}"></script>
 {% endblock %}
 
 {% block content %}
     <div id="recipe" class="item">
-        <div class="row flex-center">
+        <div class="flex-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6 mb-r">
                 <div class="card card-cascade">
                     <div class="view gradient-card-header red darken-3">
@@ -113,7 +112,7 @@
                         <div class="row p-3 m-0">
                             {{ form_widget(form.notsaveandcancel, { 'label': ' annuler', 'attr': {'class': 'col-lg-12 col-xl-5 btn red darken-3 notsaveandcancel m-0 mb-2', 'formnovalidate': 'fornovalidate'} }) }}
                             {{ form_widget(form.saveandback, { 'label': ' reprendre plus tard', 'attr': {'class': 'col-lg-12 push-xl-1 col-xl-6 btn red darken-3 saveandback m-0 mb-2'} }) }}
-                            {{ form_widget(form.saveandadd, { 'label': ' ajouter la photo', 'attr': {'class': 'col-12 btn red darken-3 saveandadd m-0 mb-2'} }) }}
+                            {{ form_widget(form.saveandadd, { 'label': 'ajouter la photo ', 'attr': {'class': 'col-12 btn red darken-3 saveandadd m-0 mb-2'} }) }}
                         </div>
                     </div>
                     {{ form_end(form) }}
@@ -125,7 +124,6 @@
 
 {% block javascript %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-    <script src="{{ asset('js/picture.js') }}"></script>
     <script>
         $(document).ready(function () {
             $('.mdb-select').material_select();

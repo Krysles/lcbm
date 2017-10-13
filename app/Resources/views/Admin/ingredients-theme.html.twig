@@ -1,39 +1,41 @@
 {% block IngredientsType_row %}
 
-    <div class="row grey lighten-4 mb-2 p-2">
-        <div class="col-md-10">
+    <div class="row grey lighten-3 mb-2 p-2">
+        <div class="col-12 flex-center">
             <div class="row">
-            <div class="col-md-2">
-                <div class="text-center">{{ form_label(form.quantity) }}</div>
-                <div>{{ form_widget(form.quantity, {'attr': {'class': 'form-sm'}}) }}</div>
-                <div>{{ form_errors(form.quantity) }}</div>
+                <div class="col-6 col-sm-6 col-md-3 form-group">
+                    <div class="text-center">{{ form_label(form.quantity) }}</div>
+                    <div>{{ form_widget(form.quantity, {'attr': {'class': 'form-control'}}) }}</div>
+                    <div>{{ form_errors(form.quantity) }}</div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-3">
+                    <div class="text-center">{{ form_label(form.unity) }}</div>
+                    <div class="md-form">{{ form_widget(form.unity, {'attr': {'class': 'mdb-select'}}) }}</div>
+                    <div>{{ form_errors(form.unity) }}</div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-3">
+                    <div class="text-center">{{ form_label(form.liaison) }}</div>
+                    <div class="md-form">{{ form_widget(form.liaison, {'attr': {'class': 'mdb-select'}}) }}</div>
+                    <div>{{ form_errors(form.liaison) }}</div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-3">
+                    <div class="text-center">{{ form_label(form.ingredient) }}</div>
+                    <div>{{ form_widget(form.ingredient, {'attr': {'class': 'mdb-select'}}) }}</div>
+                    <div>{{ form_errors(form.ingredient) }}</div>
+                </div>
+                <div class="col-6 col-sm-3 flex-center">
+                    <a href="#" class="collection-add btn"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                </div>
+                <div class="col-6 col-sm-3 flex-center">
+                    <a href="#" class="collection-remove btn"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                </div>
+                <div class="col-6 col-sm-3 flex-center">
+                    <a href="#" class="collection-up btn"><i class="fa fa-toggle-up" aria-hidden="true"></i></a>
+                </div>
+                <div class="col-6 col-sm-3 flex-center">
+                    <a href="#" class="collection-down btn"><i class="fa fa-toggle-down" aria-hidden="true"></i></a>
+                </div>
             </div>
-            <div class="col-md-2 text-center">
-                <div class="text-center">{{ form_label(form.unity) }}</div>
-                <div>{{ form_widget(form.unity, {'attr': {'class': 'mdb-select'}}) }}</div>
-                <div>{{ form_errors(form.unity) }}</div>
-            </div>
-            <div class="col-md-2 text-center">
-                <div class="text-center">{{ form_label(form.liaison) }}</div>
-                <div>{{ form_widget(form.liaison, {'attr': {'class': 'mdb-select'}}) }}</div>
-                <div>{{ form_errors(form.liaison) }}</div>
-            </div>
-            <div class="col-md-6 text-center">
-                <div class="text-center">{{ form_label(form.ingredient) }}</div>
-                <div>{{ form_widget(form.ingredient, {'attr': {'class': 'mdb-select'}}) }}</div>
-                <div>{{ form_errors(form.ingredient) }}</div>
-            </div>
-            <div class="col-sm-2">
-                <a href="#" class="collection-add btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i></a>
-            </div>
-            <div class="col-sm-2">
-                <a href="#" class="collection-remove btn btn-default"><i class="fa fa-minus" aria-hidden="true"></i></a>
-            </div>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <a href="#" class="collection-up btn btn-default"><i class="fa fa-toggle-up" aria-hidden="true"></i></a>
-            <a href="#" class="collection-down btn btn-default"><i class="fa fa-toggle-down" aria-hidden="true"></i></a>
         </div>
     </div>
 {% endblock %}

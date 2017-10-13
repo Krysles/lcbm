@@ -177,9 +177,8 @@ class RecipeController extends Controller
             $originalSteps->add($step);
         }
         $form = $this->createForm(ListStepsType::class, $recipe);
-        dump($recipe);
+
         $form->handleRequest($request);
-        dump($recipe);
 
         if ($form->isSubmitted()) {
             if ($form->get('notsaveandcancel')->isClicked()) {
@@ -192,7 +191,7 @@ class RecipeController extends Controller
                     $em->remove($step);
                 }
             }
-                dump($recipe);
+
             if ($form->isValid()) {
                 $recipe->setUpdateDate(new \DateTime());
                 if ($form->get('saveandreturn')->isClicked()) {

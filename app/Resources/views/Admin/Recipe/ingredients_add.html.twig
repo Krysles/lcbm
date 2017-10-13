@@ -7,21 +7,35 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="offset-sm-1 col-sm-10">
-            <div class="card-block">
-                <div class="text-center">
-                    <h4>Ajout des ingrédients pour la recette : {{ recipe.name }}</h4>
-                    <hr class="mt-2 mb-2">
+    <div id="recipe" class="item">
+        <div class="flex-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10">
+                <div class="card card-cascade">
+                    <div class="view gradient-card-header red darken-3">
+                        <h2 class="h2-responsive">Ajouter des ingrédients</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            {% form_theme form '::jquery.collection.html.twig' ':Admin:ingredients-theme.html.twig' %}
+                            {{ form_start(form) }}
+                            <div class="row">
+                                <div class="col-12">{{ form_label(form.ingredients) }}</div>
+                                <div class="col-12">{{ form_widget(form.ingredients) }}</div>
+                                <div class="col-12">{{ form_errors(form.ingredients) }}</div>
+                                <hr>
+                                <div class="col-12">
+                                    <div class="row p-3 m-0 flex-center">
+                                        {{ form_widget(form.notsaveandcancel, { 'label': ' annuler', 'attr': {'class': 'col-12 col-sm-5 col-md-5 col-lg-5 col-xl-4 btn red darken-3 notsaveandcancel m-1 m-xl-1 mb-2', 'formnovalidate': 'fornovalidate'} }) }}
+                                        {{ form_widget(form.saveandback, { 'label': ' reprendre plus tard', 'attr': {'class': 'col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 btn red darken-3 saveandback m-1 m-xl-1 mb-2'} }) }}
+                                        {{ form_widget(form.saveandreturn, { 'label': ' photo', 'attr': {'class': 'col-12 col-sm-5 col-md-5 col-lg-5 col-xl-4 btn red darken-3 saveandreturn m-1 m-xl-1 mb-2'} }) }}
+                                        {{ form_widget(form.saveandadd, { 'label': 'ajouter les étapes ', 'attr': {'class': 'col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 btn red darken-3 saveandadd m-1 m-xl-1 mb-2'} }) }}
+                                    </div>
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
                 </div>
-                {% form_theme form '::jquery.collection.html.twig' ':Admin:ingredients-theme.html.twig' %}
-
-
-                {{ form_start(form) }}
-                {{ form_label(form.ingredients, 'Ingrédients') }}
-                {{ form_widget(form.ingredients) }}
-                {{ form_errors(form.ingredients) }}
-                {{ form_end(form) }}
             </div>
         </div>
     </div>
@@ -42,6 +56,9 @@
             after_add: function (collection, element) {
                 $('select').material_select();
             }
+        });
+        $(document).ready(function () {
+            $(".select").select2();
         });
     </script>
 {% endblock %}
