@@ -103,7 +103,7 @@
                                         <p class="card-text red-text darken-3">Mode de cuisson :
                                             <strong>{{ step.cooking.cookingType.name }}</strong>, à
                                             <strong>{{ step.cooking.selection }}{{ step.cooking.cookingUnity.name }}</strong>
-                                            pendant <strong>{{ step.cooking.time|date('h:i:s') }}</strong></p>
+                                            pendant <strong>{{ step.cooking.time|date('H:i:s') }}</strong></p>
                                     {% endif %}
 
                                     {% if step.device.deviceType is defined %}
