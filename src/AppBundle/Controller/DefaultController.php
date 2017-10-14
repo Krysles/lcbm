@@ -32,6 +32,23 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/recette/{slug}", name="view_recipe")
+     */
+    public function viewRecipeAction(Request $request, Recipe $recipe)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $categories = $em->getRepository('AppBundle:Category')->getCategoriesWithSubcategories();
+
+        $em->getRepository('AppBundle:Recipe')->getRecipe($recipe);
+
+        return $this->render('recipe.html.twig', array(
+            'categories' => $categories,
+            'recipe' => $recipe
+        ));
+    }
+
+    /**
      * @Route("/{slug}/{page}", name="view_subcategory", defaults={"page" = 1})
      */
     public function viewSubcategoryAction(Request $request, Subcategory $subcategory, $page)
@@ -53,23 +70,6 @@ class DefaultController extends Controller
             'categories' => $categories,
             'subcategory' => $subcategory,
             'recipes' => $recipes
-        ));
-    }
-
-    /**
-     * @Route("/recette/{slug}", name="view_recipe")
-     */
-    public function viewRecipeAction(Request $request, Recipe $recipe)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $categories = $em->getRepository('AppBundle:Category')->getCategoriesWithSubcategories();
-
-        $em->getRepository('AppBundle:Recipe')->getRecipe($recipe);
-
-        return $this->render('recipe.html.twig', array(
-            'categories' => $categories,
-            'recipe' => $recipe
         ));
     }
 }
