@@ -293,3 +293,30 @@ h1, h2, h3, h4, h5, h6, blockquote, .btn {
     -moz-box-shadow: none !important;
     box-shadow: none !important;
 }
+
+.navigation ul li, .first, .previous, .page, .next, .last, .current {
+    padding: 5px 10px;
+}
+.navigation ul li, .first, .previous, .page, .next, .last {
+    background-color: #C62828;
+    margin: 2px;
+    padding: 5px 10px;
+    color: white;
+}
+.current {
+    margin: 2px;
+}
+
+.navigation ul li.active, .current {
+    background-color: #ef9a9a ;
+    color: black;
+}
+
+.navigation ul li a, .first a, .previous a, .page a, .next a, .last a {
+    color: white;
+}
+
+.btn-recipe {
+    position: absolute;
+    bottom: 20px;
+}

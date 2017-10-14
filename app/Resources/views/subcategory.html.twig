@@ -45,14 +45,17 @@
                                 {% endfor %}
                             </h5>
                             <h4 class="card-title">{{ recipe.name|myfilter }}</h4>
-                            <p class="card-text">{{ recipe.description }}</p>
-                            <a href="{{ path('view_recipe', {'slug': recipe.slug }) }}" class="btn red darken-3">Voir
+                            <p class="card-text mb-5">{{ recipe.description }}</p>
+                            <a href="{{ path('view_recipe', {'slug': recipe.slug }) }}" class="btn red darken-3 btn-recipe">Voir
                                 la recette</a>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
+            <div class="navigation flex-center">
+                {{ knp_pagination_render(recipes) }}
+            </div>
     </div>
     {% block nav %}
 

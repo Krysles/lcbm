@@ -32,15 +32,22 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/{slug}", name="view_subcategory")
+     * @Route("/{slug}/{page}", name="view_subcategory", defaults={"page" = 1})
      */
-    public function viewSubcategoryAction(Request $request, Subcategory $subcategory)
+    public function viewSubcategoryAction(Request $request, Subcategory $subcategory, $page)
     {
         $em = $this->getDoctrine()->getManager();
 
         $categories = $em->getRepository('AppBundle:Category')->getCategoriesWithSubcategories();
 
         $recipes = $em->getRepository('AppBundle:Recipe')->getRecipesWithSubcategory($subcategory->getId());
+
+        $paginator = $this->get('knp_paginator');
+        $recipes = $paginator->paginate(
+            $recipes,
+            $request->query->getInt('page', $page),
+            $request->query->getInt('limit', $this->getParameter('nb_recipes_per_page'))
+        );
 
         return $this->render('subcategory.html.twig', array(
             'categories' => $categories,
