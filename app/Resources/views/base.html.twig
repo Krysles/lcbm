@@ -217,7 +217,7 @@
                                         {% endfor %}
                                     </div>
                                     <div class="carousel-caption">
-                                        <h3 class="h3-responsive">{{ recipe.name }}</h3>
+                                        <h3 class="h3-responsive">{{ recipe.name|myfilter }}</h3>
                                         <p>{{ recipe.description }}</p>
                                     </div>
                                 </div>
