@@ -14,7 +14,8 @@ class CategoryRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->createQueryBuilder('c')
             ->leftJoin('c.subcategories', 's')
-            ->addSelect('s');
+            ->addSelect('s')
+            ->orderBy('s.name', 'ASC');
 
         return $qb->getQuery()
             ->getResult();
