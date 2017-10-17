@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Ingredients;
 use AppBundle\Entity\Recipe;
@@ -25,8 +25,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class RecipeController extends Controller
 {
     /**
-     * @Route("admin/recette/ajouter", name="admin_recipe_add", defaults={"slug" = null})
-     * @Route("admin/recette/ajouter/{slug}", name="admin_recipe_add_id")
+     * @Route("admin/ajouter-une-recette", name="admin_recipe_add", defaults={"slug" = null})
+     * @Route("admin/ajouter-une-recette/{slug}", name="admin_recipe_add_id")
      */
     public function recipeAddAction(Request $request, $slug)
     {
@@ -70,7 +70,7 @@ class RecipeController extends Controller
     }
 
     /**
-     * @Route("admin/recette/photo/ajouter/{slug}", name="admin_recipe_picture_add")
+     * @Route("admin/ajouter-une-recette/photo/{slug}", name="admin_recipe_picture_add")
      */
     public function recipePictureAddAction(Request $request, Recipe $recipe)
     {
@@ -114,7 +114,7 @@ class RecipeController extends Controller
     }
 
     /**
-     * @Route("admin/recette/ingredients/ajouter/{slug}", name="admin_recipe_ingredients_add")
+     * @Route("admin/ajouter-une-recette/ingredients/{slug}", name="admin_recipe_ingredients_add")
      */
     public function recipeIngredientsAddAction(Request $request, Recipe $recipe)
     {
@@ -166,7 +166,7 @@ class RecipeController extends Controller
     }
 
     /**
-     * @Route("admin/recette/etapes/ajouter/{slug}", name="admin_recipe_steps_add")
+     * @Route("admin/ajouter-une-recette/etapes/{slug}", name="admin_recipe_steps_add")
      */
     public function recipeStepAddAction(Request $request, Recipe $recipe)
     {

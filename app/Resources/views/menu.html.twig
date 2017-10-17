@@ -1,0 +1,32 @@
+<ul id="slide-out" class="side-nav fixed custom-scrollbar">
+    <!-- Logo -->
+    <li class="text-center">
+        <div class="logo-wrapper">
+            <a href="{{ path('homepage') }}"><img src="{{ asset('img/website/top.png') }}" class="img-fluid"></a>
+        </div>
+    </li>
+    <!--/. Logo -->
+    <!-- Side navigation links -->
+    <li>
+        <ul class="collapsible collapsible-accordion">
+            {% for category in categories %}
+                <li class="text-center">
+                    <a class="collapsible-header waves-effect arrow-r m-0 p-0">{{ category.name }}<i
+                                class="fa fa-angle-down rotate-icon"></i></a>
+                    {% for subcategory in category.subcategories %}
+                        <div class="collapsible-body animated fadeInDown">
+                            <ul>
+                                <li><a href="{{ path('view_subcategory', {'slug': subcategory.slug}) }}"
+                                       class="waves-effect"> {{ subcategory.name|title }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endfor %}
+                    <img src="{{ asset('img/website/middle.png') }}" class="img-fluid">
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+    <!--/. Side navigation links -->
+    <div class="sidenav-bg mask-strong"></div>
+</ul>

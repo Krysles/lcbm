@@ -23,10 +23,21 @@ class DefaultController extends Controller
             5, 0
         );
 
+        return $this->render('base.html.twig', array(
+            'buzzRecipe' => $buzzRecipe
+        ));
+    }
+
+    /*
+     * Sidebar
+     */
+    public function menuAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
         $categories = $em->getRepository('AppBundle:Category')->getCategoriesWithSubcategories();
 
-        return $this->render('base.html.twig', array(
-            'buzzRecipe' => $buzzRecipe,
+        return $this->render('menu.html.twig', array(
             'categories' => $categories
         ));
     }
@@ -38,12 +49,9 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $categories = $em->getRepository('AppBundle:Category')->getCategoriesWithSubcategories();
-
         $em->getRepository('AppBundle:Recipe')->getRecipe($recipe);
 
         return $this->render('recipe.html.twig', array(
-            'categories' => $categories,
             'recipe' => $recipe
         ));
     }
@@ -55,8 +63,6 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $categories = $em->getRepository('AppBundle:Category')->getCategoriesWithSubcategories();
-
         $recipes = $em->getRepository('AppBundle:Recipe')->getRecipesWithSubcategory($subcategory->getId());
 
         $paginator = $this->get('knp_paginator');
@@ -67,7 +73,6 @@ class DefaultController extends Controller
         );
 
         return $this->render('subcategory.html.twig', array(
-            'categories' => $categories,
             'subcategory' => $subcategory,
             'recipes' => $recipes
         ));

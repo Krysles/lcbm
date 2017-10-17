@@ -47,7 +47,7 @@
                             <img class="col-sm-8 img-fluid"
                                  src="{{ asset('img/website/middle_bl.png') }}"/>
                         <div class="row">
-                            <div class="card card-body wow fadeInLeftBig col-12 col-sm-6 text-center noshadow mb-4 mt-4">
+                            <div class="card card-body wow fadeInLeftBig col-12 col-sm-6 text-center noshadow mb-4 mt-4 transparent">
                                 <h4 class="card-title">Ingrédients</h4>
                                 <p class="card-text">
                                     {% for ingredient in recipe.ingredients %}
@@ -67,7 +67,7 @@
                                     {% endfor %}
                                 </p>
                             </div>
-                            <div class="card card-body wow fadeInRightBig col-12 col-sm-6 text-center noshadow mb-4 mt-4">
+                            <div class="card card-body wow fadeInRightBig col-12 col-sm-6 text-center noshadow mb-4 mt-4 transparent">
                                 <h4 class="card-title">Temps</h4>
                                 {% if recipe.preparationTime|date('H:i') != '00:00' %}
                                     <p class="card-text m-2">
@@ -96,7 +96,7 @@
                                 <h4 class="card-title text-center">Etapes</h4>
                                 {% for step in recipe.steps %}
                                     <div class="wow fadeInUp">
-                                    <p class="card-title">Etape {{ loop.index }}</p>
+                                    <p class="card-title"><strong>Etape {{ loop.index }}</strong></p>
                                     {{ step.step }}
                                     <br/>
                                     {% if step.cooking.cookingType is defined %}

@@ -31,7 +31,7 @@ security:
     - {path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY}
     - {path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY}
     - {path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY}
-    - {path: ^/admin/test, role: ROLE_USER} # enlever test après sécurisation
+    - {path: ^/admin, role: ROLE_USER} # enlever test après sécurisation
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Recipe;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ListeController extends Controller
 {
     /**
-     * @Route("admin/liste/categories", name="admin_liste_categories")
+     * @Route("admin/categories", name="admin_liste_categories")
      */
     public function adminListeCategoriesAction()
     {
@@ -26,7 +26,7 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/categorie/{slug}", name="admin_liste_category")
+     * @Route("admin/categorie/{slug}", name="admin_liste_category")
      */
     public function adminListeCategoryAction(Category $category)
     {
@@ -36,7 +36,7 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/recettes/{page}", name="admin_liste_recipes", defaults={"page" = 1})
+     * @Route("admin/recettes/{page}", name="admin_liste_recipes", defaults={"page" = 1})
      */
     public function adminListeRecipesAction(Request $request, $page)
     {
@@ -58,7 +58,7 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/avalider/{page}", name="admin_liste_recipes_to_validate", defaults={"page" = 1})
+     * @Route("admin/en-attente/{page}", name="admin_liste_recipes_to_validate", defaults={"page" = 1})
      */
     public function adminListeRecipesToValidateAction(Request $request, $page)
     {
@@ -80,7 +80,7 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/unites/{page}", name="admin_liste_units", defaults={"page" = 1})
+     * @Route("admin/unites/{page}", name="admin_liste_units", defaults={"page" = 1})
      */
     public function adminListeUnitsAction(Request $request, $page)
     {
@@ -99,7 +99,7 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/liaisons/{page}", name="admin_liste_liaisons", defaults={"page" = 1})
+     * @Route("admin/liaisons/{page}", name="admin_liste_liaisons", defaults={"page" = 1})
      */
     public function adminListeLiaisonsAction(Request $request, $page)
     {
@@ -118,7 +118,7 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/ingredients/{page}", name="admin_liste_ingredients", defaults={"page" = 1})
+     * @Route("admin/ingredients/{page}", name="admin_liste_ingredients", defaults={"page" = 1})
      */
     public function adminListeIngredientsAction(Request $request, $page)
     {
@@ -138,7 +138,7 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/cuisson/type/{page}", name="admin_liste_cuisson_type", defaults={"page" = 1})
+     * @Route("admin/types-de-cuisson/{page}", name="admin_liste_cuisson_type", defaults={"page" = 1})
      */
     public function adminListeCuissonTypeAction(Request $request, $page)
     {
@@ -158,7 +158,7 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/cuisson/unite/{page}", name="admin_liste_cuisson_unity", defaults={"page" = 1})
+     * @Route("admin/unites-de-cuisson/{page}", name="admin_liste_cuisson_unity", defaults={"page" = 1})
      */
     public function adminListeCuissonUnityAction(Request $request, $page)
     {
@@ -178,7 +178,7 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/appareil/type/{page}", name="admin_liste_device_type", defaults={"page" = 1})
+     * @Route("admin/types-dappareil/{page}", name="admin_liste_device_type", defaults={"page" = 1})
      */
     public function adminListeDeviceTypeAction(Request $request, $page)
     {
@@ -198,7 +198,7 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/liste/appareil/mode/{page}", name="admin_liste_device_mode", defaults={"page" = 1})
+     * @Route("admin/modes-dappareil/{page}", name="admin_liste_device_mode", defaults={"page" = 1})
      */
     public function adminListeDeviceModeAction(Request $request, $page)
     {

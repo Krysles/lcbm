@@ -54,7 +54,7 @@
                                 Pour {{ recipe.personNb }} {% if recipe.personNb != 1 %}personnes{% else %}personne{% endif %}</p>
                             <p class="card-text col-12 mb-4">{{ recipe.description }}</p>
                         </div>
-                        <div class="card card-body wow rotateIn push-sm-3 col-sm-6 text-center noshadow mb-4 mt-4">
+                        <div class="card card-body wow rotateIn push-sm-3 col-sm-6 text-center noshadow mb-4 mt-4 transparent">
                             <h4 class="card-title">Temps</h4>
                             {% if recipe.preparationTime|date('H:i') != '00:00' %}
                                 <p class="card-text m-2">
@@ -95,7 +95,7 @@
                     <!--Panel 3-->
                     <div class="tab-pane fade" id="panel3" role="tabpanel">
                         <br>
-                        <div class="card card-body wow fadeInLeftBig col-12 push-sm-3 col-sm-6 text-center noshadow mb-4 mt-4">
+                        <div class="card card-body wow fadeInLeftBig col-12 push-sm-3 col-sm-6 text-center noshadow mb-4 mt-4 transparent">
                             <h4 class="card-title">Ingrédients</h4>
                             <p class="card-text">
                                 {% for ingredient in recipe.ingredients %}
@@ -124,7 +124,7 @@
                                 <h4 class="card-title text-center">Etapes</h4>
                                 {% for step in recipe.steps %}
                                     <div class="wow fadeInUp">
-                                        <p class="card-title">Etape {{ loop.index }}</p>
+                                        <p class="card-title"><strong>Etape {{ loop.index }}</strong></p>
                                         {{ step.step }}
                                         <br/>
                                         {% if step.cooking.cookingType is defined %}

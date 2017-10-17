@@ -30,7 +30,7 @@ class Subcategory
      *
      * @ORM\Column(name="name", type="string", length=30, unique=true)
      * @Assert\NotBlank(message="Sous-catégorie obligatoire")
-     * @Assert\Length(max="30", maxMessage="30 caractères max.")
+     * @Assert\Length(min="5" ,max="30", minMessage="5 caractères min.", maxMessage="30 caractères max.")
      */
     private $name;
 
