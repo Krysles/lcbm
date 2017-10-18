@@ -2,6 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Validator\Constraints\ContainsAlphanumeric;
+use AppBundle\Validator\Constraints\ContainsTime;
+use AppBundle\Validator\ValidateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
@@ -112,6 +115,7 @@ class Recipe
      * @ORM\Column(name="preparationTime", type="time")
      * @Assert\NotBlank(message="Vérifier le temps de préparation", groups={"recipe_init"})
      * @Assert\Time(message="Format hh:mm", groups={"recipe_init"})
+     * @ContainsTime(groups={"recipe_init"})
      */
     private $preparationTime;
 

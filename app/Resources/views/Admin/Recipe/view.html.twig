@@ -46,7 +46,7 @@
                                     {% endif %}
                                 {% endfor %}
                             </h5>
-                            <h4 class="card-title col-12 pull-lg-6 col-lg-6 text-lg-left">{{ recipe.name }}</h4>
+                            <h4 class="card-title col-12 pull-lg-6 col-lg-6 text-lg-left">{{ recipe.name|myfilter }}</h4>
                             <p class="red-text lighten-2 col-12 push-lg-6 col-lg-6 text-lg-right">
                                 Recette {{ recipe.budgetType }}
                                 - {{ recipe.difficulty|title }}</p>

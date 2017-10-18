@@ -179,10 +179,13 @@ h1, h2, h3, h4, h5, h6, blockquote, .btn {
 }
 
 
-#footer {
+footer {
     background-color: #999999;
-    height: calc(100vh / 4);
+
+    box-sizing: border-box;
+    overflow: hidden;
 }
+
 
 /* FORM REGISTRATION */
 .fos_user_registration_register .card,

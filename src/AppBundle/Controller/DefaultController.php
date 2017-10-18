@@ -57,6 +57,14 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/mentions-legales", name="view_mentions")
+     */
+    public function viewMentionsAction(Request $request)
+    {
+        return $this->render('mentions.html.twig');
+    }
+
+    /**
      * @Route("mes-recettes/{page}", name="my_recipes", defaults={"page" = 1})
      */
     public function myRecipesAction(Request $request, $page)

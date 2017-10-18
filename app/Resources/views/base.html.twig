@@ -55,26 +55,28 @@
                             class="hidden-md-down">Accueil</span></a>
             </li>
             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-            <li class="nav-item">
-                <a href="{{ path('my_recipes') }}" class="nav-link"><i class="fa fa-leanpub"></i> <span
-                            class="hidden-md-down">Mes recettes</span></a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-unique animated zoomIn"
-                     aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item waves-effect waves-light" href="{{ path('admin') }}">Tableau de bord</a>
-                    <a class="dropdown-item waves-effect waves-light" href="{{ path('fos_user_profile_show') }}">Mon profil</a>
-                    <a class="dropdown-item waves-effect waves-light" href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-                </div>
-            </li>
+                <li class="nav-item">
+                    <a href="{{ path('my_recipes') }}" class="nav-link"><i class="fa fa-leanpub"></i> <span
+                                class="hidden-md-down">Mes recettes</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-unique animated zoomIn"
+                         aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item waves-effect waves-light" href="{{ path('admin') }}">Tableau de bord</a>
+                        <a class="dropdown-item waves-effect waves-light" href="{{ path('fos_user_profile_show') }}">Mon
+                            profil</a>
+                        <a class="dropdown-item waves-effect waves-light" href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                    </div>
+                </li>
             {% else %}
-            <li class="nav-item">
-                <a href="{{ path('fos_user_security_login') }}" class="nav-link"><i class="fa fa-arrow-right"></i> <span
-                            class="hidden-md-down">Connexion</span></a>
-            </li>
+                <li class="nav-item">
+                    <a href="{{ path('fos_user_security_login') }}" class="nav-link"><i class="fa fa-arrow-right"></i>
+                        <span
+                                class="hidden-md-down">Connexion</span></a>
+                </li>
             {% endif %}
         </ul>
     </nav>
@@ -179,14 +181,15 @@
         <div id="one" class="item">
             <div class="row">
                 <div class="col-12 offset-sm-1 col-sm-10 offset-lg-2 col-lg-8 mb-4">
-                    <h2 class="section-heading h1-responsive mt-3 text-center wow fadeInLeftBig">ELLES FONT LE BUZZ <i
+                    <h2 class="section-heading h1-responsive mt-3 text-center wow fadeInLeftBig" data-wow-delay="0.3s">
+                        ELLES FONT LE BUZZ <i
                                 class="fa fa-heart"></i></h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 offset-sm-1 col-sm-10 offset-lg-3 col-lg-6 mb-4">
                     <!--Carousel Wrapper-->
-                    <div id="carousel" class="carousel slide carousel-fade wow fadeInRightBig"
+                    <div id="carousel" class="carousel slide carousel-fade wow fadeInRightBig" data-wow-delay="0.4s"
                          data-ride="carousel">
                         <!--Indicators-->
                         <ol class="carousel-indicators">
@@ -210,8 +213,9 @@
                                     <!--Mask color-->
                                     <div class="view hm-black-slight w-100">
                                         {% for picture in recipe.pictures %}
-                                        <a href="{{ path('view_recipe', {'slug': recipe.slug }) }}"><img class="d-block w-100"
-                                                 src="{{ asset(vich_uploader_asset(picture, 'imageFile')) | imagine_filter('caroussel') }}"/></a>
+                                            <a href="{{ path('view_recipe', {'slug': recipe.slug }) }}"><img
+                                                        class="d-block w-100"
+                                                        src="{{ asset(vich_uploader_asset(picture, 'imageFile')) | imagine_filter('caroussel') }}"/></a>
                                             <!-- <div class="mask">
                                             </div> -->
                                         {% endfor %}
@@ -240,7 +244,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12 offset-sm-1 col-sm-10 offset-lg-2 col-lg-8">
-                        <h3 class="h3-responsive text-center ml-1 mr-1 wow zoomInDown">
+                        <h3 class="h3-responsive text-center ml-1 mr-1 wow zoomInDown" data-wow-delay="0.7s">
                             <small class="red-text darken-2"><i class="fa fa-quote-left mt-3 mr-3"
                                                                 aria-hidden="true"></i>parce
                                 qu'elles sont plus meilleures les unes
@@ -256,7 +260,7 @@
                 <p class="section-description">Découvrez ici les dernières recettes et plats de
                     saison.</p>
                 <div class="row text-left m-1">
-                    <div class="col-12 col-md-4 mb-r wow fadeInLeft">
+                    <div class="col-12 col-md-4 mb-r wow fadeInLeft" data-wow-delay="0.5s">
                         <div class="single-news">
                             <a href="" class="orange-text mb-1">
                                 <h6><i class="fa fa-ship"></i><strong> nouvelles venues...</strong></h6>
@@ -293,7 +297,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4 mb-r wow fadeInUp">
+                    <div class="col-12 col-md-4 mb-r wow fadeInUp" data-wow-delay="0.5s">
                         <div class="single-news">
                             <a href="" class="green-text"><h6><i class="fa fa-calendar-check-o"></i><strong> c'est le
                                         moment !</strong>
@@ -330,7 +334,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4 mb-r wow fadeInRight">
+                    <div class="col-12 col-md-4 mb-r wow fadeInRight" data-wow-delay="0.5s">
                         <div class="single-news">
                             <a href="" class="pink-text"><h6><i class="fa fa-hourglass-half"></i><strong> pas de temps
                                         ?</strong>
@@ -375,7 +379,7 @@
         <div id="three" class="item">
             <h2 class="section-heading h1-responsive mt-3 mb-5">Bienvenue au sein de notre communauté</h2>
             <div class="row m-2">
-                <section class="col-12 col-lg-6 section magazine-section mb-5 wow rollIn">
+                <section class="col-12 col-lg-6 section magazine-section mb-5 wow rollIn" data-wow-delay="0.6s">
                     <div class="card testimonial-card">
                         <div class="card-up orange lighten-1">
                         </div>
@@ -395,7 +399,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="col-12 col-lg-6 section magazine-section mb-5 wow rollIn">
+                <section class="col-12 col-lg-6 section magazine-section mb-5 wow rollIn" data-wow-delay="0.3s">
                     <div class="card testimonial-card">
                         <div class="card-up green lighten-1 text-center white-text p-4">
                             <i class="fa fa-envelope-o fa-2x"></i>
@@ -435,64 +439,91 @@
         <div class="dotted-scrollspy hidden-sm-down">
             <ul class="nav smooth-scroll">
                 {% block nav %}
-                <li class="nav-item"><a class="nav-link" href="#homepage"><span></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#one"><span></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#two"><span></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#three"><span></span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#homepage"><span></span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#one"><span></span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#two"><span></span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#three"><span></span></a></li>
                 {% endblock %}
             </ul>
         </div>
     {% endblock %}
-
-    <!-- Footer -->
-    <div id="footer">
-        <h1>FOOTER</h1>
+</main>
+<!-- Footer -->
+<footer>
+    <div class="row flex-center">
+        <div class="col-6 col-md-2 mt-3">
+            <a href="{{ path('homepage') }}"><img src="{{ asset('img/website/top.png') }}"
+                                                  class="img-fluid"></a>
+        </div>
     </div>
 
+    <div class="row flex-center">
+        <div class="col-md-3 text-center wow lightSpeedIn" data-wow-delay="0.5s">
+            <a class="white-text" href="{{ path('view_mentions') }}">Mentions légales</a>
+        </div>
+        <div class="col-md-3 text-center wow lightSpeedIn" data-wow-delay="0.6s">
+            <a class="white-text" href="{{ path('homepage', {'_fragment': 'three'}) }}">Contact</a>
+        </div>
+        <div class="col-md-3 text-center wow lightSpeedIn" data-wow-delay="0.7s">
+            <a class="white-text" href="{{ path('fos_user_registration_register') }}">S'inscrire</a>
+        </div>
+    </div>
+    <hr>
+    <!--Social buttons-->
+    <div class="row flex-center">
+        <div class="col-md-6 text-center mb-3">
+            <a id="footer-social-facebook" target="_blank" href="https://www.facebook.com/LesRecettesDeMary/"
+               class="btn-floating btn-social-all "><i class="fa fa-facebook left"></i></a>
+        </div>
+        <div class="col-md-6 text-center mb-3">
+            <p>&copy; 2017 Copyright: <a href="" class="white-text darken-4"> Krysles Design</a></p>
+        </div>
+    </div>
+</footer>
+<!--/.Footer-->
 
 
-    <!-- JQuery -->
-    <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="{{ asset('js/tether.min.js') }}"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
-    <!-- MDB sidebar JavaScript -->
-    <script type="text/javascript" src="{{ asset('js/modules/sidenav.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/modules/dropdown.js') }}"></script>
-    <!-- Jquery Plugin Sticky -->
-    <script type="text/javascript" src="{{ asset('js/modules/jquery.sticky.js') }}"></script>
-    <!-- Js Perso -->
+<!-- JQuery -->
+<script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{{ asset('js/tether.min.js') }}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
+<!-- MDB sidebar JavaScript -->
+<script type="text/javascript" src="{{ asset('js/modules/sidenav.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/modules/dropdown.js') }}"></script>
+<!-- Jquery Plugin Sticky -->
+<script type="text/javascript" src="{{ asset('js/modules/jquery.sticky.js') }}"></script>
+<!-- Js Perso -->
+<script>
+    $(".button-collapse").sideNav();
+    var container = document.getElementById('slide-out');
+    Ps.initialize(container, {
+        wheelSpeed: 2,
+        wheelPropagation: true,
+        maxScrollbarLength: 0
+    });
+
+    $('.dropdown-toggle').dropdown();
+</script>
+<!-- Js Perso -->
+{% block javascript %}
     <script>
-        $(".button-collapse").sideNav();
-        var container = document.getElementById('slide-out');
-        Ps.initialize(container, {
-            wheelSpeed: 2,
-            wheelPropagation: true,
-            maxScrollbarLength: 0
+
+        new WOW().init();
+
+        // initialize scrollspy
+        $('body').scrollspy({
+            target: '.dotted-scrollspy'
         });
 
-        $('.dropdown-toggle').dropdown();
+
     </script>
-    <!-- Js Perso -->
-    {% block javascript %}
-        <script>
+{% endblock %}
 
-            new WOW().init();
-
-            // initialize scrollspy
-            $('body').scrollspy({
-                target: '.dotted-scrollspy'
-            });
-
-
-
-        </script>
-    {% endblock %}
-</main>
 </body>
 </html>
