@@ -1,7 +1,28 @@
-{% extends ":Admin:dashboard.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% block content %}
+{% block title %}{{ parent() }} - Confirmation d'inscription{% endblock title %}
+
+{% block main %}
     <div class="item">
-        {% include "@FOSUser/Profile/show_content.html.twig" %}
+        <div class="row">
+            <div class="col-12 offset-sm-1 col-sm-10 mt-5">
+                <h2 class="section-heading h1-responsive mt-3 mb-5">Gestion de votre profil</h2>
+                <div class="row m-2">
+                    <section class="col-12 offset-lg-3 col-lg-6 section magazine-section mb-5 wow zoomIn">
+                        <div class="card testimonial-card">
+                            <div class="card-up green lighten-1 text-center white-text p-4">
+                                <p class="h5-responsive mt-3">Bonjour {{ user.username }}</p>
+                            </div>
+                            <div class="card-body">
+                                <p>Votre adresse email : {{ user.email }}</p>
+                                <hr>
+                                <p>Vous pouvez modifier votre profil en cliquant sur le bouton ci-dessous.</p>
+                                <a class="btn btn-red darken-3" href="{{ path('fos_user_profile_edit') }}">Modifier</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

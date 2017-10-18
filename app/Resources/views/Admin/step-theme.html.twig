@@ -10,9 +10,15 @@
                         {{ form_errors(form.step) }}
                     </div>
                 </div>
-                <p class="text-center red-text darken-3">Vous pouvez apporter une précision pour la cuisson de cette
-                    étape.</p>
-                <div class="col-12 grey lighten-2 mb-2">
+                {% set x = random(1000) %}
+                {% set y = random(1000) %}
+                <p class="col-12">Une précision concernant la <a
+                            class="red-text lighten-3" href="#{{ x }}" data-toggle="collapse" aria-expanded="false"
+                            aria-controls="{{ x }}"><strong>cuisson</strong></a> ou l'<a
+                            class="red-text lighten-3" href="#{{ y }}" data-toggle="collapse" aria-expanded="false"
+                            aria-controls="{{ y }}"><strong>appareil utilisé</strong></a> pour l'étape
+                    ?</p>
+                <div class="col-12 grey lighten-2 mb-2 collapse" id="{{ x }}">
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-lg-6 text-center">
                             {{ form_label(form.cooking.cookingType) }}
@@ -47,9 +53,10 @@
                         </div>
                     </div>
                 </div>
-                <p class="text-center red-text darken-3">Vous pouvez apporter une précision sur un appareil utilisé
-                    à cette étape.</p>
-                <div class="col-12 grey lighten-2 mb-2">
+                <div class="col-12 flex-center">
+
+                </div>
+                <div class="col-12 grey lighten-2 mb-2 collapse" id="{{ y }}">
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-lg-6 text-center">
                             {{ form_label(form.device.deviceType) }}
@@ -86,23 +93,21 @@
 
                 <div class="col-6 col-sm-3 col-md-3 flex-center">
                     <a href="#" class="collection-add btn"><i class="fa fa-plus"
-                                                                          aria-hidden="true"></i></a>
+                                                              aria-hidden="true"></i></a>
                 </div>
                 <div class="col-6 col-sm-3 push-md-3 col-md-3 flex-center">
                     <a href="#" class="collection-up btn"><i class="fa fa-toggle-up"
-                                                                         aria-hidden="true"></i></a>
+                                                             aria-hidden="true"></i></a>
                 </div>
                 <div class="col-6 col-sm-3 pull-md-3 col-md-3 flex-center">
                     <a href="#" class="collection-remove btn"><i class="fa fa-minus"
-                                                                             aria-hidden="true"></i></a>
+                                                                 aria-hidden="true"></i></a>
                 </div>
                 <div class="col-6 col-sm-3 col-md-3 flex-center">
                     <a href="#" class="collection-down btn"><i class="fa fa-toggle-down"
-                                                                           aria-hidden="true"></i></a>
+                                                               aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
-
     </div>
-
 {% endblock %}

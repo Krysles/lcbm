@@ -1,5 +1,29 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% block fos_user_content %}
-{% include "@FOSUser/Profile/edit_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block title %}{{ parent() }} - Modification de profil{% endblock title %}
+
+{% block main %}
+    <div class="item">
+        <div class="row">
+            <div class="col-12 offset-sm-1 col-sm-10 mt-5">
+                <div class="row m-2">
+                    <section class="col-12 offset-lg-3 col-lg-6 section magazine-section mb-5 wow zoomIn">
+                        <div class="card testimonial-card">
+                            <div class="card-up green lighten-1 text-center white-text p-4">
+                                <p class="h5-responsive mt-3">Modification de votre profil</p>
+                            </div>
+                            <div class="card-body">
+                                {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+                                {{ form_widget(form) }}
+                                <div>
+                                    <input class="btn btn-red darken-3" type="submit" value="valider" />
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,10 +1,31 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% trans_default_domain 'FOSUserBundle' %}
+{% block title %}{{ parent() }} - Confirmation d'inscription{% endblock title %}
 
-{% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
-{% endblock fos_user_content %}
+{% block main %}
+    <div class="item">
+        <div class="row">
+            <div class="col-12 offset-sm-1 col-sm-10 mt-5">
+                <h2 class="section-heading h1-responsive mt-3 mb-5">Bienvenue au sein de notre communauté</h2>
+                <div class="row m-2">
+                    <section class="col-12 offset-lg-3 col-lg-6 section magazine-section mb-5 wow zoomIn">
+                        <div class="card testimonial-card">
+                            <div class="card-up green lighten-1 text-center white-text p-4">
+                                <p class="h5-responsive mt-3">bienvenue {{ user.username }}</p>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Maryline vous souhaite la bienvenue</h4>
+                                <hr>
+                                <p>Merci de nous avoir rejoins. <i class="fa fa-quote-right mf-1"></i></p>
+                                <p>Vous pouvez désormais poster vos recettes afin de les partager avec les autres
+                                    internautes.</p>
+                                <a class="btn btn-red darken-3" href="{{ path('admin_recipe_add') }}">Ajouter une
+                                    recette</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

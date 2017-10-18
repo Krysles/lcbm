@@ -168,6 +168,14 @@ class Recipe
     private $pictures;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\UserAdmin", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="Aucun utilisateur renseigné", groups={"recipe_init"})
+     * @Assert\Valid()
+     */
+    private $userAdmin;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -645,5 +653,29 @@ class Recipe
     public function getCookingTime()
     {
         return $this->cookingTime;
+    }
+
+    /**
+     * Set userAdmin
+     *
+     * @param \AppBundle\Entity\UserAdmin $userAdmin
+     *
+     * @return Recipe
+     */
+    public function setUserAdmin(\AppBundle\Entity\UserAdmin $userAdmin)
+    {
+        $this->userAdmin = $userAdmin;
+
+        return $this;
+    }
+
+    /**
+     * Get userAdmin
+     *
+     * @return \AppBundle\Entity\UserAdmin
+     */
+    public function getUserAdmin()
+    {
+        return $this->userAdmin;
     }
 }

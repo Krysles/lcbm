@@ -39,29 +39,30 @@ class RecipeController extends Controller
         } else {
             $recipe = new Recipe();
             $em->persist($recipe);
+            $recipe->setUserAdmin($this->getUser());
         }
         $recipe->setUpdateDate(new \DateTime());
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->get('notsaveandcancel')->isClicked()) {
-                $this->addFlash('success', "Recette non enregistrée.");
-                return $this->redirectToRoute('admin_liste_recipes'); // A CHANGER EN CARNET DE RECETTES
+                $this->addFlash('info', "Recette non enregistrée.");
+                return $this->redirectToRoute('my_recipes');
             }
             if ($form->isValid()) {
                 if ($form->get('saveandback')->isClicked()) {
                     $recipe->setStatus(RECIPE::RECIPE_INIT);
                     $em->flush();
                     $this->addFlash('success', "Recette enregistrée.");
-                    return $this->redirectToRoute('admin_liste_recipes'); // A CHANGER EN CARNET DE RECETTES
+                    return $this->redirectToRoute('my_recipes');
                 } elseif ($form->get('saveandadd')->isClicked()) {
                     $recipe->setStatus(RECIPE::RECIPE_PICTURE_INIT);
                     $em->flush();
-                    $this->addFlash('info', "Recette enregistrée.");
+                    $this->addFlash('success', "Recette enregistrée.");
                     return $this->redirectToRoute('admin_recipe_picture_add', array('slug' => $recipe->getSlug()));
                 }
             } else {
-                $this->addFlash('error', "Problème lors de la validation.");
+                $this->addFlash('danger', "Veuillez vérifier le formulaire.");
             }
         }
         return $this->render(':Admin/Recipe:add.html.twig', array(
@@ -81,29 +82,29 @@ class RecipeController extends Controller
 
         if ($form->isSubmitted()) {
             if ($form->get('notsaveandcancel')->isClicked()) {
-                $this->addFlash('success', "Photo non enregistré.");
-                return $this->redirectToRoute('admin_liste_recipes'); // A CHANGER EN CARNET DE RECETTES
+                $this->addFlash('info', "Recette non enregistrée.");
+                return $this->redirectToRoute('my_recipes');
             }
             if ($form->isValid()) {
                 $recipe->setUpdateDate(new \DateTime());
                 if ($form->get('saveandreturn')->isClicked()) {
                     $recipe->setStatus(RECIPE::RECIPE_INIT);
                     $em->flush();
-                    $this->addFlash('success', "Photo enregistré.");
+                    $this->addFlash('success', "Recette enregistrée.");
                     return $this->redirectToRoute('admin_recipe_add_id', array('slug' => $recipe->getSlug()));
                 } elseif ($form->get('saveandback')->isClicked()) {
                     $recipe->setStatus(RECIPE::RECIPE_PICTURE_INIT);
                     $em->flush();
-                    $this->addFlash('success', "Photo enregistré.");
-                    return $this->redirectToRoute('admin_liste_recipes'); // A CHANGER EN CARNET DE RECETTES
+                    $this->addFlash('success', "Recette enregistrée.");
+                    return $this->redirectToRoute('my_recipes');
                 } elseif ($form->get('saveandadd')->isClicked()) {
                     $recipe->setStatus(RECIPE::RECIPE_INGREDIENT_INIT);
                     $em->flush();
-                    $this->addFlash('info', "Photo enregistré.");
+                    $this->addFlash('success', "Recette enregistrée.");
                     return $this->redirectToRoute('admin_recipe_ingredients_add', array('slug' => $recipe->getSlug()));
                 }
             } else {
-                $this->addFlash('error', "Problème lors de la validation.");
+                $this->addFlash('danger', "Veuillez vérifier le formulaire.");
             }
         }
         return $this->render(':Admin/Recipe:pictures_add.html.twig', array(
@@ -119,7 +120,6 @@ class RecipeController extends Controller
     public function recipeIngredientsAddAction(Request $request, Recipe $recipe)
     {
         $em = $this->getDoctrine()->getManager();
-        //$recipe = $em->getRepository('AppBundle:Recipe')->find($id);
         $originalIngredients = new ArrayCollection();
         foreach ($recipe->getIngredients() as $ingredient) {
             $originalIngredients->add($ingredient);
@@ -128,8 +128,8 @@ class RecipeController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->get('notsaveandcancel')->isClicked()) {
-                $this->addFlash('success', "Ingrédients non enregistrés.");
-                return $this->redirectToRoute('admin_liste_recipes'); // A CHANGER EN CARNET DE RECETTES
+                $this->addFlash('info', "Recette non enregistrée.");
+                return $this->redirectToRoute('my_recipes');
             }
             if ($form->isValid()) {
                 $recipe->setUpdateDate(new \DateTime());
@@ -142,21 +142,21 @@ class RecipeController extends Controller
                 if ($form->get('saveandreturn')->isClicked()) {
                     $recipe->setStatus(RECIPE::RECIPE_PICTURE_INIT);
                     $em->flush();
-                    $this->addFlash('success', "Ingrédients enregistrés.");
+                    $this->addFlash('success', "Recette enregistrée.");
                     return $this->redirectToRoute('admin_recipe_picture_add', array('slug' => $recipe->getSlug()));
                 } elseif ($form->get('saveandback')->isClicked()) {
                     $recipe->setStatus(RECIPE::RECIPE_INGREDIENT_INIT);
                     $em->flush();
-                    $this->addFlash('success', "Ingrédients enregistrés.");
-                    return $this->redirectToRoute('admin_liste_recipes'); // A CHANGER EN CARNET DE RECETTES
+                    $this->addFlash('success', "Recette enregistrée.");
+                    return $this->redirectToRoute('my_recipes');
                 } elseif ($form->get('saveandadd')->isClicked()) {
                     $recipe->setStatus(RECIPE::RECIPE_STEP_INIT);
                     $em->flush();
-                    $this->addFlash('info', "Ingrédients enregistrés.");
+                    $this->addFlash('success', "Recette enregistrée.");
                     return $this->redirectToRoute('admin_recipe_steps_add', array('slug' => $recipe->getSlug()));
                 }
             } else {
-                $this->addFlash('error', "Problème lors de la validation.");
+                $this->addFlash('danger', "Veuillez vérifier le formulaire.");
             }
         }
         return $this->render(':Admin/Recipe:ingredients_add.html.twig', array(
@@ -171,7 +171,6 @@ class RecipeController extends Controller
     public function recipeStepAddAction(Request $request, Recipe $recipe)
     {
         $em = $this->getDoctrine()->getManager();
-        // $recipe = $em->getRepository('AppBundle:Recipe')->find($id);
         $originalSteps = new ArrayCollection();
         foreach ($recipe->getSteps() as $step) {
             $originalSteps->add($step);
@@ -182,8 +181,8 @@ class RecipeController extends Controller
 
         if ($form->isSubmitted()) {
             if ($form->get('notsaveandcancel')->isClicked()) {
-                $this->addFlash('success', "Etapes non enregistrées.");
-                return $this->redirectToRoute('admin_liste_recipes'); // A CHANGER EN CARNET DE RECETTES
+                $this->addFlash('info', "Recette non enregistrée.");
+                return $this->redirectToRoute('my_recipes');
             }
             foreach ($originalSteps as $step) {
                 if (false === $recipe->getSteps()->contains($step)) {
@@ -197,21 +196,23 @@ class RecipeController extends Controller
                 if ($form->get('saveandreturn')->isClicked()) {
                     $recipe->setStatus(RECIPE::RECIPE_INGREDIENT_INIT);
                     $em->flush();
-                    $this->addFlash('success', "Etapes enregistrées.");
+                    $this->addFlash('success', "Recette enregistrée.");
                     return $this->redirectToRoute('admin_recipe_ingredients_add', array('slug' => $recipe->getSlug()));
                 } elseif ($form->get('saveandback')->isClicked()) {
                     $recipe->setStatus(RECIPE::RECIPE_STEP_INIT);
                     $em->flush();
-                    $this->addFlash('success', "Etapes enregistrées.");
-                    return $this->redirectToRoute('admin_liste_recipes'); // A CHANGER EN CARNET DE RECETTES
+                    $this->addFlash('success', "Recette enregistrée.");
+                    return $this->redirectToRoute('my_recipes');
                 } elseif ($form->get('saveandadd')->isClicked()) {
                     $recipe->setStatus(RECIPE::RECIPE_TO_VALIDATE);
                     $em->flush();
-                    $this->addFlash('info', "Recette enregistrée.");
-                    return $this->redirectToRoute('admin_liste_recipes'); // A CHANGER EN CARNET DE RECETTES
+                    $this->addFlash('success', "Recette enregistrée.");
+                    // Ajouter if user admin valide direct sinon en attente
+                    $this->addFlash('info', "La recette est en attente de validation.");
+                    return $this->redirectToRoute('my_recipes');
                 }
             } else {
-                $this->addFlash('error', "Problème lors de la validation.");
+                $this->addFlash('danger', "Veuillez vérifier le formulaire.");
             }
         }
         return $this->render(':Admin/Recipe:steps_add.html.twig', array(

@@ -161,6 +161,10 @@ h1, h2, h3, h4, h5, h6, blockquote, .btn {
     color: black;
 }
 
+#recipe .btnprecision {
+    padding: 5px;
+}
+
 .notsaveandcancel:before {
     color: white !important;
     content: "\f00d";

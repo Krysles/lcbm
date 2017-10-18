@@ -40,7 +40,7 @@
         <!-- Logo -->
         <li class="text-center">
             <div class="logo-wrapper">
-                <a href="{{ path('admin') }}"><img src="{{ asset('img/website/top.png') }}" class="img-fluid"></a>
+                <a href="{{ path('homepage') }}"><img src="{{ asset('img/website/top.png') }}" class="img-fluid"></a>
             </div>
         </li>
         <!--/. Logo -->
@@ -58,7 +58,7 @@
                     <div class="collapsible-body animated fadeInDown">
                         <ul>
                             <li><a href="{{ path('admin_liste_recipes') }}"
-                                   class="waves-effect">Liste</a>
+                                   class="waves-effect">En cours</a>
                             </li>
                             <li><a href="{{ path('admin_liste_recipes_to_validate') }}"
                                    class="waves-effect">En attente</a>
@@ -137,7 +137,7 @@
                             class="hidden-md-down">Tableau de bord</span></a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link"><i class="fa fa-leanpub"></i> <span
+                <a href="{{ path('my_recipes') }}" class="nav-link"><i class="fa fa-leanpub"></i> <span
                             class="hidden-md-down">Mes recettes</span></a>
             </li>
 
@@ -148,7 +148,8 @@
                 <div class="dropdown-menu dropdown-menu-right dropdown-unique animated zoomIn"
                      aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item waves-effect waves-light" href="{{ path('homepage') }}">Aller vers le site</a>
-                    <a class="dropdown-item waves-effect waves-light" href="#">Mon profil</a>
+                    <a class="dropdown-item waves-effect waves-light" href="{{ path('fos_user_profile_show') }}">Mon profil</a>
+                    <a class="dropdown-item waves-effect waves-light" href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
                 </div>
             </li>
         </ul>
@@ -160,30 +161,18 @@
 <main>
     <div id="flash">
         <div class="row">
-            <div class="offset-sm-1 col-sm-10">
+            <div class="offset-sm-1 col-sm-10 mt-5">
                 {% for message in app.session.flashbag.get('success') %}
-                    <blockquote class="blockquote bq-success">
-                        <p class="bq-title">Succès</p>
-                        <p>{{ message }}</p>
-                    </blockquote>
+                    <p class="text-center success-color white-text mt-5 p-2 mb-0">{{ message }}</p>
                 {% endfor %}
                 {% for message in app.session.flashbag.get('info') %}
-                    <blockquote class="blockquote bq-primary">
-                        <p class="bq-title">Information</p>
-                        <p>{{ message }}</p>
-                    </blockquote>
+                    <p class="text-center info-color white-text mt-5 p-2 mb-0">{{ message }}</p>
                 {% endfor %}
                 {% for message in app.session.flashbag.get('warning') %}
-                    <blockquote class="blockquote bq-warning">
-                        <p class="bq-title">Avertissement</p>
-                        <p>{{ message }}</p>
-                    </blockquote>
+                    <p class="text-center warning-color white-text mt-5 p-2 mb-0">{{ message }}</p>
                 {% endfor %}
-                {% for message in app.session.flashbag.get('error') %}
-                    <blockquote class="blockquote bq-danger">
-                        <p class="bq-title">Danger</p>
-                        <p>{{ message }}</p>
-                    </blockquote>
+                {% for message in app.session.flashbag.get('danger') %}
+                    <p class="text-center danger-color white-text mt-5 p-2 mb-0">{{ message }}</p>
                 {% endfor %}
             </div>
         </div>

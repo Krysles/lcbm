@@ -36,14 +36,11 @@ class ListeController extends Controller
     }
 
     /**
-     * @Route("admin/recettes/{page}", name="admin_liste_recipes", defaults={"page" = 1})
+     * @Route("admin/recettes-en-cours/{page}", name="admin_liste_recipes", defaults={"page" = 1})
      */
     public function adminListeRecipesAction(Request $request, $page)
     {
-        $recipes = $this->getDoctrine()->getManager()->getRepository('AppBundle:Recipe')->findBy(
-            array('status' => Recipe::RECIPE_VALIDATE),
-            array('updateDate' => 'desc')
-        );
+        $recipes = $this->getDoctrine()->getManager()->getRepository('AppBundle:Recipe')->getRecipeOfUserForStatus($this->getUser(), Recipe::RECIPE_TO_VALIDATE);
 
         $paginator = $this->get('knp_paginator');
         $recipes = $paginator->paginate(
@@ -63,7 +60,7 @@ class ListeController extends Controller
     public function adminListeRecipesToValidateAction(Request $request, $page)
     {
         $recipes = $this->getDoctrine()->getManager()->getRepository('AppBundle:Recipe')->findBy(
-            array('status' => Recipe::RECIPE_TO_VALIDATE),
+            array('status' => Recipe::RECIPE_TO_VALIDATE, 'userAdmin' => $this->getUser()),
             array('updateDate' => 'asc')
         );
 

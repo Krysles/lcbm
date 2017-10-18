@@ -60,4 +60,19 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()
             ->getResult();
     }
+
+    public function getRecipeOfUserForStatus($user, $status)
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->select('r')
+            ->where('r.status < :status')
+            ->setParameter('status', $status)
+            ->andWhere('r.userAdmin = :userId')
+            ->setParameter('userId', $user->getId())
+            ->orderBy('r.updateDate', 'ASC')
+        ;
+
+        return $qb->getQuery()
+            ->getResult();
+    }
 }
