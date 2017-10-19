@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Encodage du site -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- Pas de cache -->
+    <meta http-equiv="pragma" content="no-cache"/>
+    <!-- Nom du réalisateur de la page -->
+    <meta name="author" content="GILLES Christophe - Krysles"/>
+    <!-- Brève description de la page -->
+    <meta name="description" content="Brève description de la page ici"/>
+    <!-- Liste de mots clés pour qualifier la page -->
+    <meta name="keywords" content="mot clé 1, autre mot clé, blabla"/>
+    <!-- Mise en place du réglage du zoom pour les mobiles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <!-- Titre de la page -->
+    <title>{% block title %}La cuisine by Mary{% endblock %}</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Reset CSS -->
+    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet">
+    <!-- CSS Perso -->
+    <link rel="stylesheet" href="{{ asset('css/mainsmartphone.css') }}"/>
+    <link rel="stylesheet" media="screen and (min-width:480px)" href="{{ asset('css/maintablet.css') }}"/>
+    <link rel="stylesheet" media="screen and (min-width:1141px)" href="{{ asset('css/main.css') }}"/>
+    {% block stylesheets %}
+
+    {% endblock %}
+</head>
+<body>
+<header>
+    <!-- Sidebar navigation -->
+    {{ render(controller('AppBundle:Default:menu')) }}
+
+    <!--/. Sidebar navigation -->
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav red darken-3">
+        <!-- SideNav slide-out button -->
+        <div class="float-xs-left">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+        </div>
+        <!-- Breadcrumb-->
+        <div class="breadcrumb-dn mr-auto">
+            <p><a href="{{ path('homepage') }}">La Cuisine By Mary</a></p>
+        </div>
+        <ul class="nav navbar-nav nav-flex-icons ml-auto">
+            <li class="nav-item">
+                <a href="{{ path('homepage') }}" class="nav-link"><i class="fa fa-home"></i> <span
+                            class="hidden-md-down">Accueil</span></a>
+            </li>
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <li class="nav-item">
+                    <a href="{{ path('my_recipes') }}" class="nav-link"><i class="fa fa-leanpub"></i> <span
+                                class="hidden-md-down">Mes recettes</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-unique animated zoomIn"
+                         aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item waves-effect waves-light" href="{{ path('admin') }}">Tableau de bord</a>
+                        <a class="dropdown-item waves-effect waves-light" href="{{ path('fos_user_profile_show') }}">Mon
+                            profil</a>
+                        <a class="dropdown-item waves-effect waves-light" href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                    </div>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="{{ path('fos_user_security_login') }}" class="nav-link"><i class="fa fa-arrow-right"></i>
+                        <span
+                                class="hidden-md-down">Connexion</span></a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <!-- /.Navbar -->
+</header>
+<main>
+    <div id="flash">
+        <div class="row">
+            <div class="offset-sm-1 col-sm-10 mt-5">
+                {% for message in app.session.flashbag.get('success') %}
+                    <p class="text-center success-color white-text mt-5 p-2 mb-0">{{ message }}</p>
+                {% endfor %}
+                {% for message in app.session.flashbag.get('info') %}
+                    <p class="text-center info-color white-text mt-5 p-2 mb-0">{{ message }}</p>
+                {% endfor %}
+                {% for message in app.session.flashbag.get('warning') %}
+                    <p class="text-center warning-color white-text mt-5 p-2 mb-0">{{ message }}</p>
+                {% endfor %}
+                {% for message in app.session.flashbag.get('error') %}
+                    <p class="text-center danger-color white-text mt-5 p-2 mb-0">{{ message }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% block main %}
+        <div id="one" class="item">
+            <div class="row">
+                <div class="col-12 offset-sm-1 col-sm-10 offset-lg-2 col-lg-8 mb-4">
+                    <h2 class="section-heading h1-responsive mt-3 text-center wow fadeInLeftBig" data-wow-delay="0.3s">
+                        ERREUR <i
+                                class="fa fa-heart"></i></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 offset-sm-1 col-sm-10 offset-lg-2 col-lg-8">
+                    <h3 class="h3-responsive text-center ml-1 mr-1 wow zoomInDown" data-wow-delay="0.7s">
+                        <small class="red-text darken-2"><i class="fa fa-quote-left mt-3 mr-3"
+                                                            aria-hidden="true"></i>la page demandée n'éxiste pas<i
+                                    class="fa fa-quote-right m-3" aria-hidden="true"></i></small>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+</main>
+<!-- Footer -->
+<footer>
+    <div class="row flex-center">
+        <div class="col-6 col-md-2 mt-3">
+            <a href="{{ path('homepage') }}"><img src="{{ asset('img/website/top.png') }}"
+                                                  class="img-fluid"></a>
+        </div>
+    </div>
+
+    <div class="row flex-center">
+        <div class="col-md-3 text-center wow lightSpeedIn" data-wow-delay="0.5s">
+            <a class="white-text" href="{{ path('view_mentions') }}">Mentions légales</a>
+        </div>
+        <div class="col-md-3 text-center wow lightSpeedIn" data-wow-delay="0.6s">
+            <a class="white-text" href="{{ path('homepage', {'_fragment': 'three'}) }}">Contact</a>
+        </div>
+        <div class="col-md-3 text-center wow lightSpeedIn" data-wow-delay="0.7s">
+            <a class="white-text" href="{{ path('fos_user_registration_register') }}">S'inscrire</a>
+        </div>
+    </div>
+    <hr>
+    <!--Social buttons-->
+    <div class="row flex-center">
+        <div class="col-md-6 text-center mb-3">
+            <a id="footer-social-facebook" target="_blank" href="https://www.facebook.com/LesRecettesDeMary/"
+               class="btn-floating btn-social-all "><i class="fa fa-facebook left"></i></a>
+        </div>
+        <div class="col-md-6 text-center mb-3">
+            <p>&copy; 2017 Copyright: <a href="" class="white-text darken-4"> Krysles Design</a></p>
+        </div>
+    </div>
+</footer>
+<!--/.Footer-->
+
+
+<!-- JQuery -->
+<script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{{ asset('js/tether.min.js') }}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
+<!-- MDB sidebar JavaScript -->
+<script type="text/javascript" src="{{ asset('js/modules/sidenav.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/modules/dropdown.js') }}"></script>
+<!-- Jquery Plugin Sticky -->
+<script type="text/javascript" src="{{ asset('js/modules/jquery.sticky.js') }}"></script>
+<!-- Js Perso -->
+<script>
+    $(".button-collapse").sideNav();
+    var container = document.getElementById('slide-out');
+    Ps.initialize(container, {
+        wheelSpeed: 2,
+        wheelPropagation: true,
+        maxScrollbarLength: 0
+    });
+
+    $('.dropdown-toggle').dropdown();
+</script>
+<!-- Js Perso -->
+{% block javascript %}
+    <script>
+
+        new WOW().init();
+
+        // initialize scrollspy
+        $('body').scrollspy({
+            target: '.dotted-scrollspy'
+        });
+
+
+    </script>
+{% endblock %}
+
+</body>
+</html>

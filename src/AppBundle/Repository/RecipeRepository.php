@@ -61,15 +61,31 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
-    public function getRecipeOfUserForStatus($user, $status)
+    public function getRecipeOfUserForStatus($user, $statusmin, $statusmax)
     {
         $qb = $this->createQueryBuilder('r')
             ->select('r')
-            ->where('r.status < :status')
-            ->setParameter('status', $status)
+            ->where('r.status > :statusmin')
+            ->setParameter('statusmin', $statusmin)
+            ->andwhere('r.status <= :statusmax')
+            ->setParameter('statusmax', $statusmax)
             ->andWhere('r.userAdmin = :userId')
             ->setParameter('userId', $user->getId())
             ->orderBy('r.updateDate', 'ASC')
+        ;
+
+        return $qb->getQuery()
+            ->getResult();
+    }
+
+    public function getRecipesInForTitle($searchtitle)
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->select('r')
+            ->where('r.status =:status')
+            ->setParameter('status', Recipe::RECIPE_VALIDATE)
+            ->andWhere('r.slug LIKE :searchtitle')
+            ->setParameter('searchtitle', '%'.$searchtitle.'%')
         ;
 
         return $qb->getQuery()

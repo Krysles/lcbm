@@ -8,7 +8,7 @@
                 <div class="card card-cascade">
                     <div class="view gradient-card-header red darken-3">
                         <h2 class="h2-responsive">Mes recettes</h2>
-                        <p>Gestion des mes recettes en ligne</p>
+                        <p>Gestion de mes recettes en ligne</p>
                     </div>
                     <div class="card-body text-center">
                         <div class="card-text">
@@ -37,7 +37,7 @@
                                                 <a href="{{ path('admin_recipe_add_id', {'slug': recipe.slug}) }}"
                                                    class="teal-text"><i
                                                             class="fa fa-pencil fa-lg"></i></a>
-                                                <a href=""
+                                                <a href="{{ path('admin_recipe_delete', {'slug': recipe.slug}) }}"
                                                    class="red-text"><i
                                                             class="fa fa-times fa-lg"></i></a></td>
                                         </tr>

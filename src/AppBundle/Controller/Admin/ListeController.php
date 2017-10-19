@@ -40,7 +40,7 @@ class ListeController extends Controller
      */
     public function adminListeRecipesAction(Request $request, $page)
     {
-        $recipes = $this->getDoctrine()->getManager()->getRepository('AppBundle:Recipe')->getRecipeOfUserForStatus($this->getUser(), Recipe::RECIPE_TO_VALIDATE);
+        $recipes = $this->getDoctrine()->getManager()->getRepository('AppBundle:Recipe')->getRecipeOfUserForStatus($this->getUser(), Recipe::RECIPE_DELETE,Recipe::RECIPE_TO_VALIDATE);
 
         $paginator = $this->get('knp_paginator');
         $recipes = $paginator->paginate(

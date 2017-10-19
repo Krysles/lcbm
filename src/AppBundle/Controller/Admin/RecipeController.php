@@ -33,6 +33,9 @@ class RecipeController extends Controller
         $em = $this->getDoctrine()->getManager();
         if ($slug) {
             $recipe = $em->getRepository('AppBundle:Recipe')->findOneBy(array('slug' => $slug));
+            if($recipe->getUserAdmin() != $this->getUser()) {
+                throw $this->createNotFoundException('Impossible de modifier cette recette.');
+            }
             if (!$recipe) {
                 return $this->redirectToRoute('admin_recipe_add');
             }
@@ -75,6 +78,9 @@ class RecipeController extends Controller
      */
     public function recipePictureAddAction(Request $request, Recipe $recipe)
     {
+        if($recipe->getUserAdmin() != $this->getUser()) {
+            throw $this->createNotFoundException('Impossible de modifier cette recette.');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $form = $this->createForm(ListPicturesType::class, $recipe);
@@ -119,6 +125,9 @@ class RecipeController extends Controller
      */
     public function recipeIngredientsAddAction(Request $request, Recipe $recipe)
     {
+        if($recipe->getUserAdmin() != $this->getUser()) {
+            throw $this->createNotFoundException('Impossible de modifier cette recette.');
+        }
         $em = $this->getDoctrine()->getManager();
         $originalIngredients = new ArrayCollection();
         foreach ($recipe->getIngredients() as $ingredient) {
@@ -170,6 +179,9 @@ class RecipeController extends Controller
      */
     public function recipeStepAddAction(Request $request, Recipe $recipe)
     {
+        if($recipe->getUserAdmin() != $this->getUser()) {
+            throw $this->createNotFoundException('Impossible de modifier cette recette.');
+        }
         $em = $this->getDoctrine()->getManager();
         $originalSteps = new ArrayCollection();
         foreach ($recipe->getSteps() as $step) {
@@ -226,6 +238,9 @@ class RecipeController extends Controller
      */
     public function recipeViewAction(Recipe $recipe)
     {
+        if($recipe->getUserAdmin() != $this->getUser()) {
+            throw $this->createNotFoundException('Impossible de voir cette recette.');
+        }
         $em = $this->getDoctrine()->getManager();
 
         $em->getRepository('AppBundle:Recipe')->getRecipe($recipe);
@@ -233,5 +248,23 @@ class RecipeController extends Controller
         return $this->render(':Admin/Recipe:view.html.twig', array(
             'recipe' => $recipe
         ));
+    }
+
+    /**
+     * @Route("admin/supprimer-une-recette/{slug}", name="admin_recipe_delete")
+     */
+    public function recipeDeleteAction(Recipe $recipe)
+    {
+        if($recipe->getUserAdmin() != $this->getUser()) {
+            throw $this->createNotFoundException('Impossible de supprimer cette recette.');
+        }
+        $em = $this->getDoctrine()->getManager();
+
+        $em->getRepository('AppBundle:Recipe')->getRecipe($recipe);
+        $recipe->setStatus(Recipe::RECIPE_DELETE);
+        $em->flush();
+
+        $this->addFlash('info', "Recette supprimée.");
+        return $this->redirectToRoute('admin_liste_recipes');
     }
 }

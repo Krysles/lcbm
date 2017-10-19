@@ -65,13 +65,12 @@
                                         <div class="col-md-6">
                                             {{ form_label(form.preparationTime.hour, 'Heure') }}
                                             {{ form_widget(form.preparationTime.hour, { 'attr': {'class': 'mdb-select'}}) }}
-                                            {{ form_errors(form.preparationTime.hour) }}
                                         </div>
                                         <div class="col-md-6">
                                             {{ form_label(form.preparationTime.minute, 'Minute') }}
                                             {{ form_widget(form.preparationTime.minute, { 'attr': {'class': 'mdb-select'}}) }}
-                                            {{ form_errors(form.preparationTime.minute) }}
                                         </div>
+                                        {{ form_errors(form.preparationTime) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -80,13 +79,12 @@
                                         <div class="col-md-6">
                                             {{ form_label(form.timeToRest.hour, 'Heure') }}
                                             {{ form_widget(form.timeToRest.hour, { 'attr': {'class': 'mdb-select'}}) }}
-                                            {{ form_errors(form.timeToRest.hour) }}
                                         </div>
                                         <div class="col-md-6">
                                             {{ form_label(form.timeToRest.minute, 'Minute') }}
                                             {{ form_widget(form.timeToRest.minute, { 'attr': {'class': 'mdb-select'}}) }}
-                                            {{ form_errors(form.timeToRest.minute) }}
                                         </div>
+                                        {{ form_errors(form.timeToRest) }}
                                     </div>
                                 </div>
                             </div>
@@ -97,13 +95,12 @@
                                         <div class="col-md-6">
                                             {{ form_label(form.cookingTime.hour, 'Heure') }}
                                             {{ form_widget(form.cookingTime.hour, { 'attr': {'class': 'mdb-select'}}) }}
-                                            {{ form_errors(form.cookingTime.hour) }}
                                         </div>
                                         <div class="col-md-6">
                                             {{ form_label(form.cookingTime.minute, 'Minute') }}
                                             {{ form_widget(form.cookingTime.minute, { 'attr': {'class': 'mdb-select'}}) }}
-                                            {{ form_errors(form.cookingTime.minute) }}
                                         </div>
+                                        {{ form_errors(form.cookingTime) }}
                                     </div>
                                 </div>
                             </div>
@@ -124,10 +121,13 @@
 
 {% block javascript %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/i18n/fr.js"></script>
     <script>
         $(document).ready(function () {
             $('.mdb-select').material_select();
-            $(".select").select2();
+            $(".select").select2({
+                "language": "fr-FR"
+            });
         });
     </script>
 {% endblock %}

@@ -8,7 +8,7 @@ class ContainsTimeValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if ($value == "00:00") {
+        if ($value->format('H:i') == "00:00") {
             $this->context->buildViolation($constraint->message)
                 ->addViolation();
         }

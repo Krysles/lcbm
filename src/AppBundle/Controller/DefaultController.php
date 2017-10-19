@@ -3,19 +3,39 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Recipe;
+use AppBundle\Entity\SearchTitle;
 use AppBundle\Entity\Subcategory;
+use AppBundle\Form\Type\SearchTitleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $searchtitle = new SearchTitle();
+
         $em = $this->getDoctrine()->getManager();
+
+        $form = $this->createForm(SearchTitleType::class, $searchtitle);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+                if ($form->get('search')->isClicked()) {
+                    //dump($searchTitle);
+                    //$recipes = $em->getRepository('AppBundle:Recipe')->getRecipesInForTitle($searchTitle->getSearchtitle($searchTitle->getSearchtitle()));
+
+                    return $this->redirectToRoute('view_search', array('searchtitle' => $searchtitle->getSearchtitle()));
+                    //return $this->redirectToRoute('view_search');
+
+                }
+
+        }
 
         $buzzRecipe = $em->getRepository('AppBundle:Recipe')->findBy(
             array('status' => Recipe::RECIPE_VALIDATE),
@@ -24,6 +44,7 @@ class DefaultController extends Controller
         );
 
         return $this->render('base.html.twig', array(
+            'form' => $form->createView(),
             'buzzRecipe' => $buzzRecipe
         ));
     }
@@ -47,10 +68,11 @@ class DefaultController extends Controller
      */
     public function viewRecipeAction(Request $request, Recipe $recipe)
     {
+        if($recipe->getStatus() != Recipe::RECIPE_VALIDATE) {
+            throw $this->createNotFoundException("La recette n'existe pas.");
+        }
         $em = $this->getDoctrine()->getManager();
-
         $em->getRepository('AppBundle:Recipe')->getRecipe($recipe);
-
         return $this->render('recipe.html.twig', array(
             'recipe' => $recipe
         ));
@@ -85,6 +107,31 @@ class DefaultController extends Controller
         );
 
         return $this->render('::myrecipes.html.twig', array(
+            'recipes' => $recipes
+        ));
+    }
+
+    /**
+     * @Route("/recherche/{searchtitle}/{page}", name="view_search", defaults={"page" = 1})
+     */
+    public function viewSearchAction(Request $request, $searchtitle, $page)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $recipes = $em->getRepository('AppBundle:Recipe')->getRecipesInForTitle($searchtitle);
+
+        dump($request);
+        dump($recipes);
+
+        $paginator = $this->get('knp_paginator');
+
+        $recipes = $paginator->paginate(
+            $recipes,
+            $request->query->getInt('page', $page),
+            $request->query->getInt('limit', $this->getParameter('nb_recipes_per_page'))
+        );
+
+        return $this->render('searchtitle.html.twig', array(
             'recipes' => $recipes
         ));
     }

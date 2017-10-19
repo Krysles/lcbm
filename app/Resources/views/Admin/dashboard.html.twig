@@ -171,7 +171,7 @@
                 {% for message in app.session.flashbag.get('warning') %}
                     <p class="text-center warning-color white-text mt-5 p-2 mb-0">{{ message }}</p>
                 {% endfor %}
-                {% for message in app.session.flashbag.get('danger') %}
+                {% for message in app.session.flashbag.get('error') %}
                     <p class="text-center danger-color white-text mt-5 p-2 mb-0">{{ message }}</p>
                 {% endfor %}
             </div>

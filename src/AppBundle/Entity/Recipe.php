@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Validator\Constraints\ContainsAlphanumeric;
 use AppBundle\Validator\Constraints\ContainsTime;
 use AppBundle\Validator\ValidateTime;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,7 +17,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Recipe
 {
-    const RECIPE_START = 0;
+    const RECIPE_DELETE = 0;
     const RECIPE_INIT = 10;
     const RECIPE_PICTURE_INIT = 20;
     const RECIPE_INGREDIENT_INIT = 30;
@@ -141,7 +140,7 @@ class Recipe
      * @ORM\Column(name="status", type="integer")
      * @Assert\NotBlank(message="Status obligatoire", groups={"recipe_init"})
      */
-    private $status = self::RECIPE_START;
+    private $status = self::RECIPE_INIT;
 
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Subcategory", inversedBy="recipes", cascade={"persist"})

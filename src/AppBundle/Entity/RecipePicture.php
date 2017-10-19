@@ -39,9 +39,9 @@ class RecipePicture
      *
      * @Assert\Image(
      *     minHeight="567",
-     *     minHeightMessage="567 pixels minimum",
+     *     minHeightMessage="hauteur de 567 pixels minimum",
      *     minWidth="756",
-     *     minWidthMessage="756 pixels minimum",
+     *     minWidthMessage="largeur de 756 pixels minimum",
      *     groups={"recipe_picture_init"}
      * )
      * @var File

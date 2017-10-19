@@ -3,25 +3,31 @@
 {% block title %}Ajouter une unité de cuisson - {{ parent() }}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="offset-sm-1 col-sm-10">
-            <div class="card-block">
-                <div class="text-center">
-                    <h4>Ajouter une unité</h4>
-                    <hr class="mt-2 mb-2">
-                </div>
-                <div class="md-form">
-                    {{ form_start(form) }}
-                    <i class="fa fa-tag prefix"></i>
-                    {{ form_widget(form.name, {'attr': {'length': '30'}}) }}
-                    {{ form_label(form.name, 'Unité de cuisson') }}
-                    {{ form_errors(form.name) }}
-                    <div class="text-center">
-                        <button type="submit" class="btn red darken-3" formnovalidate><i class="fa fa-check"></i>
-                            Ajouter
-                        </button>
+    <div id="category" class="item">
+        <div class="flex-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 mb-r">
+                <div class="card card-cascade">
+                    <div class="view gradient-card-header red darken-3">
+                        <h2 class="h2-responsive">Ajouter une unité de cuisson</h2>
                     </div>
-                    {{ form_end(form) }}
+                    <div class="card-body">
+                        {{ form_start(form) }}
+                        <div class="card-text">
+                            <div class="md-form">
+                                <i class="fa fa-tag prefix"></i>
+                                {{ form_widget(form.name, {'attr': {'length': '30'}}) }}
+                                {{ form_label(form.name, 'Unité de cuisson') }}
+                                {{ form_errors(form.name) }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <button type="submit" class="btn red darken-3"><i
+                                        class="fa fa-check"></i> Ajouter
+                            </button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
                 </div>
             </div>
         </div>
