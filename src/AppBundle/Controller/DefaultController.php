@@ -124,7 +124,8 @@ class DefaultController extends Controller
         );
 
         return $this->render('searchtitle.html.twig', array(
-            'recipes' => $recipes
+            'recipes' => $recipes,
+            'searchtitle' => $searchtitle
         ));
     }
 
