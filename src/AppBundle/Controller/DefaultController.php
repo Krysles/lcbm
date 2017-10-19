@@ -27,12 +27,7 @@ class DefaultController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
                 if ($form->get('search')->isClicked()) {
-                    //dump($searchTitle);
-                    //$recipes = $em->getRepository('AppBundle:Recipe')->getRecipesInForTitle($searchTitle->getSearchtitle($searchTitle->getSearchtitle()));
-
                     return $this->redirectToRoute('view_search', array('searchtitle' => $searchtitle->getSearchtitle()));
-                    //return $this->redirectToRoute('view_search');
-
                 }
 
         }
@@ -119,9 +114,6 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $recipes = $em->getRepository('AppBundle:Recipe')->getRecipesInForTitle($searchtitle);
-
-        dump($request);
-        dump($recipes);
 
         $paginator = $this->get('knp_paginator');
 
