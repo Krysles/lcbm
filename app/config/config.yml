@@ -116,7 +116,7 @@ liip_imagine:
         recipe:
             quality: 100
             filters:
-                thumbnail: { size: [756, 567], mode: outbound }
+                thumbnail: { size: [1200, 600], mode: outbound }
                 #background: { size: [756, 567], position: center, color: '#ffffff' }
 
 # Bundle StofDoctrineBundle
