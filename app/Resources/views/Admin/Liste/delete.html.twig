@@ -1,5 +1,5 @@
 {% extends ':Admin:dashboard.html.twig' %}
-{% block title %}Recettes à valider - {{ parent() }}{% endblock %}
+{% block title %}Recettes supprimées - {{ parent() }}{% endblock %}
 
 {% block content %}
     <div class="item" id="recipes">
@@ -8,7 +8,7 @@
                 <div class="card card-cascade">
                     <div class="view gradient-card-header red darken-3">
                         <h2 class="h2-responsive">Liste des recettes</h2>
-                        <p>Recettes en attente de validation</p>
+                        <p>Recettes dans la corbeille</p>
                     </div>
                     <div class="card-body text-center">
                         <div class="card-text">
@@ -39,7 +39,10 @@
                                                             class="fa fa-pencil fa-lg"></i></a>
                                                 <a href="{{ path('admin_recipe_delete', {'slug': recipe.slug}) }}"
                                                    class="red-text"><i
-                                                            class="fa fa-times fa-lg"></i></a></td>
+                                                            class="fa fa-times fa-lg"></i></a>
+                                                <a href="{{ path('admin_recipe_restore', {'slug': recipe.slug}) }}"
+                                                    class="orange-text"><i
+                                                            class="fa fa-reply fa-lg"></i></a></td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
@@ -50,9 +53,6 @@
                             {% else %}
                                 <p>Aucune recette.</p>
                             {% endif %}
-                            <hr/>
-                            <a class="btn red darken-3" href="{{ path('admin_recipe_add') }}"><i
-                                        class="fa fa-check"></i> Ajouter une recette</a>
                         </div>
 
                     </div>

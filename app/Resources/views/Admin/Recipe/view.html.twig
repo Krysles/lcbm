@@ -147,8 +147,10 @@
                             </div>
                         </div>
                     </div>
-                    <a class="btn red darken-3" href="{{ path('admin_recipe_add') }}"><i
-                                class="fa fa-check"></i> Valider la recette</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="btn red darken-3" href="{{ path('admin_recipe_validate', {'slug': recipe.slug}) }}"><i
+                                    class="fa fa-check"></i> Valider la recette</a>
+                    {% endif %}
                 </div>
 
             </div>

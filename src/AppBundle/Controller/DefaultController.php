@@ -2,14 +2,15 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Contact;
 use AppBundle\Entity\Recipe;
 use AppBundle\Entity\SearchTitle;
 use AppBundle\Entity\Subcategory;
+use AppBundle\Form\Type\ContactType;
 use AppBundle\Form\Type\SearchTitleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends Controller
 {
@@ -18,20 +19,28 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        // Recherche
         $searchtitle = new SearchTitle();
-
-        $em = $this->getDoctrine()->getManager();
-
         $form = $this->createForm(SearchTitleType::class, $searchtitle);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
                 if ($form->get('search')->isClicked()) {
                     return $this->redirectToRoute('view_search', array('searchtitle' => $searchtitle->getSearchtitle()));
                 }
 
         }
+        // Contact
+        $contact = new Contact();
+        $form2 = $this->createForm(ContactType::class, $contact);
+        $form2->handleRequest($request);
+        if($form2->isSubmitted() && $form2->isValid()){
+            //$this->get('app.send_contact_mail')->sendContactMail($contact);
+            $this->addFlash('info', 'Votre message a bien été envoyé, nous répondrons dès que possible à votre demande.');
+            return $this->redirectToRoute('homepage');
+        }
 
+        // ----- //
+        $em = $this->getDoctrine()->getManager();
         $buzzRecipe = $em->getRepository('AppBundle:Recipe')->findBy(
             array('status' => Recipe::RECIPE_VALIDATE),
             array('updateDate' => 'DESC'),
@@ -40,6 +49,7 @@ class DefaultController extends Controller
 
         return $this->render('base.html.twig', array(
             'form' => $form->createView(),
+            'contactform' => $form2->createView(),
             'buzzRecipe' => $buzzRecipe
         ));
     }

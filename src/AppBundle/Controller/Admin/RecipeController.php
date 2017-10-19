@@ -33,7 +33,7 @@ class RecipeController extends Controller
         $em = $this->getDoctrine()->getManager();
         if ($slug) {
             $recipe = $em->getRepository('AppBundle:Recipe')->findOneBy(array('slug' => $slug));
-            if($recipe->getUserAdmin() != $this->getUser()) {
+            if ($recipe->getUserAdmin() != $this->getUser()) {
                 throw $this->createNotFoundException('Impossible de modifier cette recette.');
             }
             if (!$recipe) {
@@ -78,7 +78,7 @@ class RecipeController extends Controller
      */
     public function recipePictureAddAction(Request $request, Recipe $recipe)
     {
-        if($recipe->getUserAdmin() != $this->getUser()) {
+        if ($recipe->getUserAdmin() != $this->getUser()) {
             throw $this->createNotFoundException('Impossible de modifier cette recette.');
         }
         $em = $this->getDoctrine()->getManager();
@@ -125,7 +125,7 @@ class RecipeController extends Controller
      */
     public function recipeIngredientsAddAction(Request $request, Recipe $recipe)
     {
-        if($recipe->getUserAdmin() != $this->getUser()) {
+        if ($recipe->getUserAdmin() != $this->getUser()) {
             throw $this->createNotFoundException('Impossible de modifier cette recette.');
         }
         $em = $this->getDoctrine()->getManager();
@@ -179,7 +179,7 @@ class RecipeController extends Controller
      */
     public function recipeStepAddAction(Request $request, Recipe $recipe)
     {
-        if($recipe->getUserAdmin() != $this->getUser()) {
+        if ($recipe->getUserAdmin() != $this->getUser()) {
             throw $this->createNotFoundException('Impossible de modifier cette recette.');
         }
         $em = $this->getDoctrine()->getManager();
@@ -238,8 +238,10 @@ class RecipeController extends Controller
      */
     public function recipeViewAction(Recipe $recipe)
     {
-        if($recipe->getUserAdmin() != $this->getUser()) {
-            throw $this->createNotFoundException('Impossible de voir cette recette.');
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+            if ($recipe->getUserAdmin() != $this->getUser()) {
+                throw $this->createNotFoundException('Impossible de voir cette recette.');
+            }
         }
         $em = $this->getDoctrine()->getManager();
 
@@ -255,8 +257,10 @@ class RecipeController extends Controller
      */
     public function recipeDeleteAction(Recipe $recipe)
     {
-        if($recipe->getUserAdmin() != $this->getUser()) {
-            throw $this->createNotFoundException('Impossible de supprimer cette recette.');
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+            if ($recipe->getUserAdmin() != $this->getUser()) {
+                throw $this->createNotFoundException('Impossible de supprimer cette recette.');
+            }
         }
         $em = $this->getDoctrine()->getManager();
 
@@ -266,5 +270,41 @@ class RecipeController extends Controller
 
         $this->addFlash('info', "Recette supprimée.");
         return $this->redirectToRoute('admin_liste_recipes');
+    }
+
+    /**
+     * @Route("admin/validation/{slug}", name="admin_recipe_validate")
+     */
+    public function recipeValidateAction(Recipe $recipe)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException('Accès limité aux administrateurs.');
+        }
+        $em = $this->getDoctrine()->getManager();
+
+        $em->getRepository('AppBundle:Recipe')->getRecipe($recipe);
+        $recipe->setStatus(Recipe::RECIPE_VALIDATE);
+        $em->flush();
+
+        $this->addFlash('success', "Recette validée.");
+        return $this->redirectToRoute('admin_liste_recipes_to_validate');
+    }
+
+    /**
+     * @Route("admin/restaurer/{slug}", name="admin_recipe_restore")
+     */
+    public function recipeRestoreAction(Recipe $recipe)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException('Accès limité aux administrateurs.');
+        }
+        $em = $this->getDoctrine()->getManager();
+
+        $em->getRepository('AppBundle:Recipe')->getRecipe($recipe);
+        $recipe->setStatus(Recipe::RECIPE_INIT);
+        $em->flush();
+
+        $this->addFlash('success', "Recette restaurée.");
+        return $this->redirectToRoute('admin_liste_recipes_delete');
     }
 }

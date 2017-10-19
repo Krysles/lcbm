@@ -59,10 +59,17 @@ class ListeController extends Controller
      */
     public function adminListeRecipesToValidateAction(Request $request, $page)
     {
-        $recipes = $this->getDoctrine()->getManager()->getRepository('AppBundle:Recipe')->findBy(
-            array('status' => Recipe::RECIPE_TO_VALIDATE, 'userAdmin' => $this->getUser()),
-            array('updateDate' => 'asc')
-        );
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            $recipes = $this->getDoctrine()->getManager()->getRepository('AppBundle:Recipe')->findBy(
+                array('status' => Recipe::RECIPE_TO_VALIDATE, 'userAdmin' => $this->getUser()),
+                array('updateDate' => 'asc')
+            );
+        } else {
+            $recipes = $this->getDoctrine()->getManager()->getRepository('AppBundle:Recipe')->findBy(
+                array('status' => Recipe::RECIPE_TO_VALIDATE),
+                array('updateDate' => 'asc')
+            );
+        }
 
         $paginator = $this->get('knp_paginator');
         $recipes = $paginator->paginate(
@@ -72,6 +79,32 @@ class ListeController extends Controller
         );
 
         return $this->render(':Admin/Liste:tovalidate.html.twig', array(
+            'recipes' => $recipes
+        ));
+    }
+
+    /**
+     * @Route("admin/corbeille/{page}", name="admin_liste_recipes_delete", defaults={"page" = 1})
+     */
+    public function adminListeRecipesDeleteAction(Request $request, $page)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            throw $this->createNotFoundException('Impossible de voir les recettes.');
+        } else {
+            $recipes = $this->getDoctrine()->getManager()->getRepository('AppBundle:Recipe')->findBy(
+                array('status' => Recipe::RECIPE_DELETE),
+                array('updateDate' => 'desc')
+            );
+        }
+
+        $paginator = $this->get('knp_paginator');
+        $recipes = $paginator->paginate(
+            $recipes,
+            $request->query->getInt('page', $page),
+            $request->query->getInt('limit', $this->getParameter('nb_recipes_per_page'))
+        );
+
+        return $this->render(':Admin/Liste:delete.html.twig', array(
             'recipes' => $recipes
         ));
     }

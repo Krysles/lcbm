@@ -47,11 +47,13 @@
         <!-- Side navigation links -->
         <li>
             <ul class="collapsible collapsible-accordion">
+                {% if is_granted('ROLE_ADMIN') %}
                 <li class="text-center">
                     <a class="collapsible-header waves-effect arrow-r m-0 p-0"
                        href="{{ path('admin_liste_categories') }}">Catégories</a>
                     <img src="{{ asset('img/website/middle.png') }}" class="img-fluid">
                 </li>
+                {% endif %}
                 <li class="text-center">
                     <a class="collapsible-header waves-effect arrow-r m-0 p-0">Recettes<i
                                 class="fa fa-angle-down rotate-icon"></i></a>
@@ -63,6 +65,11 @@
                             <li><a href="{{ path('admin_liste_recipes_to_validate') }}"
                                    class="waves-effect">En attente</a>
                             </li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('admin_liste_recipes_delete') }}"
+                                   class="waves-effect">Supprimées</a>
+                            </li>
+                            {% endif %}
                         </ul>
                     </div>
                     <img src="{{ asset('img/website/middle.png') }}" class="img-fluid">
@@ -85,6 +92,7 @@
                     </div>
                     <img src="{{ asset('img/website/middle.png') }}" class="img-fluid">
                 </li>
+                {% if is_granted('ROLE_ADMIN') %}
                 <li class="text-center">
                     <a class="collapsible-header waves-effect arrow-r m-0 p-0">Modes de cuisson<i
                                 class="fa fa-angle-down rotate-icon"></i></a>
@@ -115,6 +123,7 @@
                     </div>
                     <img src="{{ asset('img/website/middle.png') }}" class="img-fluid">
                 </li>
+                {% endif %}
             </ul>
         </li>
         <!--/. Side navigation links -->

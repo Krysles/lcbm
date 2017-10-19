@@ -124,30 +124,29 @@
                         <div class="tab-pane fade show active" id="list-home" role="tabpanel"
                              aria-labelledby="list-home-list">
                             {{ form_start(form, {'id': 'search'}) }}
-
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-2 col-md-1">
-                                                <div class="md-form col-12">
-                                                    <i class="fa fa-search fa-2x pt-2"></i>
-                                                </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-2 col-md-1">
+                                            <div class="md-form col-12">
+                                                <i class="fa fa-search fa-2x pt-2"></i>
                                             </div>
-                                            <div class="col-10 col-md-6 d-flex align-items-center">
-                                                <div class="md-form col-12">
-                                                    {{ form_widget(form.searchtitle, {'attr': {'class': 'form-control'}}) }}
-                                                    {{ form_label(form.searchtitle, null, {'label': 'ex: Tartiflette', 'label_attr': {'class': 'ml-3'}}) }}
-                                                    {{ form_errors(form.searchtitle) }}
-                                                </div>
+                                        </div>
+                                        <div class="col-10 col-md-6 d-flex align-items-center">
+                                            <div class="md-form col-12">
+                                                {{ form_widget(form.searchtitle, {'attr': {'class': 'form-control'}}) }}
+                                                {{ form_label(form.searchtitle, null, {'label': 'ex: Tartiflette', 'label_attr': {'class': 'ml-3'}}) }}
+                                                {{ form_errors(form.searchtitle) }}
                                             </div>
-                                            <div class="col-12 col-md-5 d-flex align-items-center">
-                                                <div class="md-form col-12">
-                                                    {{ form_widget(form.search, { 'label': ' rechercher', 'attr': {'class': 'btn btn-red col-12 animated bounceIn', 'formnovalidate': 'formnovalidate'} }) }}
-                                                </div>
+                                        </div>
+                                        <div class="col-12 col-md-5 d-flex align-items-center">
+                                            <div class="md-form col-12">
+                                                {{ form_widget(form.search, { 'label': ' rechercher', 'attr': {'class': 'btn btn-red col-12 animated bounceIn', 'formnovalidate': 'formnovalidate'} }) }}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             {{ form_end(form) }}
                         </div>
                         <div class="tab-pane fade" id="list-profile" role="tabpanel"
@@ -405,32 +404,37 @@
                             <i class="fa fa-envelope-o fa-2x"></i>
                             <p class="h5-responsive mt-1">nous contacter</p>
                         </div>
-                        <form class="p-5 contact-form">
+                        {{ form_start(contactform, {'class': 'p-5 contact-form'}) }}
+                        <div class="p-5 contact-form">
                             <div class="md-form">
                                 <i class="fa fa-user prefix grey-text"></i>
-                                <input type="text" id="form3" class="form-control">
-                                <label for="form3">Votre nom</label>
+                                {{ form_widget(contactform.name, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_label(contactform.name, 'Votre nom') }}
+                                {{ form_errors(contactform.name) }}
                             </div>
                             <div class="md-form">
                                 <i class="fa fa-envelope prefix grey-text"></i>
-                                <input type="text" id="form2" class="form-control">
-                                <label for="form2">Votre email</label>
+                                {{ form_widget(contactform.email, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_label(contactform.email, 'Votre email') }}
+                                {{ form_errors(contactform.email) }}
                             </div>
                             <div class="md-form">
                                 <i class="fa fa-tag prefix grey-text"></i>
-                                <input type="text" id="form34" class="form-control">
-                                <label for="form34">Sujet</label>
+                                {{ form_widget(contactform.object, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_label(contactform.object, 'Sujet') }}
+                                {{ form_errors(contactform.object) }}
                             </div>
                             <div class="md-form">
                                 <i class="fa fa-pencil prefix grey-text"></i>
-                                <textarea type="text" id="form8" class="md-textarea" style="height: 100px"></textarea>
-                                <label for="form8">Votre message</label>
+                                {{ form_widget(contactform.message, {'attr': {'class': 'md-textarea'}}) }}
+                                {{ form_label(contactform.message, 'Votre message') }}
+                                {{ form_errors(contactform.message) }}
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-red darken-3">envoyer <i class="fa fa-paper-plane-o ml-1"></i>
-                                </button>
+                                {{ form_widget(contactform.send, { 'label': 'envoyer', 'attr': {'class': 'btn btn-red darken-3', 'formnovalidate': 'formnovalidate'} }) }}
                             </div>
-                        </form>
+                        </div>
+                        {{ form_end(contactform) }}
                     </div>
                 </section>
             </div>

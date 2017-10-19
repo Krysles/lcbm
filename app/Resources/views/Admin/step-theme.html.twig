@@ -10,15 +10,8 @@
                         {{ form_errors(form.step) }}
                     </div>
                 </div>
-                {% set x = random(1000) %}
-                {% set y = random(1000) %}
-                <p class="col-12">Une précision concernant la <a
-                            class="red-text lighten-3" href="#{{ x }}" data-toggle="collapse" aria-expanded="false"
-                            aria-controls="{{ x }}"><strong>cuisson</strong></a> ou l'<a
-                            class="red-text lighten-3" href="#{{ y }}" data-toggle="collapse" aria-expanded="false"
-                            aria-controls="{{ y }}"><strong>appareil utilisé</strong></a> pour l'étape
-                    ?</p>
-                <div class="col-12 grey lighten-2 mb-2 collapse" id="{{ x }}">
+                <p>Vous pouvez ajouter un type de cuisson ou un appareil utilisé si dessous.</p>
+                <div class="col-12 grey lighten-2 mb-2">
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-lg-6 text-center">
                             {{ form_label(form.cooking.cookingType) }}
@@ -53,10 +46,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 flex-center">
 
-                </div>
-                <div class="col-12 grey lighten-2 mb-2 collapse" id="{{ y }}">
+                <div class="col-12 grey lighten-2 mb-2">
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-lg-6 text-center">
                             {{ form_label(form.device.deviceType) }}
